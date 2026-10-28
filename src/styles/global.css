@@ -150,10 +150,9 @@ button {
   padding: 0 28px;
   border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  font-family: var(--font-display);
-  font-size: 18px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font-text);
+  font-size: 16px;
+  font-weight: 600;
   line-height: 1;
   transition: transform 0.2s var(--ease), background-color 0.2s, border-color 0.2s;
 }
@@ -171,10 +170,7 @@ button {
 .btn--small {
   min-height: 44px;
   padding: 0 18px;
-  font-family: var(--font-text);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-size: 14px;
 }
 
 @media (hover: hover) {
