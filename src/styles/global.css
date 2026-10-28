@@ -195,7 +195,7 @@ button {
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .pill--lime {
