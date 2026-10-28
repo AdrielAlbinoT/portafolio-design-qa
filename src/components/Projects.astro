@@ -1,0 +1,214 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import ProjectDialog from './ProjectDialog.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const filters = ['Todos', 'UI/UX', 'Editorial', 'Brand Identity', 'Digital Design', 'Social Media'];
+
+// Datos para el diálogo (sin imágenes), se leen desde el script de este componente.
+const dialogData = Object.fromEntries(
+  projects.map((p) => {
+    const { cover, ...rest } = p.data;
+    return [p.id, { ...rest, hasMockups: Boolean(p.data.mockups) }];
+  }),
+);
+---
+
+<section class="section" id="proyectos" aria-labelledby="projects-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="label">Proyectos</p>
+      <h2 class="h-section" id="projects-title">Trabajo seleccionado</h2>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filtrar proyectos por categoría">
+      {
+        filters.map((f, i) => (
+          <button type="button" class="chip" data-filter={f} aria-pressed={i === 0 ? 'true' : 'false'}>
+            {f}
+          </button>
+        ))
+      }
+    </div>
+    <p class="sr-only" role="status" data-count></p>
+
+    <ul class="grid" data-grid>
+      {projects.map((p) => <ProjectCard id={p.id} project={p.data} />)}
+    </ul>
+  </div>
+
+  <ProjectDialog />
+  <script type="application/json" id="projects-data" set:html={JSON.stringify(dialogData)} />
+</section>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: clamp(24px, 4vw, 40px);
+  }
+
+  .chip {
+    min-height: 44px;
+    padding: 0 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--fg);
+    font-size: 14px;
+    font-weight: 600;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  .chip[aria-pressed='true'] {
+    background: var(--lime);
+    border-color: var(--lime);
+    color: var(--lime-ink);
+  }
+
+  @media (hover: hover) {
+    .chip[aria-pressed='false']:hover {
+      border-color: var(--lime);
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap);
+  }
+
+  .grid > :global([hidden]) {
+    display: none;
+  }
+
+  @media (min-width: 760px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
+
+<script>
+  type Project = {
+    title: string;
+    category: string;
+    client: string;
+    year?: string;
+    hook: string;
+    problem: string;
+    solution: string;
+    tools: string[];
+    highlight?: string;
+    accent: string;
+    hasMockups: boolean;
+    mockupCount?: number;
+    mockupNote?: string;
+    pending?: string;
+  };
+
+  const data: Record<string, Project> = JSON.parse(document.getElementById('projects-data')?.textContent ?? '{}');
+
+  // ---- Filtros ----
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-grid] > [data-category]'));
+  const count = document.querySelector<HTMLElement>('[data-count]');
+
+  chips.forEach((chip) =>
+    chip.addEventListener('click', () => {
+      const f = chip.dataset.filter;
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      let shown = 0;
+      cards.forEach((card) => {
+        const show = f === 'Todos' || card.dataset.category === f;
+        card.hidden = !show;
+        if (show) shown++;
+      });
+      if (count) count.textContent = `${shown} ${shown === 1 ? 'proyecto' : 'proyectos'}`;
+    }),
+  );
+
+  // ---- Diálogo ----
+  const dlg = document.querySelector<HTMLDialogElement>('[data-dialog]');
+  if (dlg) {
+    const f = (name: string) => dlg.querySelector<HTMLElement>(`[data-f="${name}"]`)!;
+    const text = (name: string, value?: string) => {
+      const el = f(name);
+      el.textContent = value ?? '';
+      el.hidden = !value;
+    };
+
+    const fill = (p: Project) => {
+      f('strip').style.setProperty('--accent', p.accent);
+      dlg.style.setProperty('--accent', p.accent);
+      text('category', p.category);
+      text('year', p.year);
+      text('title', p.title);
+      text('client', p.client);
+      text('hook', p.hook);
+      text('highlight', p.highlight);
+      text('problem', p.problem);
+      text('solution', p.solution);
+      text('pending', p.pending ? `[PENDIENTE: ${p.pending}]` : undefined);
+
+      const tools = f('tools');
+      tools.replaceChildren(
+        ...p.tools.map((t) => {
+          const li = document.createElement('li');
+          li.className = 'pill';
+          li.textContent = t;
+          return li;
+        }),
+      );
+      f('tools-wrap').hidden = p.tools.length === 0;
+
+      const mock = f('mock');
+      mock.replaceChildren();
+      f('mock-wrap').hidden = !p.hasMockups;
+      if (p.hasMockups) {
+        for (let i = 0; i < (p.mockupCount ?? 0); i++) {
+          const fr = document.createElement('span');
+          fr.className = 'frame';
+          mock.append(fr);
+        }
+        const t = document.createElement('p');
+        t.className = 'mock-text';
+        const s = document.createElement('strong');
+        s.textContent = 'Mockup pendiente';
+        t.append(s);
+        if (p.mockupNote) {
+          const n = document.createElement('span');
+          n.textContent = p.mockupNote;
+          t.append(n);
+        }
+        mock.append(t);
+      }
+    };
+
+    document.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-open]');
+      if (btn) {
+        const p = data[btn.dataset.open ?? ''];
+        if (!p) return;
+        fill(p);
+        dlg.scrollTop = 0;
+        dlg.showModal();
+        dlg.querySelector<HTMLElement>('[data-close]')?.focus();
+        return;
+      }
+    });
+
+    dlg.addEventListener('click', (e) => {
+      const t = e.target as HTMLElement;
+      if (t === dlg || t.closest('[data-close]')) dlg.close();
+    });
+  }
+</script>

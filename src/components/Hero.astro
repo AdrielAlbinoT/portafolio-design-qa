@@ -1,0 +1,115 @@
+---
+import HeroImage from './HeroImage.astro';
+
+const stats = [
+  { n: '4', t: 'productos UI/UX' },
+  { n: '3', t: 'identidades de marca' },
+  { n: '5', t: 'áreas creativas' },
+];
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <div class="container grid-12">
+    <div class="text">
+      <h1 id="hero-title">Diseño UI UX</h1>
+      <p class="sub">Adriel Albino Tasayco</p>
+      <p class="desc">
+        Diseño experiencias digitales claras y probadas, donde la usabilidad y la estética conectan con las personas.
+      </p>
+      <div class="actions">
+        <a class="btn btn--lime" href="#proyectos">Ver proyectos</a>
+        <a class="btn btn--ghost" href="#sobre-mi">Sobre mí</a>
+      </div>
+      <dl class="stats">
+        {
+          stats.map((s) => (
+            <div>
+              <dt>{s.n}</dt>
+              <dd>{s.t}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <div class="visual">
+      <HeroImage />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: calc(var(--nav-h) + 16px + clamp(40px, 8vw, 96px));
+    padding-bottom: clamp(48px, 8vw, 112px);
+    scroll-margin-top: 0;
+  }
+
+  .hero .container {
+    align-items: center;
+    row-gap: clamp(32px, 6vw, 56px);
+  }
+
+  .text {
+    container-type: inline-size;
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: min(var(--fs-hero), 20cqi);
+    line-height: 0.95;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .sub {
+    margin-top: 16px;
+    font-size: var(--fs-hero-sub);
+    font-weight: 600;
+    color: var(--lime);
+  }
+
+  .desc {
+    max-width: 48ch;
+    margin-top: 20px;
+    color: var(--muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px clamp(12px, 3vw, 32px);
+    margin-top: clamp(32px, 5vw, 48px);
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .stats dt {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1;
+    color: var(--lime);
+  }
+
+  .stats dd {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  @media (min-width: 1024px) {
+    .text {
+      grid-column: 1 / 7;
+    }
+    .visual {
+      grid-column: 7 / 13;
+    }
+  }
+</style>

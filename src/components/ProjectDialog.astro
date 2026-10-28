@@ -1,0 +1,232 @@
+<dialog class="dlg" aria-labelledby="dlg-title" data-dialog>
+  <span class="strip" data-f="strip" aria-hidden="true"></span>
+  <button class="close" type="button" aria-label="Cerrar" data-close autofocus>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+      <path d="M6 6l12 12M18 6L6 18"></path>
+    </svg>
+  </button>
+
+  <div class="inner">
+    <p class="meta"><span class="label" data-f="category"></span><span class="muted" data-f="year"></span></p>
+    <h3 id="dlg-title" data-f="title"></h3>
+    <p class="muted" data-f="client"></p>
+    <p class="hook" data-f="hook"></p>
+    <p class="highlight" data-f="highlight" hidden></p>
+
+    <div class="ps">
+      <section class="box">
+        <h4 class="label-sm">Problema</h4>
+        <p data-f="problem"></p>
+      </section>
+      <section class="box sol">
+        <h4 class="label-sm">Solución</h4>
+        <p data-f="solution"></p>
+      </section>
+    </div>
+
+    <section class="sec" data-f="tools-wrap" hidden>
+      <h4 class="label-sm muted">Herramientas</h4>
+      <ul class="pill-list" data-f="tools"></ul>
+    </section>
+
+    <section class="sec" data-f="mock-wrap" hidden>
+      <h4 class="label-sm muted">Mockups</h4>
+      <div class="mock" data-f="mock"></div>
+    </section>
+
+    <p class="pending" data-f="pending" hidden></p>
+  </div>
+</dialog>
+
+<style>
+  .dlg {
+    position: fixed;
+    inset: 0;
+    width: min(920px, calc(100vw - 2 * var(--gutter)));
+    max-width: none;
+    max-height: min(90dvh, 900px);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    background: var(--surface);
+    color: var(--fg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+
+  .dlg:not([open]) {
+    display: none;
+  }
+
+  .dlg::backdrop {
+    background: rgba(8, 10, 7, 0.78);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .dlg[open] {
+      animation: pop 0.25s var(--ease);
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+  }
+
+  .strip {
+    display: block;
+    height: 6px;
+    background: var(--accent, var(--lime));
+  }
+
+  .close {
+    position: sticky;
+    top: 12px;
+    float: right;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin: 12px 12px -56px 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--surface-2);
+    color: var(--fg);
+  }
+
+  .close:hover {
+    border-color: var(--lime);
+  }
+
+  .inner {
+    display: grid;
+    gap: 14px;
+    padding: clamp(20px, 4vw, 40px);
+    padding-right: clamp(20px, 4vw, 40px);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    padding-right: 52px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+
+  #dlg-title {
+    font-size: clamp(36px, 5vw, 60px);
+    text-transform: uppercase;
+  }
+
+  .hook {
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 600;
+  }
+
+  .highlight {
+    justify-self: start;
+    padding: 6px 14px;
+    border: 1px solid var(--lime);
+    border-radius: var(--radius-pill);
+    color: var(--lime);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .ps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap);
+    margin-top: 6px;
+  }
+
+  .box {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    padding: clamp(16px, 2.5vw, 24px);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--fg);
+  }
+
+  .sol {
+    background: var(--lime);
+    border-color: var(--lime);
+    color: var(--lime-ink);
+  }
+
+  .label-sm {
+    font-family: var(--font-text);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .sec {
+    display: grid;
+    gap: 10px;
+  }
+
+  .mock {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+    padding: 16px;
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+  }
+
+  .mock :global(.frame) {
+    aspect-ratio: 9 / 16;
+    max-height: 220px;
+    justify-self: center;
+    width: 100%;
+    max-width: 124px;
+    border: 2px dashed var(--line);
+    border-radius: 18px;
+    background: var(--surface-2);
+  }
+
+  .mock :global(.mock-text) {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 2px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .mock :global(.mock-text strong) {
+    color: var(--fg);
+  }
+
+  @media (min-width: 760px) {
+    .ps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-height: 500px) {
+    .dlg {
+      max-height: 94dvh;
+    }
+  }
+</style>

@@ -1,0 +1,130 @@
+---
+const rows = [
+  { label: 'Correo', value: 'adriel.designstudio@gmail.com', copy: true },
+  { label: 'WhatsApp', value: '+51 955 003 641', copy: true },
+  { label: 'Behance', value: 'behance.net/adrielalbino', href: 'https://www.behance.net/adrielalbino' },
+  { label: 'Instagram', value: '@adrieloficial02', href: 'https://www.instagram.com/adrieloficial02/' },
+];
+---
+
+<section class="section" id="contacto" aria-labelledby="contact-title">
+  <div class="container grid-12">
+    <div class="intro">
+      <p class="label">Contacto</p>
+      <h2 class="h-section" id="contact-title">Trabajemos juntos</h2>
+      <p class="lead">Cuéntame sobre tu proyecto y te respondo pronto.</p>
+      <a class="btn btn--lime" href="#escribeme">Escríbeme</a>
+      <p class="pending">[PENDIENTE: tiempo de respuesta, por ejemplo 24 a 48 horas]</p>
+    </div>
+
+    <ul class="rows">
+      {
+        rows.map((r) => (
+          <li class="row">
+            <span class="k">{r.label}</span>
+            <span class="v break">{r.value}</span>
+            {r.copy ? (
+              <button type="button" class="btn btn--ghost btn--small act" data-copy={r.value}>
+                Copiar
+              </button>
+            ) : (
+              <a class="btn btn--ghost btn--small act" href={r.href} target="_blank" rel="noopener">
+                Abrir<span class="sr-only"> {r.label} en una pestaña nueva</span>
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .intro {
+    display: grid;
+    justify-items: start;
+    align-content: start;
+    gap: 20px;
+  }
+
+  .intro .h-section {
+    margin-top: 0;
+  }
+
+  .lead {
+    color: var(--muted);
+    max-width: 36ch;
+  }
+
+  .rows {
+    min-width: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 2px 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .k {
+    grid-column: 1;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .v {
+    grid-column: 1;
+    font-weight: 600;
+    min-width: 0;
+  }
+
+  .act {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-width: 96px;
+  }
+
+  @media (min-width: 1024px) {
+    .intro {
+      grid-column: 1 / 7;
+    }
+    .rows {
+      grid-column: 7 / 13;
+      align-self: end;
+    }
+    .row {
+      padding-block: 20px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    const label = btn.textContent;
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copy ?? '';
+      try {
+        await navigator.clipboard.writeText(value);
+      } catch {
+        const target = btn.closest('.row')?.querySelector('.v');
+        if (target) {
+          const range = document.createRange();
+          range.selectNodeContents(target);
+          const sel = getSelection();
+          sel?.removeAllRanges();
+          sel?.addRange(range);
+        }
+        return;
+      }
+      btn.textContent = 'Copiado';
+      setTimeout(() => (btn.textContent = label), 2000);
+    });
+  });
+</script>

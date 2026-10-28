@@ -1,0 +1,18 @@
+{
+  "category": "UI/UX",
+  "title": "Festiva",
+  "client": "Entretenimiento",
+  "year": "2024",
+  "hook": "Descubre dónde está la fiesta.",
+  "problem": "Eventos dispersos entre redes sociales y chats.",
+  "solution": "Eventos, locales y artistas en una sola plataforma, con mapa y categorías.",
+  "tools": [
+    "Figma",
+    "Photoshop"
+  ],
+  "accent": "#FF6F61",
+  "mockups": "festiva",
+  "mockupCount": 4,
+  "mockupNote": "3 a 4 pantallas: inicio, mapa, detalle del evento.",
+  "order": 2
+}

@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('experience')).map((e) => e.data);
+const jobs = [...all.filter((j) => j.current), ...all.filter((j) => !j.current).sort((a, b) => a.order - b.order)];
+---
+
+<div class="exp">
+  <h3 class="label">Experiencia</h3>
+  <ol class="timeline">
+    {
+      jobs.map((j) => (
+        <li class:list={['job', { current: j.current }]}>
+          <span class="node" aria-hidden="true" />
+          <div class="head">
+            <h4>{j.company}</h4>
+            <p class="meta">
+              {j.location} · {j.period}
+            </p>
+          </div>
+          {j.role && <p class="role">{j.role}</p>}
+          <ul class="items">
+            {j.items.map((i) => (
+              <li>{i}</li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .exp {
+    display: grid;
+    gap: 24px;
+  }
+
+  .timeline {
+    position: relative;
+    display: grid;
+    gap: clamp(24px, 4vw, 36px);
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--line);
+  }
+
+  .job {
+    position: relative;
+  }
+
+  .node {
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--base);
+    border: 2px solid var(--muted);
+  }
+
+  .current .node {
+    background: var(--lime);
+    border-color: var(--lime);
+    box-shadow: 0 0 0 5px var(--lime-soft);
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 16px;
+  }
+
+  h4 {
+    font-family: var(--font-text);
+    font-size: clamp(17px, 1.6vw, 20px);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .meta {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .role {
+    margin-top: 2px;
+    color: var(--lime);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .items {
+    display: grid;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .items li {
+    position: relative;
+    padding-left: 16px;
+    line-height: 1.5;
+  }
+
+  .items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 6px;
+    height: 1px;
+    background: var(--lime);
+  }
+</style>

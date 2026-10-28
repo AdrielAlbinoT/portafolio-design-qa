@@ -1,0 +1,115 @@
+---
+import Skills from './Skills.astro';
+import Experience from './Experience.astro';
+
+const strengths = ['Empatía', 'Compromiso', 'Responsabilidad', 'Autoaprendizaje'];
+const languages = [
+  { t: 'Español (nativo)', lime: true },
+  { t: 'Inglés (intermedio-avanzado)', lime: false },
+];
+---
+
+<section class="section" id="sobre-mi" aria-labelledby="about-title">
+  <div class="container grid-12">
+    <div class="left">
+      <p class="label">Acerca de mí</p>
+      <h2 class="h-section" id="about-title">Diseño con criterio</h2>
+
+      <div class="block">
+        <h3 class="block-title">Fortalezas</h3>
+        <ul class="pill-list">
+          {strengths.map((s) => <li class="pill">{s}</li>)}
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3 class="block-title">Idiomas</h3>
+        <ul class="pill-list">
+          {languages.map((l) => <li class:list={['pill', { 'pill--lime': l.lime }]}>{l.t}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div class="right">
+      <p class="name">Adriel Albino Tasayco</p>
+      <p class="role">Diseñador UI/UX | QA Tester | Gráfico Digital</p>
+      <div class="copy">
+        <p>Diseño interfaces para apps y web que son fáciles de usar y se ven bien.</p>
+        <p>
+          Pruebo lo que diseño: detecto bugs y problemas de usabilidad, los reporto en tickets y verifico que cada
+          corrección quede funcional.
+        </p>
+        <p>Trabajo en equipo con desarrolladores y clientes, con metodologías ágiles.</p>
+        <p class="pending">[PENDIENTE: revisar textos finales con el autor]</p>
+      </div>
+      <Skills />
+    </div>
+  </div>
+
+  <div class="container exp-wrap">
+    <Experience />
+  </div>
+</section>
+
+<style>
+  .left {
+    min-width: 0;
+  }
+
+  .block {
+    margin-top: 28px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .block-title {
+    font-family: var(--font-text);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--muted);
+    line-height: 1.2;
+  }
+
+  .right {
+    display: grid;
+    gap: 16px;
+    align-content: start;
+    min-width: 0;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: var(--fs-project);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .role {
+    color: var(--lime);
+    font-weight: 600;
+  }
+
+  .copy {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 12px;
+    justify-items: start;
+  }
+
+  .exp-wrap {
+    margin-top: clamp(48px, 7vw, 88px);
+  }
+
+  @media (min-width: 1024px) {
+    .left {
+      grid-column: 1 / 6;
+    }
+    .right {
+      grid-column: 7 / 13;
+      padding-top: 8px;
+    }
+    .exp-wrap > :global(.exp) {
+      max-width: 720px;
+    }
+  }
+</style>

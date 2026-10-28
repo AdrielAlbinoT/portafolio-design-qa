@@ -1,0 +1,125 @@
+---
+const steps = [
+  { t: 'Detecto', d: 'Pruebas funcionales, de regresión y de usabilidad por módulo.' },
+  { t: 'Documento', d: 'Cada hallazgo va en un ticket con pasos, resultado esperado y resultado obtenido.' },
+  { t: 'Verifico', d: 'Reviso que la corrección quede funcional y propongo mejoras de experiencia y de UI.' },
+];
+const platforms = ['Android', 'Web', 'iOS'];
+---
+
+<section class="section" id="qa" aria-labelledby="qa-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="label">QA testing</p>
+      <h2 class="h-section" id="qa-title">Diseño y testing, juntos</h2>
+    </div>
+
+    <ol class="steps">
+      {
+        steps.map((s, i) => (
+          <li class="card step">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="platforms">
+      <h3 class="label">Plataformas</h3>
+      <ul class="pill-list">
+        {platforms.map((p) => <li class="pill">{p}</li>)}
+      </ul>
+    </div>
+
+    <div class="case card">
+      <p class="label">Caso de referencia</p>
+      <p>
+        Plataforma de gestión hotelera de housekeeping: aperturas de habitaciones, limpieza, progreso de tareas y
+        órdenes de mantenimiento.
+      </p>
+      <p class="pending">[PENDIENTE: imágenes del caso, en src/assets/mockups/clean-room/, cuando el autor las tenga]</p>
+    </div>
+
+    <div class="ticket">
+      <p class="label">Ejemplo de ticket</p>
+      <p class="pending">[PENDIENTE: ejemplo real anonimizado de un ticket de bug: título, severidad, pasos, esperado y obtenido]</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap);
+  }
+
+  .step {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: clamp(20px, 2.5vw, 32px);
+  }
+
+  .num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1;
+    color: var(--lime);
+  }
+
+  h3 {
+    font-size: var(--fs-project);
+    text-transform: uppercase;
+  }
+
+  .step p {
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .platforms {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+    margin-top: clamp(24px, 4vw, 40px);
+  }
+
+  .platforms .label {
+    font-family: var(--font-text);
+    line-height: 1.2;
+  }
+
+  .case {
+    display: grid;
+    gap: 10px;
+    justify-items: start;
+    margin-top: clamp(24px, 4vw, 40px);
+    padding: clamp(20px, 2.5vw, 32px);
+  }
+
+  .ticket {
+    display: grid;
+    gap: 10px;
+    justify-items: start;
+    margin-top: var(--gap);
+    padding: clamp(16px, 2vw, 24px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+
+  @media (min-width: 480px) and (max-width: 759px) {
+    .steps {
+      gap: 14px;
+    }
+  }
+
+  @media (min-width: 760px) {
+    .steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

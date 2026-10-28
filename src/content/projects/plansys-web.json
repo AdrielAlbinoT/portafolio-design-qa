@@ -1,0 +1,17 @@
+{
+  "category": "UI/UX",
+  "title": "PlanSys Web",
+  "client": "Recursos Humanos · Producto de SYS",
+  "year": "2025",
+  "hook": "Tu información laboral en un solo lugar.",
+  "problem": "Préstamos, vacaciones y novedades repartidos en distintos sistemas.",
+  "solution": "Panel centralizado para trabajadores y administradores.",
+  "tools": [
+    "Figma"
+  ],
+  "accent": "#1E3A8A",
+  "mockups": "plansys-web",
+  "mockupCount": 2,
+  "mockupNote": "Escritorio y móvil, antes y después.",
+  "order": 4
+}

@@ -1,0 +1,31 @@
+:root {
+  --base: #121411;
+  --surface: #1b1e19;
+  --surface-2: #242820;
+  --fg: #f3f5ee;
+  --muted: #b5bbaa;
+  --line: rgba(243, 245, 238, 0.14);
+  --lime: #c6f432;
+  --lime-ink: #0e1103;
+  --lime-soft: rgba(198, 244, 50, 0.14);
+  --case-tint: #3a4232;
+  --gutter: clamp(16px, 4vw, 56px);
+  --max: 1200px;
+  --gap: clamp(14px, 2vw, 22px);
+  --radius-card: 16px;
+  --radius-pill: 999px;
+
+  --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --font-text: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+
+  --fs-hero: clamp(44px, 9vw, 132px);
+  --fs-hero-sub: clamp(18px, 2.2vw, 26px);
+  --fs-section: clamp(44px, 7vw, 96px);
+  --fs-project: clamp(28px, 3vw, 40px);
+  --fs-body: clamp(16px, 1.2vw, 18px);
+
+  --nav-h: 60px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  color-scheme: dark;
+}

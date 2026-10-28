@@ -1,0 +1,17 @@
+{
+  "title": "Todo a la luz",
+  "category": "Editorial",
+  "client": "Movimiento Tabú",
+  "year": "2020 – 2026",
+  "hook": "Hablar de lo que incomoda.",
+  "problem": "Temas incómodos que se evitan en casa y en la iglesia.",
+  "solution": "Revistas, artículos y folletos con estadísticas e infografías claras para padres.",
+  "tools": [
+    "Diseño editorial"
+  ],
+  "accent": "#FF6F61",
+  "mockups": "todo-a-la-luz",
+  "mockupNote": "Páginas de revista y folleto.",
+  "pending": "Confirmar si puede mostrarse públicamente.",
+  "order": 5
+}

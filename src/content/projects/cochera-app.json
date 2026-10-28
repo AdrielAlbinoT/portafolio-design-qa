@@ -1,0 +1,18 @@
+{
+  "category": "UI/UX",
+  "title": "Cochera App",
+  "client": "Estacionamientos",
+  "year": "2024",
+  "hook": "Encuentra espacio antes de llegar.",
+  "problem": "Poca información de disponibilidad, con congestión y tiempo perdido.",
+  "solution": "Espacios disponibles, tickets con QR y tarifas claras para conductores y administradores.",
+  "tools": [
+    "Figma",
+    "Photoshop"
+  ],
+  "accent": "#8B5CF6",
+  "mockups": "cochera-app",
+  "mockupCount": 4,
+  "mockupNote": "3 a 4 pantallas: búsqueda, disponibilidad, ticket QR.",
+  "order": 3
+}

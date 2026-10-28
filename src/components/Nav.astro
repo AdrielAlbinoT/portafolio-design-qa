@@ -1,0 +1,335 @@
+---
+const links = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#sobre-mi', label: 'Sobre mí' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#qa', label: 'QA' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<header class="nav" data-nav>
+  <div class="bar">
+    <a class="brand" href="#inicio">ADRIEL</a>
+
+    <nav class="links" aria-label="Principal">
+      <ul>
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} data-link>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a class="cta btn btn--lime btn--small" href="#contacto">Hablemos</a>
+
+    <button
+      class="burger"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-panel"
+      aria-label="Abrir menú"
+      data-burger
+    >
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+        <path class="l1" d="M4 7h16"></path>
+        <path class="l2" d="M4 12h16"></path>
+        <path class="l3" d="M4 17h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="panel" id="nav-panel" aria-label="Menú móvil" hidden data-panel>
+    <ul>
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} data-link>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="btn btn--lime panel-cta" href="#contacto" data-link-close>Hablemos</a>
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    z-index: 50;
+    top: calc(16px + env(safe-area-inset-top, 0px));
+    left: 50%;
+    width: 92vw;
+    max-width: 960px;
+    transform: translateX(-50%);
+    transition: transform 250ms var(--ease);
+  }
+
+  .nav.is-hidden {
+    transform: translate(-50%, -140%);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: var(--nav-h);
+    padding: 0 8px 0 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: rgba(18, 20, 17, 0.7);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.06em;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .links ul {
+    display: flex;
+    align-items: center;
+  }
+
+  .links a,
+  .panel a:not(.btn) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 10px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .links a:hover,
+  .panel a:hover,
+  a[aria-current='true'] {
+    color: var(--fg);
+  }
+
+  a[aria-current='true']::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 3px;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    border-radius: 50%;
+    background: var(--lime);
+  }
+
+  .cta {
+    display: none;
+  }
+
+  .burger {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--lime);
+    color: var(--lime-ink);
+  }
+
+  .burger path {
+    transform-origin: 12px 12px;
+    transition: transform 0.25s var(--ease), opacity 0.2s;
+  }
+  .burger[aria-expanded='true'] .l1 {
+    transform: translateY(5px) rotate(45deg);
+  }
+  .burger[aria-expanded='true'] .l2 {
+    opacity: 0;
+  }
+  .burger[aria-expanded='true'] .l3 {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .panel {
+    margin-top: 8px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    background: rgba(18, 20, 17, 0.92);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .panel[hidden] {
+    display: none;
+  }
+
+  .panel ul {
+    display: grid;
+  }
+
+  .panel a:not(.btn) {
+    width: 100%;
+    padding: 0 16px;
+    font-size: 16px;
+  }
+
+  .panel a[aria-current='true']::after {
+    left: auto;
+    right: 16px;
+    bottom: auto;
+    top: 50%;
+    margin: -2.5px 0 0;
+  }
+
+  .panel-cta {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  @media (min-width: 760px) {
+    .links,
+    .cta {
+      display: block;
+    }
+    .cta {
+      display: inline-flex;
+      flex: none;
+      margin-right: 0;
+    }
+    .burger,
+    .panel {
+      display: none;
+    }
+  }
+
+  @media (min-width: 760px) and (max-width: 899px) {
+    .bar {
+      padding-left: 16px;
+      gap: 6px;
+    }
+    .brand {
+      font-size: 19px;
+    }
+    .links a {
+      padding: 0 7px;
+      font-size: 12px;
+    }
+    .cta {
+      padding: 0 14px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .links a {
+      padding: 0 12px;
+      font-size: 14px;
+    }
+    .bar {
+      padding-right: 8px;
+    }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const burger = document.querySelector<HTMLButtonElement>('[data-burger]');
+  const panel = document.querySelector<HTMLElement>('[data-panel]');
+
+  if (nav && burger && panel) {
+    const setOpen = (open: boolean) => {
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      panel.hidden = !open;
+    };
+    const isOpen = () => burger.getAttribute('aria-expanded') === 'true';
+
+    burger.addEventListener('click', () => setOpen(!isOpen()));
+    panel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        burger.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (isOpen() && !nav.contains(e.target as Node)) setOpen(false);
+    });
+    matchMedia('(min-width: 760px)').addEventListener('change', (m) => {
+      if (m.matches) setOpen(false);
+    });
+
+    // Ocultar al bajar, mostrar al subir
+    let lastY = scrollY;
+    let ticking = false;
+    addEventListener(
+      'scroll',
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = scrollY;
+          const goingDown = y > lastY;
+          if (Math.abs(y - lastY) > 4) {
+            const keep = isOpen() || nav.contains(document.activeElement);
+            nav.classList.toggle('is-hidden', y > 80 && goingDown && !keep);
+            lastY = y;
+          }
+          ticking = false;
+        });
+      },
+      { passive: true },
+    );
+
+    // Enlace de la sección visible
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-link]'));
+    const map = new Map<string, Element>();
+    links.forEach((a) => {
+      const id = a.getAttribute('href')?.slice(1);
+      const el = id && document.getElementById(id);
+      if (id && el) map.set(id, el);
+    });
+    const alias: Record<string, string> = { escribeme: 'contacto' };
+    const footer = document.getElementById('escribeme');
+
+    const setActive = (id: string) => {
+      links.forEach((a) => {
+        if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) setActive(alias[en.target.id] ?? en.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+    map.forEach((el) => io.observe(el));
+    if (footer) io.observe(footer);
+  }
+</script>

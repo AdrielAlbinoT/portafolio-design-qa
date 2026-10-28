@@ -1,0 +1,144 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  id: string;
+  project: CollectionEntry<'projects'>['data'];
+}
+
+const { id, project: p } = Astro.props;
+const meta = [p.client, p.year].filter(Boolean).join(' · ');
+---
+
+<li class="pcard card" data-category={p.category} data-project={id}>
+  <div class="cover" style={`--accent:${p.accent}`}>
+    {
+      p.cover ? (
+        <Image src={p.cover} alt={`Portada del proyecto ${p.title}`} widths={[400, 640, 800]} sizes="(min-width:1024px) 380px, (min-width:760px) 45vw, 92vw" loading="lazy" />
+      ) : (
+        <span class="ph">{p.title}</span>
+      )
+    }
+    <span class="strip" aria-hidden="true"></span>
+  </div>
+  <div class="body">
+    <p class="cat">{p.category}</p>
+    <p class="meta">{meta}</p>
+    <h3>
+      <button type="button" class="open" data-open={id} aria-haspopup="dialog">{p.title}</button>
+    </h3>
+    <p class="hook">{p.hook}</p>
+  </div>
+</li>
+
+<style>
+  .pcard {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+    transition: background-color 0.2s, transform 0.25s var(--ease);
+  }
+
+  @media (hover: hover) {
+    .pcard:hover {
+      background: var(--surface-2);
+      transform: translateY(-3px);
+    }
+  }
+
+  .cover {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+
+  .cover :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ph {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px 24px 30px;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: var(--fs-project);
+    line-height: 1.05;
+    text-transform: uppercase;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .strip {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 6px;
+    background: var(--accent);
+  }
+
+  .body {
+    display: grid;
+    align-content: start;
+    gap: 4px;
+    padding: clamp(16px, 2vw, 24px);
+  }
+
+  .cat {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+
+  .meta {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  h3 {
+    margin-top: 6px;
+    font-size: var(--fs-project);
+    text-transform: uppercase;
+  }
+
+  .open {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    text-transform: inherit;
+    text-align: left;
+    color: inherit;
+  }
+
+  .open::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+  }
+
+  .open:focus-visible {
+    outline: none;
+  }
+  .open:focus-visible::after {
+    outline: 2px solid var(--lime);
+    outline-offset: -2px;
+  }
+
+  .hook {
+    margin-top: 4px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+</style>

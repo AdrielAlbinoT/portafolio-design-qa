@@ -1,0 +1,12 @@
+{
+  "company": "Disisoft (freelance)",
+  "location": "Perú",
+  "period": "2025",
+  "current": false,
+  "items": [
+    "Rediseño UI/UX de la aplicación AnalitixGo.",
+    "Asesoría en diseño UI/UX para mejorar el impacto del producto y la experiencia de usuario.",
+    "Componentes UI reutilizables y Design System base."
+  ],
+  "order": 3
+}

@@ -1,0 +1,131 @@
+---
+import ContactForm from './ContactForm.astro';
+
+const links = [
+  { href: '#sobre-mi', label: 'Sobre mí' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#qa', label: 'QA' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<footer class="footer" id="escribeme">
+  <div class="container grid-12 top">
+    <div class="intro">
+      <h2 class="h-section">Escríbeme</h2>
+      <p class="lead">Si tienes una idea, una marca o un proyecto en mente, cuéntamelo.</p>
+      <p class="data break">
+        <span>adriel.designstudio@gmail.com</span>
+        <span>+51 955 003 641</span>
+      </p>
+    </div>
+    <div class="form-wrap">
+      <ContactForm />
+    </div>
+  </div>
+
+  <div class="container bottom">
+    <p class="copy">© 2026 Adriel Albino Tasayco. Todos los derechos reservados.</p>
+    <nav aria-label="Pie de página">
+      <ul class="flinks">
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href}>{l.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a class="up btn btn--ghost btn--small" href="#inicio">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    padding-top: clamp(56px, 8vw, 104px);
+    scroll-margin-top: 0;
+  }
+
+  .top {
+    row-gap: clamp(32px, 5vw, 48px);
+  }
+
+  .intro {
+    display: grid;
+    align-content: start;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .intro .h-section {
+    margin-top: 0;
+  }
+
+  .lead {
+    max-width: 36ch;
+    color: var(--muted);
+  }
+
+  .data {
+    display: grid;
+    gap: 4px;
+    font-weight: 600;
+    user-select: text;
+  }
+
+  .form-wrap {
+    min-width: 0;
+  }
+
+  .bottom {
+    display: grid;
+    gap: 16px;
+    justify-items: start;
+    margin-top: clamp(48px, 7vw, 88px);
+    padding-block: 24px calc(24px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--line);
+  }
+
+  .copy {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .flinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 4px;
+  }
+
+  .flinks a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 10px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .flinks a:hover {
+    color: var(--lime);
+  }
+
+  @media (min-width: 1024px) {
+    .intro {
+      grid-column: 1 / 6;
+    }
+    .form-wrap {
+      grid-column: 7 / 13;
+    }
+    .bottom {
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 32px;
+    }
+  }
+</style>

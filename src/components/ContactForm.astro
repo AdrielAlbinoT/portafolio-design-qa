@@ -1,0 +1,286 @@
+---
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+---
+
+<form class="form" method="post" action={endpoint || undefined} novalidate data-form data-endpoint={endpoint}>
+  <div class="field">
+    <label for="cf-name">Nombre</label>
+    <input id="cf-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" />
+    <p class="err" id="cf-name-err" data-err="name"></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-email">Correo</label>
+    <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" required />
+    <p class="err" id="cf-email-err" data-err="email"></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-msg">Mensaje</label>
+    <textarea id="cf-msg" name="message" rows="5" required minlength="10" maxlength="500"></textarea>
+    <div class="msg-foot">
+      <p class="err" id="cf-msg-err" data-err="message"></p>
+      <p class="count" data-count aria-hidden="true">0/500</p>
+    </div>
+  </div>
+
+  <div class="hp" aria-hidden="true">
+    <label for="cf-web">Sitio web</label>
+    <input id="cf-web" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <button class="btn btn--lime submit" type="submit" data-submit>Enviar</button>
+
+  <div class="status" aria-live="polite" data-status></div>
+</form>
+
+<style>
+  .form {
+    display: grid;
+    gap: 18px;
+  }
+
+  .field {
+    display: grid;
+    gap: 6px;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface-2);
+    color: var(--fg);
+    font-size: 16px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
+  }
+
+  input[aria-invalid='true'],
+  textarea[aria-invalid='true'] {
+    border-color: #ff8a7a;
+  }
+
+  .err {
+    min-height: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ff8a7a;
+  }
+
+  .err:empty {
+    display: none;
+  }
+
+  .msg-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .count {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .submit {
+    justify-self: start;
+    min-width: 160px;
+    border: 0;
+  }
+
+  .submit:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  .status {
+    font-weight: 600;
+  }
+
+  .status:empty {
+    display: none;
+  }
+
+  .status :global(.ok) {
+    padding: 14px 16px;
+    border: 1px solid var(--lime);
+    border-radius: 12px;
+    color: var(--fg);
+  }
+
+  .status :global(.bad) {
+    padding: 14px 16px;
+    border: 1px solid #ff8a7a;
+    border-radius: 12px;
+  }
+
+  .status :global(.bad .break) {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 479px) {
+    .submit {
+      justify-self: stretch;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-form]');
+
+  if (form) {
+    const endpoint = form.dataset.endpoint ?? '';
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const counter = form.querySelector<HTMLElement>('[data-count]')!;
+    const name = form.elements.namedItem('name') as HTMLInputElement;
+    const email = form.elements.namedItem('email') as HTMLInputElement;
+    const message = form.elements.namedItem('message') as HTMLTextAreaElement;
+    const honeypot = form.elements.namedItem('website') as HTMLInputElement;
+
+    const showError = (field: HTMLInputElement | HTMLTextAreaElement, msg: string) => {
+      const out = form.querySelector<HTMLElement>(`[data-err="${field.name}"]`)!;
+      out.textContent = msg;
+      if (msg) {
+        field.setAttribute('aria-invalid', 'true');
+        field.setAttribute('aria-describedby', out.id);
+      } else {
+        field.removeAttribute('aria-invalid');
+        field.removeAttribute('aria-describedby');
+      }
+      return !msg;
+    };
+
+    const validators: Array<[HTMLInputElement | HTMLTextAreaElement, () => string]> = [
+      [
+        name,
+        () => {
+          const n = name.value.trim().length;
+          if (n === 0) return 'Escribe tu nombre.';
+          if (n < 2) return 'Tu nombre debe tener al menos 2 caracteres.';
+          if (n > 80) return 'Tu nombre puede tener hasta 80 caracteres.';
+          return '';
+        },
+      ],
+      [
+        email,
+        () =>
+          /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())
+            ? ''
+            : 'Escribe un correo válido, como nombre@dominio.com',
+      ],
+      [
+        message,
+        () => {
+          const n = message.value.trim().length;
+          if (n === 0) return 'Cuéntame en qué te puedo ayudar.';
+          if (n < 10) return 'Escribe al menos 10 caracteres para que pueda entender tu idea.';
+          if (n > 500) return 'El mensaje puede tener hasta 500 caracteres.';
+          return '';
+        },
+      ],
+    ];
+
+    const contactNote = (text: string) => {
+      status.replaceChildren();
+      const box = document.createElement('div');
+      box.className = 'bad';
+      const p = document.createElement('p');
+      p.textContent = text;
+      const info = document.createElement('span');
+      info.className = 'break';
+      info.textContent = 'adriel.designstudio@gmail.com · +51 955 003 641';
+      box.append(p, info);
+      status.append(box);
+    };
+
+    const networkMsg = 'No pudimos enviarlo. Escríbeme por correo o WhatsApp.';
+
+    if (!endpoint) contactNote(networkMsg);
+
+    message.addEventListener('input', () => {
+      counter.textContent = `${message.value.length}/500`;
+    });
+
+    validators.forEach(([field, check]) => {
+      field.addEventListener('blur', () => {
+        if (field.value) showError(field, check());
+      });
+      field.addEventListener('input', () => {
+        if (field.getAttribute('aria-invalid')) showError(field, check());
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (honeypot.value) return;
+
+      let firstBad: HTMLElement | null = null;
+      validators.forEach(([field, check]) => {
+        if (!showError(field, check()) && !firstBad) firstBad = field;
+      });
+      if (firstBad) {
+        (firstBad as HTMLElement).focus();
+        return;
+      }
+
+      if (!endpoint) {
+        contactNote(networkMsg);
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = 'Enviando…';
+      status.replaceChildren();
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        counter.textContent = '0/500';
+        const ok = document.createElement('p');
+        ok.className = 'ok';
+        ok.textContent = 'Gracias, recibí tu mensaje. Te respondo pronto.';
+        status.replaceChildren(ok);
+      } catch {
+        contactNote(networkMsg);
+      } finally {
+        submit.disabled = false;
+        submit.textContent = 'Enviar';
+      }
+    });
+  }
+</script>

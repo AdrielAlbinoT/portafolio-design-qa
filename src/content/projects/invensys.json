@@ -1,0 +1,19 @@
+{
+  "category": "UI/UX",
+  "title": "InvenSys",
+  "client": "Gestión de inventarios · Producto de SYS",
+  "year": "2024",
+  "hook": "Inventario al día, incluso sin conexión.",
+  "problem": "El stock en hojas de cálculo y mensajes genera errores y pérdidas.",
+  "solution": "Escaneo, ubicaciones y sincronización en una sola app, también sin conexión.",
+  "tools": [
+    "Figma",
+    "Photoshop"
+  ],
+  "highlight": "100% sincronizado",
+  "accent": "#3FA34D",
+  "mockups": "invensys",
+  "mockupCount": 4,
+  "mockupNote": "3 a 4 pantallas: escaneo, ubicaciones, modo sin conexión.",
+  "order": 1
+}

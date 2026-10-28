@@ -1,0 +1,35 @@
+---
+const design = ['Figma', 'Photoshop', 'Illustrator', 'Framer', 'Rive', 'Miró'];
+---
+
+<div class="skills">
+  <h3 class="label">Software</h3>
+  <div class="group">
+    <p class="group-title">Diseño</p>
+    <ul class="pill-list">
+      {design.map((t) => <li class="pill">{t}</li>)}
+    </ul>
+  </div>
+  <div class="group">
+    <p class="group-title">Testing</p>
+    <p class="pending">[PENDIENTE: herramientas de QA que usa, por ejemplo Linear para tickets o las que domine]</p>
+  </div>
+</div>
+
+<style>
+  .skills {
+    display: grid;
+    gap: 20px;
+  }
+  .group {
+    display: grid;
+    gap: 10px;
+  }
+  .group-title {
+    font-weight: 700;
+  }
+  .label {
+    font-family: var(--font-text);
+    line-height: 1.2;
+  }
+</style>
