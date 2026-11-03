@@ -241,8 +241,8 @@ Cada mancha usa `radial-gradient(circle, color 0%, transparent 68–70%)`.
 Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: texto y luego imagen.
 
 **Texto**
-- Título principal: "DISEÑADOR UI/UX". Una sola línea en LG y XL, en Anton, color `--fg`. Tamaño según la escala de la sección 4. Es el protagonista de la página, con el nombre como subtítulo.
-- Nombre sobre el título: "Adriel Albino Tasayco", en Inter 500, color `--lime`.
+- Título principal: "DISEÑADOR" y debajo "UI/UX" (dos líneas), en Anton, color `--fg`. Tamaño según la escala de la sección 4. Es el protagonista de la página, con el nombre como subtítulo.
+- Saludo sobre el título: "Hola, soy Adriel", en Inter 500, color `--lime`.
 - Descripción (una sola frase): "Diseño experiencias digitales claras y probadas, donde la usabilidad y la estética conectan con las personas."
 - Botones: "Ver proyectos" (enlace a `#proyectos`, fondo `--lime`, texto `--lime-ink`) y "Sobre mí" (enlace a `#sobre-mi`, contorno de 1px en `--line`, texto `--fg`).
 - Fila de tres datos, con número en Anton `--lime`:
@@ -545,7 +545,7 @@ Criterios:
 - La barra flotante no tapa el título del hero.
 - El cuadro de espacio de imagen del hero no tapa el texto.
 - Ninguna imagen se deforma.
-- El título "DISEÑADOR UI/UX" no se corta ni pasa de una línea en LG y XL.
+- El título "DISEÑADOR / UI/UX" no se corta y mantiene sus dos líneas en todos los anchos.
 - Los marcos de mockup no se salen del contenedor en XS.
 - El formulario se completa con teclado y con pantalla táctil.
 
