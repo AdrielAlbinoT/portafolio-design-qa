@@ -18,7 +18,7 @@
   --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
   --font-text: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 
-  --fs-hero: clamp(48px, 6.7vw, 96px);
+  --fs-hero: clamp(54px, 7.5vw, 108px);
   --fs-hero-sub: clamp(16px, 1.25vw, 18px);
   --fs-section: clamp(36px, 3.35vw, 48px);
   --fs-project: 24px;
