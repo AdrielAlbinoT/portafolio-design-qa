@@ -56,7 +56,8 @@ const stats = [
 
   h1 {
     font-size: min(var(--fs-hero), 20cqi);
-    line-height: 0.95;
+    line-height: 1;
+    letter-spacing: -0.025em;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -64,13 +65,14 @@ const stats = [
   .sub {
     margin-top: 16px;
     font-size: var(--fs-hero-sub);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--lime);
   }
 
   .desc {
     max-width: 48ch;
     margin-top: 20px;
+    font-size: clamp(16px, 1.25vw, 18px);
     color: var(--muted);
   }
 
@@ -92,15 +94,15 @@ const stats = [
 
   .stats dt {
     font-family: var(--font-display);
-    font-size: clamp(36px, 4vw, 52px);
+    font-size: clamp(30px, 2.5vw, 36px);
     line-height: 1;
     color: var(--lime);
   }
 
   .stats dd {
     margin-top: 6px;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 400;
     color: var(--muted);
   }
 

@@ -123,10 +123,10 @@ Fondo oscuro con un leve tono verde, nunca negro puro. Un único color de acento
 - Los íconos de las apps conservan sus colores originales, porque son marcas ajenas al sistema.
 
 **Escala tipográfica**
-- Título del hero: `clamp(44px, 9vw, 132px)`, Anton, una sola línea en LG y XL, mayúsculas, interlineado 0.95.
+- Título del hero: `clamp(48px, 6.7vw, 96px)`, Anton, una sola línea en LG y XL, mayúsculas, interlineado 1, espaciado -0.025em.
 - Subtítulo del hero: `clamp(18px, 2.2vw, 26px)`, Montserrat 600.
-- Título de sección: `clamp(44px, 7vw, 96px)`, Anton.
-- Titular de proyecto: `clamp(28px, 3vw, 40px)`, Anton.
+- Título de sección: `clamp(36px, 3.35vw, 48px)`, Anton, espaciado -0.025em.
+- Titular de proyecto: 24px, Anton.
 - Cuerpo: `clamp(16px, 1.2vw, 18px)`, Montserrat 400, interlineado 1.6. Máximo 3 líneas por bloque de texto.
 - Etiqueta: 12px, Montserrat 700, mayúsculas, espaciado de letras 0.12em.
 
