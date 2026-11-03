@@ -19,7 +19,7 @@
   --font-text: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 
   --fs-hero: clamp(54px, 7.5vw, 108px);
-  --fs-hero-sub: clamp(16px, 1.25vw, 18px);
+  --fs-hero-sub: clamp(18px, 1.4vw, 20px);
   --fs-section: clamp(36px, 3.35vw, 48px);
   --fs-project: 24px;
   --fs-body: 16px;
