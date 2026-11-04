@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import isotipo from '../assets/brands/isotipo-circular-adriel.png';
+
 const links = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#sobre-mi', label: 'Sobre mí' },
@@ -12,13 +15,7 @@ const links = [
 <header class="nav" data-nav>
   <div class="bar">
     <a class="brand" href="#inicio" aria-label="Inicio">
-      <svg class="iso" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path>
-        <circle cx="13.5" cy="6.5" r="1" fill="currentColor"></circle>
-        <circle cx="17.5" cy="10.5" r="1" fill="currentColor"></circle>
-        <circle cx="6.5" cy="12.5" r="1" fill="currentColor"></circle>
-        <circle cx="8.5" cy="7.5" r="1" fill="currentColor"></circle>
-      </svg>
+      <Image class="iso" src={isotipo} alt="" width={48} height={48} densities={[1, 2, 3]} format="webp" loading="eager" />
     </a>
 
     <nav class="links" aria-label="Principal">
@@ -108,8 +105,9 @@ const links = [
 
   .iso {
     flex: none;
-    width: 34px;
-    height: 34px;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
   }
 
   .links {
