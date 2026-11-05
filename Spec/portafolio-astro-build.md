@@ -261,7 +261,11 @@ Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: text
 
 ---
 
-## 10. Sobre mí (`About.astro` y `Skills.astro`)
+## 10. Sobre mí (`About.astro`)
+
+**Diseño actual (reemplaza el de dos columnas):** estética tipo ficha. Título "ACERCA DE MÍ:" con subrayado lima; filas NOMBRE / PAÍS / ROL con valores en tipografía manuscrita (Caveat); biografía de dos párrafos; bloques EXPERIENCIA, FORMACIÓN, SERVICIOS, HERRAMIENTAS, IDIOMAS y FORTALEZAS. A la derecha, una tarjeta con la foto en blanco y negro (a color al pasar el cursor), una pegatina lima con texto circular y los contactos. `Skills.astro` se eliminó. [PENDIENTE: formación]
+
+Las secciones siguientes describen el contenido original.
 
 Dos columnas en LG. Una columna en el resto.
 

@@ -16,6 +16,7 @@
   --radius-pill: 999px;
 
   --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --font-hand: 'Caveat', 'Segoe Script', cursive;
   --font-text: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 
   --fs-hero: clamp(60px, 8.5vw, 124px);

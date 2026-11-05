@@ -1,49 +1,162 @@
 ---
-import Skills from './Skills.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { siWhatsapp, siInstagram, siBehance } from 'simple-icons';
 import Experience from './Experience.astro';
+import fotoBn from '../assets/about/foto-bn.png';
+import fotoColor from '../assets/about/foto-color.png';
+import avatar from '../assets/hero/avatar-adriel.png';
 
+const current = (await getCollection('experience')).map((e) => e.data).find((j) => j.current);
+
+const services = ['UI/UX Design', 'QA testing', 'Editorial', 'Branding', 'Digital Design', 'Social Media'];
+const tools = ['Figma', 'Claude', 'Photoshop', 'Linear', 'ChatGPT', 'Illustrator', 'Rive', 'Miro'];
 const strengths = ['Empatía', 'Compromiso', 'Responsabilidad', 'Autoaprendizaje'];
-const languages = [
-  { t: 'Español (nativo)', lime: true },
-  { t: 'Inglés (intermedio-avanzado)', lime: false },
+const languages = ['Español (nativo)', 'Inglés (intermedio-avanzado)'];
+
+const contacts = [
+  { icon: siWhatsapp, text: '+51 955 003 641', href: 'https://wa.me/51955003641', label: 'WhatsApp' },
+  { icon: siInstagram, text: '@adrieloficial02', href: 'https://www.instagram.com/adrieloficial02/', label: 'Instagram' },
+  { icon: siBehance, text: 'adrielalbino', href: 'https://www.behance.net/adrielalbino', label: 'Behance' },
 ];
+
+const ring = 'DISEÑADOR UI/UX • QA TESTER • GRÁFICO DIGITAL • ';
 ---
 
 <section class="section" id="sobre-mi" aria-labelledby="about-title">
-  <div class="container grid-12">
-    <div class="left">
-      <p class="label">Acerca de mí</p>
-      <h2 class="h-section" id="about-title">Diseño con criterio</h2>
+  <div class="container grid-12 about">
+    <div class="main">
+      <h2 class="title" id="about-title">
+        Acerca de mí:
+        <svg class="mark" viewBox="0 0 340 12" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M3 8C60 3 120 10 180 5s110 2 157-3" fill="none" stroke="var(--lime)" stroke-width="5" stroke-linecap="round"></path>
+        </svg>
+      </h2>
 
-      <div class="block">
-        <h3 class="block-title">Fortalezas</h3>
-        <ul class="pill-list">
-          {strengths.map((s) => <li class="pill">{s}</li>)}
-        </ul>
-      </div>
+      <dl class="fields">
+        <div class="field">
+          <dt>Nombre</dt>
+          <dd>Adriel Albino Tasayco</dd>
+        </div>
+        <div class="field">
+          <dt>País</dt>
+          <dd>Perú</dd>
+        </div>
+        <div class="field">
+          <dt>Rol</dt>
+          <dd class="small">Diseñador UI/UX | QA Tester | Gráfico Digital</dd>
+        </div>
+      </dl>
 
-      <div class="block">
-        <h3 class="block-title">Idiomas</h3>
-        <ul class="pill-list">
-          {languages.map((l) => <li class:list={['pill', { 'pill--lime': l.lime }]}>{l.t}</li>)}
-        </ul>
-      </div>
-    </div>
-
-    <div class="right">
-      <p class="name">Adriel Albino Tasayco</p>
-      <p class="role">Diseñador UI/UX | QA Tester | Gráfico Digital</p>
-      <div class="copy">
-        <p>Diseño interfaces para apps y web que son fáciles de usar y se ven bien.</p>
+      <div class="bio">
         <p>
-          Pruebo lo que diseño: detecto bugs y problemas de usabilidad, los reporto en tickets y verifico que cada
-          corrección quede funcional.
+          <strong>¡Hola! Soy Adriel, un diseñador UI/UX apasionado por crear experiencias digitales memorables</strong>,
+          combinando usabilidad, estética y creatividad, logrando así productos funcionales y atractivos que conectan
+          con los usuarios.
         </p>
-        <p>Trabajo en equipo con desarrolladores y clientes, con metodologías ágiles.</p>
-        <p class="pending">[PENDIENTE: revisar textos finales con el autor]</p>
+        <p>
+          Disfruto colaborar en proyectos innovadores, aportando soluciones únicas y de alto impacto gracias a mi
+          experiencia con metodologías ágiles y trabajo en equipo.
+        </p>
       </div>
-      <Skills />
+
+      <div class="info">
+        <section>
+          <h3>Experiencia:</h3>
+          {
+            current && (
+              <ul>
+                <li>
+                  <strong>{current.company}</strong>
+                </li>
+                <li>{current.location}</li>
+                <li>{current.period}</li>
+              </ul>
+            )
+          }
+        </section>
+        <section>
+          <h3>Formación:</h3>
+          <p class="pending">[PENDIENTE: estudios, institución y año]</p>
+        </section>
+        <section>
+          <h3>Servicios:</h3>
+          <ul>
+            {services.map((s) => <li>{s}</li>)}
+          </ul>
+        </section>
+        <section>
+          <h3>Herramientas:</h3>
+          <ul>
+            {tools.map((s) => <li>{s}</li>)}
+          </ul>
+        </section>
+        <section>
+          <h3>Idiomas:</h3>
+          <ul>
+            {languages.map((s) => <li>{s}</li>)}
+          </ul>
+        </section>
+        <section>
+          <h3>Fortalezas:</h3>
+          <ul>
+            {strengths.map((s) => <li>{s}</li>)}
+          </ul>
+        </section>
+      </div>
     </div>
+
+    <aside class="panel card">
+      <div class="sticker" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="100" fill="var(--lime)"></circle>
+          <defs>
+            <path id="ring" d="M100 100m-72 0a72 72 0 1 1 144 0a72 72 0 1 1-144 0"></path>
+          </defs>
+          <g class="spin">
+            <text font-family="Inter, sans-serif" font-weight="700" font-size="15" letter-spacing="2.2" fill="var(--lime-ink)">
+              <textPath href="#ring" textLength="448" lengthAdjust="spacing">{ring}</textPath>
+            </text>
+          </g>
+        </svg>
+        <Image src={avatar} alt="" width={64} height={68} densities={[1, 2]} format="webp" class="face" />
+      </div>
+
+      <div class="photo">
+        <Image
+          src={fotoBn}
+          alt="Retrato de Adriel Albino Tasayco sonriendo, en blanco y negro"
+          widths={[480, 768, 1024]}
+          sizes="(min-width: 1024px) 420px, (min-width: 760px) 60vw, 92vw"
+          format="webp"
+          quality={82}
+          class="bn"
+        />
+        <Image
+          src={fotoColor}
+          alt=""
+          widths={[480, 768, 1024]}
+          sizes="(min-width: 1024px) 420px, (min-width: 760px) 60vw, 92vw"
+          format="webp"
+          quality={82}
+          class="color"
+        />
+      </div>
+
+      <div class="contacts">
+        <span class="lead">Hablemos ya:</span>
+        {
+          contacts.map((c) => (
+            <a href={c.href} target="_blank" rel="noopener" aria-label={`${c.label}: ${c.text}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d={c.icon.path} fill="currentColor" />
+              </svg>
+              {c.text}
+            </a>
+          ))
+        }
+      </div>
+    </aside>
   </div>
 
   <div class="container exp-wrap">
@@ -52,61 +165,239 @@ const languages = [
 </section>
 
 <style>
-  .left {
+  .main {
     min-width: 0;
   }
 
-  .block {
+  .title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 16px;
+    font-size: var(--fs-section);
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+  }
+
+  .mark {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 12px;
+  }
+
+  .fields {
     margin-top: 28px;
     display: grid;
-    gap: 12px;
   }
 
-  .block-title {
-    font-family: var(--font-text);
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--muted);
-    line-height: 1.2;
-  }
-
-  .right {
+  .field {
     display: grid;
-    gap: 16px;
-    align-content: start;
-    min-width: 0;
+    grid-template-columns: clamp(64px, 9vw, 92px) minmax(0, 1fr);
+    align-items: end;
+    gap: 8px;
+    padding-block: 6px 2px;
+    border-bottom: 1px solid rgba(243, 245, 238, 0.35);
   }
 
-  .name {
-    font-family: var(--font-display);
-    font-size: var(--fs-project);
+  .field dt {
+    padding-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    line-height: 1;
+    color: var(--muted);
   }
 
-  .role {
-    color: var(--lime);
-    font-weight: 600;
+  .field dd {
+    font-family: var(--font-hand);
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
   }
 
-  .copy {
+  .field dd.small {
+    font-size: clamp(22px, 2.3vw, 28px);
+    padding-bottom: 4px;
+  }
+
+  .bio {
     display: grid;
     gap: 14px;
-    margin-bottom: 12px;
-    justify-items: start;
+    max-width: 62ch;
+    margin-top: 28px;
+  }
+
+  .bio strong {
+    font-weight: 700;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px 32px;
+    margin-top: clamp(28px, 4vw, 40px);
+  }
+
+  .info h3 {
+    margin-bottom: 8px;
+    font-size: 22px;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+
+  .info ul {
+    display: grid;
+    gap: 2px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .info strong {
+    font-weight: 700;
+  }
+
+  /* ---- Panel con foto ---- */
+  .panel {
+    position: relative;
+    align-self: start;
+    padding: 12px;
+  }
+
+  .photo {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--surface-2);
+  }
+
+  .photo :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s var(--ease);
+  }
+
+  .photo :global(.color) {
+    opacity: 0;
+  }
+
+  @media (hover: hover) {
+    .photo:hover :global(.color) {
+      opacity: 1;
+    }
+  }
+
+  .contacts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 18px;
+    padding: 16px 6px 6px;
+    font-size: 14px;
+  }
+
+  .contacts .lead {
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .contacts a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 32px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .contacts a:hover {
+    color: var(--lime);
+  }
+
+  .contacts svg {
+    width: 16px;
+    height: 16px;
+    flex: none;
+  }
+
+  /* ---- Sticker ---- */
+  .sticker {
+    position: absolute;
+    z-index: 3;
+    top: -34px;
+    right: 20px;
+    width: clamp(96px, 26vw, 120px);
+    aspect-ratio: 1;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.4));
+    transform: rotate(-8deg);
+  }
+
+  .sticker svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sticker .face {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 38%;
+    height: auto;
+    transform: translate(-50%, -48%);
+  }
+
+  .spin {
+    transform-origin: 100px 100px;
+    animation: spin 24s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spin {
+      animation: none;
+    }
   }
 
   .exp-wrap {
     margin-top: clamp(48px, 7vw, 88px);
   }
 
-  @media (min-width: 1024px) {
-    .left {
-      grid-column: 1 / 6;
+  @media (min-width: 480px) {
+    .info {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .right {
-      grid-column: 7 / 13;
-      padding-top: 8px;
+  }
+
+  @media (min-width: 760px) and (max-width: 1023px) {
+    .panel {
+      width: min(100%, 560px);
+      margin-inline: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .main {
+      grid-column: 1 / 8;
+    }
+    .panel {
+      grid-column: 8 / 13;
+      position: sticky;
+      top: 96px;
+    }
+    .sticker {
+      top: 56px;
+      right: auto;
+      left: clamp(-70px, -5vw, -50px);
+      width: clamp(110px, 11vw, 140px);
     }
     .exp-wrap > :global(.exp) {
       max-width: 720px;
