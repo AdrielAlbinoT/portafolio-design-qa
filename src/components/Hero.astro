@@ -16,7 +16,6 @@ const stats = [
       <ul class="tags" aria-label="Servicios">
         {tags.map((t) => <li>{t}</li>)}
       </ul>
-      <p class="sub">Hola, soy Adriel</p>
       <h1 id="hero-title">Portafolio<br />Creativo</h1>
       <p class="desc">
         Diseño experiencias digitales claras y probadas, donde la usabilidad y la estética conectan con las personas.
@@ -70,28 +69,22 @@ const stats = [
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   .tags li {
     display: inline-flex;
     align-items: center;
-    min-height: 34px;
-    padding: 0 14px;
-    border: 1px solid var(--fg);
+    min-height: 40px;
+    padding: 0 18px;
+    border: 1px solid var(--line);
     border-radius: var(--radius-pill);
+    color: var(--fg);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1;
     cursor: default;
     user-select: none;
-  }
-
-  .sub {
-    margin-bottom: 12px;
-    font-size: var(--fs-hero-sub);
-    font-weight: 500;
-    color: var(--lime);
   }
 
   .desc {

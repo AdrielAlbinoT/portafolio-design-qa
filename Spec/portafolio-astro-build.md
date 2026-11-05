@@ -70,7 +70,7 @@ src/
     tokens.css
     global.css
   assets/
-    hero/            (hero-composicion.png, pendiente)
+    hero/            (avatar-adriel.png)
     projects/        (portada 4:3 por proyecto, pendiente)
     mockups/         (una carpeta por proyecto: src/assets/mockups/<slug>/, pendiente)
     brands/
@@ -242,7 +242,7 @@ Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: text
 
 **Texto**
 - Título principal: "PORTAFOLIO" y debajo "CREATIVO" (dos líneas), en Anton, color `--fg`. Tamaño según la escala de la sección 4. Es el protagonista de la página, con el nombre como subtítulo.
-- Saludo sobre el título: "Hola, soy Adriel", en Inter 500, color `--lime`.
+- Sobre el título van chips de solo lectura con borde `--line` (Graphic Design, UI/UX Design, QA Testing, Branding, Social Media). Sin saludo.
 - Descripción (una sola frase): "Diseño experiencias digitales claras y probadas, donde la usabilidad y la estética conectan con las personas."
 - Botones: "Ver proyectos" (enlace a `#proyectos`, fondo `--lime`, texto `--lime-ink`) y "Sobre mí" (enlace a `#sobre-mi`, contorno de 1px en `--line`, texto `--fg`).
 - Fila de tres datos, con número en Anton `--lime`:
@@ -250,12 +250,12 @@ Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: text
   - "3" — identidades de marca
   - "5" — áreas creativas
 
-**Espacio de imagen (`HeroImage.astro`)**
+**Imagen del hero (`HeroImage.astro`)**
 - Un solo cuadro vacío que marca dónde va la imagen del hero. No lleva apps flotantes ni capturas.
 - Contenedor 1:1 con `max-width: 620px`. En LG ocupa unos 560px. En MD se centra con 70vw. En XS, relación 4:3 con 92vw.
 - Borde punteado de 2px en `--lime`, fondo `--surface`, y el texto centrado: "Espacio para imagen del hero", con la nota "Reemplazar por la composición final del hero".
-- Sin animación ni parallax en este bloque.
-- Imagen futura: `src/assets/hero/hero-composicion.png`, con `<Picture />` en WebP y AVIF, anchos de 480, 768 y 1024. Carga `eager`. Se usará una composición de 3 pantallas de un proyecto de app real, por confirmar. [PENDIENTE: elegir proyecto para el hero]
+- Animación de flotado suave (translateY y rotación leve, 6s), desactivada con `prefers-reduced-motion`.
+- Imagen: `src/assets/hero/avatar-adriel.png`, servida en WebP por `astro:assets` con anchos de 480, 768 y 1024. Carga `eager`.
 
 ---
 
@@ -543,7 +543,7 @@ Probar en estos anchos, en vertical y horizontal: 360×780, 390×844, 412×915, 
 Criterios:
 - Sin desplazamiento horizontal en ningún ancho.
 - La barra flotante no tapa el título del hero.
-- El cuadro de espacio de imagen del hero no tapa el texto.
+- La imagen del hero no tapa el texto.
 - Ninguna imagen se deforma.
 - El título "PORTAFOLIO / CREATIVO" no se corta y mantiene sus dos líneas en todos los anchos.
 - Los marcos de mockup no se salen del contenedor en XS.
@@ -578,7 +578,7 @@ Criterios:
 2. Configurar `tokens.css`, `global.css` y `Base.astro`, con las fuentes.
 3. Crear `content/config.ts` y los archivos de proyectos y experiencia con el contenido de este documento.
 4. Construir `SmokeBg` y `Nav` con sus comportamientos.
-5. Construir `Hero` y `HeroImage`, con el cuadro de espacio para la imagen.
+5. Construir `Hero` y `HeroImage`, con el avatar flotante.
 6. Construir `About`, `Skills`, `Experience`, `Services`.
 7. Construir `Qa`, con los tres pasos y el espacio para el caso de referencia.
 8. Construir `Projects`, `ProjectCard` y `ProjectDialog`, con filtro, diálogo y marcadores de mockup.
@@ -615,4 +615,4 @@ Al terminar, entrega en este orden:
 - Confirmar si los periodos de experiencia llevarán meses o solo años.
 - Elegir el servicio de formularios y dar el endpoint.
 - Confirmar el dominio.
-- Entregar la imagen final del hero (se guardará en `src/assets/hero/hero-composicion.png`).
+- (Resuelto) La imagen del hero es el avatar; una composición de pantallas queda como opción futura.
