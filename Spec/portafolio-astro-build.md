@@ -75,7 +75,7 @@ src/
     mockups/         (una carpeta por proyecto: src/assets/mockups/<slug>/, pendiente)
     brands/
 public/
-  favicon.svg
+  favicon.png, apple-touch-icon.png
 ```
 
 Las imágenes de `src/assets/mockups/` y `src/assets/projects/` las preparará el autor en carpetas. Mientras no existan, se usan los espacios de la sección 12.
@@ -159,7 +159,7 @@ Usar `grid-template-columns: repeat(12, minmax(0, 1fr))` donde haga falta. Usar 
 - Meta description: "Diseñador UI/UX, QA tester y gráfico digital. Proyectos de apps, identidad de marca, diseño editorial y redes sociales."
 - Meta viewport con `viewport-fit=cover`.
 - Open Graph con título, descripción e imagen de la composición del hero.
-- Favicon en `public/favicon.svg`: cuadrado verde lima con una "A" en `--lime-ink`.
+- Favicon en `public/favicon.png` (y `apple-touch-icon.png`): isotipo circular de Adriel en blanco dentro de un círculo negro, legible en modo claro y oscuro.
 - Renderiza `SmokeBg`, `Nav` y el `<main>` con las secciones en este orden: Hero, Sobre mí, Servicios, QA, Proyectos, Contacto. Después `Footer`.
 
 ---
@@ -241,7 +241,7 @@ Cada mancha usa `radial-gradient(circle, color 0%, transparent 68–70%)`.
 Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: texto y luego imagen.
 
 **Texto**
-- Título principal: "DISEÑADOR" y debajo "UI/UX" (dos líneas), en Anton, color `--fg`. Tamaño según la escala de la sección 4. Es el protagonista de la página, con el nombre como subtítulo.
+- Título principal: "PORTAFOLIO" y debajo "CREATIVO" (dos líneas), en Anton, color `--fg`. Tamaño según la escala de la sección 4. Es el protagonista de la página, con el nombre como subtítulo.
 - Saludo sobre el título: "Hola, soy Adriel", en Inter 500, color `--lime`.
 - Descripción (una sola frase): "Diseño experiencias digitales claras y probadas, donde la usabilidad y la estética conectan con las personas."
 - Botones: "Ver proyectos" (enlace a `#proyectos`, fondo `--lime`, texto `--lime-ink`) y "Sobre mí" (enlace a `#sobre-mi`, contorno de 1px en `--line`, texto `--fg`).
@@ -545,7 +545,7 @@ Criterios:
 - La barra flotante no tapa el título del hero.
 - El cuadro de espacio de imagen del hero no tapa el texto.
 - Ninguna imagen se deforma.
-- El título "DISEÑADOR / UI/UX" no se corta y mantiene sus dos líneas en todos los anchos.
+- El título "PORTAFOLIO / CREATIVO" no se corta y mantiene sus dos líneas en todos los anchos.
 - Los marcos de mockup no se salen del contenedor en XS.
 - El formulario se completa con teclado y con pantalla táctil.
 

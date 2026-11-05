@@ -1,6 +1,8 @@
 ---
 import HeroImage from './HeroImage.astro';
 
+const tags = ['Graphic Design', 'UI/UX Design', 'QA Testing', 'Branding', 'Social Media'];
+
 const stats = [
   { n: '4', t: 'productos UI/UX' },
   { n: '3', t: 'identidades de marca' },
@@ -11,8 +13,11 @@ const stats = [
 <section class="hero" id="inicio" aria-labelledby="hero-title">
   <div class="container grid-12">
     <div class="text">
+      <ul class="tags" aria-label="Servicios">
+        {tags.map((t) => <li>{t}</li>)}
+      </ul>
       <p class="sub">Hola, soy Adriel</p>
-      <h1 id="hero-title">Diseñador<br />UI/UX</h1>
+      <h1 id="hero-title">Portafolio<br />Creativo</h1>
       <p class="desc">
         Diseño experiencias digitales claras y probadas, donde la usabilidad y la estética conectan con las personas.
       </p>
@@ -59,6 +64,27 @@ const stats = [
     line-height: 1;
     letter-spacing: -0.025em;
     text-transform: uppercase;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .tags li {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border: 1px solid var(--fg);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    cursor: default;
+    user-select: none;
   }
 
   .sub {
