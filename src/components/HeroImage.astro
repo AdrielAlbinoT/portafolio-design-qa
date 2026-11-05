@@ -1,9 +1,25 @@
 ---
 import { Image } from 'astro:assets';
 import avatar from '../assets/hero/avatar-adriel.png';
+import { siClaude, siRive, siMiro, siLinear } from 'simple-icons';
+
+// s = tamaño del cuadro; l / t = posición. Todo en % del ancho del avatar.
+// depth = desplazamiento con el cursor. extra = se oculta en móvil.
+const tools = [
+  { id: 'figma', s: 15, l: -3, t: 6, depth: 14, dur: 7, delay: -1, dx: 5, dy: -14, bg: '#1E1E1E' },
+  { id: 'claude', s: 17, l: 78, t: 0, depth: 20, dur: 8, delay: -4, dx: -6, dy: -12, bg: '#D97757', icon: siClaude, fill: '#FFF4EC' },
+  { id: 'photoshop', s: 12, l: -9, t: 41, depth: 9, dur: 6, delay: -2, dx: 4, dy: 12, bg: '#001E36', text: 'Ps', fill: '#31A8FF' },
+  { id: 'linear', s: 11, l: 4, t: 76, depth: 12, dur: 9, delay: -6, dx: -4, dy: -10, bg: '#5E6AD2', icon: siLinear, fill: '#FFFFFF' },
+  { id: 'chatgpt', s: 12.5, l: 85, t: 27, depth: 16, dur: 7.5, delay: -3, dx: 5, dy: 12, bg: '#10A37F' },
+  { id: 'illustrator', s: 10.5, l: 86, t: 90, depth: 8, dur: 6.5, delay: -5, dx: -5, dy: -12, bg: '#330000', text: 'Ai', fill: '#FF9A00', extra: true },
+  { id: 'rive', s: 9.5, l: 52, t: 95, depth: 6, dur: 8.5, delay: -7, dx: 4, dy: -10, bg: '#1D1D1D', icon: siRive, fill: '#FFFFFF', extra: true },
+  { id: 'miro', s: 10, l: 24, t: 93, depth: 10, dur: 7, delay: -2.5, dx: -4, dy: 10, bg: '#FFD02F', icon: siMiro, fill: '#050038', extra: true },
+];
+
+const knot = 'M12 3.2c2.6 0 4.2 1.6 4.2 3.8v4.1L12 13.5 7.8 11.1V7c0-2.2 1.6-3.8 4.2-3.8z';
 ---
 
-<div class="hero-image">
+<div class="hero-image" data-hero-image>
   <span class="shadow" aria-hidden="true"></span>
   <div class="float">
     <Image
@@ -17,14 +33,68 @@ import avatar from '../assets/hero/avatar-adriel.png';
       fetchpriority="high"
     />
   </div>
+
+  {
+    tools.map((t) => (
+      <div
+        class:list={['t', { extra: t.extra }]}
+        data-tile
+        aria-hidden="true"
+        style={`--s:${t.s};--l:${t.l}%;--tp:${t.t}%;--depth:${t.depth};--dur:${t.dur}s;--delay:${t.delay}s;--dx:${t.dx}px;--dy:${t.dy}px;--c:${t.bg}`}
+      >
+        <div class="b">
+          <div class="tile">
+            {
+              t.icon && (
+                <svg viewBox="0 0 24 24" fill={t.fill}>
+                  <path d={t.icon.path} />
+                </svg>
+              )
+            }
+            {
+              t.text && (
+                <span class="txt" style={`color:${t.fill};border-color:${t.fill}`}>
+                  {t.text}
+                </span>
+              )
+            }
+            {
+              t.id === 'figma' && (
+                <svg viewBox="0 0 38 57" class="fig">
+                  <path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" fill="#1ABCFE" />
+                  <path d="M0 47.5C0 42.25 4.25 38 9.5 38H19v9.5c0 5.25-4.25 9.5-9.5 9.5S0 52.75 0 47.5z" fill="#0ACF83" />
+                  <path d="M19 0v19h9.5C33.75 19 38 14.75 38 9.5S33.75 0 28.5 0H19z" fill="#FF7262" />
+                  <path d="M0 9.5C0 14.75 4.25 19 9.5 19H19V0H9.5C4.25 0 0 4.25 0 9.5z" fill="#F24E1E" />
+                  <path d="M0 28.5C0 33.75 4.25 38 9.5 38H19V19H9.5C4.25 19 0 23.25 0 28.5z" fill="#A259FF" />
+                </svg>
+              )
+            }
+            {
+              t.id === 'chatgpt' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.3">
+                  {/* Aproximación del logo de ChatGPT. [PENDIENTE: reemplazar por el SVG oficial] */}
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <path d={knot} transform={`rotate(${i * 60} 12 12) translate(2.2 -.6)`} />
+                  ))}
+                </svg>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    ))
+  }
 </div>
 
 <style>
   .hero-image {
     position: relative;
+    container-type: inline-size;
     width: 80%;
     max-width: 380px;
     margin-inline: auto;
+    --mx: 0;
+    --my: 0;
   }
 
   .float {
@@ -52,6 +122,92 @@ import avatar from '../assets/hero/avatar-adriel.png';
     animation: shadow 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
+  /* ---- Cuadros de herramientas ---- */
+  .t {
+    position: absolute;
+    left: var(--l);
+    top: var(--tp);
+    width: calc(var(--s) * 1cqw);
+    height: calc(var(--s) * 1cqw);
+    z-index: 2;
+    transform: translate3d(calc(var(--mx) * var(--depth) * 1px), calc(var(--my) * var(--depth) * 1px), 0);
+  }
+
+  .b {
+    width: 100%;
+    height: 100%;
+    animation: bob var(--dur) cubic-bezier(0.45, 0, 0.55, 1) var(--delay) infinite alternate;
+    will-change: transform;
+  }
+
+  .tile {
+    --near: 0;
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 24%;
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--c), white 24%),
+      var(--c) 52%,
+      color-mix(in srgb, var(--c), black 30%)
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -4px 8px rgba(0, 0, 0, 0.28),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 14px 24px -6px rgba(0, 0, 0, 0.55),
+      0 3px 0 rgba(0, 0, 0, 0.35),
+      0 0 calc(var(--near) * 34px) rgba(198, 244, 50, calc(var(--near) * 0.65));
+    transform: perspective(520px) rotateX(calc(12deg * (1 - var(--near)))) rotateY(calc(-14deg * (1 - var(--near))))
+      scale(calc(1 + var(--near) * 0.16));
+  }
+
+  /* Brillo superior */
+  .tile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0) 42%);
+    pointer-events: none;
+  }
+
+  .tile svg {
+    width: 54%;
+    height: 54%;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+  }
+
+  .tile svg.fig {
+    width: 38%;
+    height: 56%;
+  }
+
+  .txt {
+    display: grid;
+    place-items: center;
+    width: 58%;
+    height: 58%;
+    border: 2px solid;
+    border-radius: 16%;
+    font-family: var(--font-text);
+    font-weight: 700;
+    font-size: calc(var(--s) * 0.34cqw);
+    line-height: 1;
+  }
+
+  @keyframes bob {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      transform: translate(var(--dx), var(--dy));
+    }
+  }
+
   @keyframes float {
     0%,
     100% {
@@ -74,6 +230,12 @@ import avatar from '../assets/hero/avatar-adriel.png';
     }
   }
 
+  @media (max-width: 759px) {
+    .t.extra {
+      display: none;
+    }
+  }
+
   @media (min-width: 760px) and (max-width: 1023px) {
     .hero-image {
       width: 70vw;
@@ -91,10 +253,82 @@ import avatar from '../assets/hero/avatar-adriel.png';
     }
   }
 
+  @media (pointer: coarse) {
+    .t {
+      transform: none;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .float,
-    .shadow {
+    .shadow,
+    .b {
       animation: none;
+    }
+    .t {
+      transform: none;
     }
   }
 </style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-hero-image]');
+  const tiles = Array.from(document.querySelectorAll<HTMLElement>('[data-tile]'));
+  const fine =
+    !matchMedia('(pointer: coarse)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (root && fine && tiles.length) {
+    const inner = tiles.map((t) => t.querySelector<HTMLElement>('.tile')!);
+    const near = tiles.map(() => 0);
+    let tx = 0;
+    let ty = 0;
+    let x = 0;
+    let y = 0;
+    let px = -9999;
+    let py = -9999;
+    let running = false;
+
+    const tick = () => {
+      x += (tx - x) * 0.06;
+      y += (ty - y) * 0.06;
+      root.style.setProperty('--mx', x.toFixed(3));
+      root.style.setProperty('--my', y.toFixed(3));
+
+      let moving = Math.abs(tx - x) > 0.002 || Math.abs(ty - y) > 0.002;
+      tiles.forEach((t, i) => {
+        const r = t.getBoundingClientRect();
+        const d = Math.hypot(px - (r.left + r.width / 2), py - (r.top + r.height / 2));
+        const target = Math.max(0, 1 - d / (r.width * 2.2 + 60));
+        near[i] += (target - near[i]) * 0.18;
+        if (Math.abs(target - near[i]) > 0.004) moving = true;
+        inner[i].style.setProperty('--near', near[i].toFixed(3));
+      });
+      if (moving) requestAnimationFrame(tick);
+      else running = false;
+    };
+
+    const wake = () => {
+      if (!running) {
+        running = true;
+        requestAnimationFrame(tick);
+      }
+    };
+
+    addEventListener(
+      'pointermove',
+      (e) => {
+        px = e.clientX;
+        py = e.clientY;
+        tx = (e.clientX / innerWidth) * 2 - 1;
+        ty = (e.clientY / innerHeight) * 2 - 1;
+        wake();
+      },
+      { passive: true },
+    );
+    document.addEventListener('pointerleave', () => {
+      px = py = -9999;
+      tx = ty = 0;
+      wake();
+    });
+  }
+</script>

@@ -255,7 +255,8 @@ Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: text
 - Un solo cuadro vacío que marca dónde va la imagen del hero. No lleva apps flotantes ni capturas.
 - Contenedor 1:1 con `max-width: 620px`. En LG ocupa unos 560px. En MD se centra con 70vw. En XS, relación 4:3 con 92vw.
 - Borde punteado de 2px en `--lime`, fondo `--surface`, y el texto centrado: "Espacio para imagen del hero", con la nota "Reemplazar por la composición final del hero".
-- Animación de flotado suave (translateY y rotación leve, 6s), desactivada con `prefers-reduced-motion`.
+- Animación de flotado suave del avatar (solo translateY), desactivada con `prefers-reduced-motion`.
+- Alrededor del avatar flotan 8 cuadros 3D con logos de herramientas (Figma, Claude, Photoshop, Linear, ChatGPT, Illustrator, Rive, Miro). Cada uno flota a su ritmo, se desplaza con el cursor por profundidad y brilla en lima al acercarse. Iconos de `simple-icons` (devDependency) o dibujados; ChatGPT es una aproximación. [PENDIENTE: SVG oficial de ChatGPT] En móvil solo se muestran 5.
 - Imagen: `src/assets/hero/avatar-adriel.png`, servida en WebP por `astro:assets` con anchos de 480, 768 y 1024. Carga `eager`.
 
 ---
