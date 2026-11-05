@@ -83,8 +83,9 @@ import avatar from '../assets/hero/avatar-adriel.png';
 
   @media (min-width: 1024px) {
     .hero-image {
-      width: 100%;
-      max-width: 600px;
+      /* Limita el avatar por el alto de la pantalla para que la tira lima quede visible. */
+      width: min(100%, 600px, max(260px, calc((100svh - 240px) * 0.941)));
+      max-width: none;
       margin-left: auto;
       margin-right: -6%;
     }
