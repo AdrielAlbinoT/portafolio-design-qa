@@ -242,6 +242,7 @@ Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: text
 
 **Texto**
 - Título principal: "PORTAFOLIO" y debajo "CREATIVO" (dos líneas), en Anton, color `--fg`. Tamaño según la escala de la sección 4. Es el protagonista de la página, con el nombre como subtítulo.
+- Debajo del hero va una tira lima (`Marquee.astro`) con "PORTAFOLIO" y un punto separador, en texto `--lime-ink`, que corre de izquierda a derecha; el hero se centra verticalmente en el alto de la pantalla.
 - Sobre el título van chips de solo lectura con borde `--line` (Graphic Design, UI/UX, QA Testing, Branding, Social Media). Sin saludo.
 - Descripción (una sola frase): "Diseño experiencias digitales claras y probadas, donde la usabilidad y la estética conectan con las personas."
 - Botones: "Ver proyectos" (enlace a `#proyectos`, fondo `--lime`, texto `--lime-ink`) y "Sobre mí" (enlace a `#sobre-mi`, contorno de 1px en `--line`, texto `--fg`).
