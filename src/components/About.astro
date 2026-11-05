@@ -1,15 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import { siWhatsapp, siInstagram, siBehance } from 'simple-icons';
 import Experience from './Experience.astro';
+import { tools } from '../data/tools';
 import fotoBn from '../assets/about/foto-bn.png';
 import avatar from '../assets/hero/avatar-adriel.png';
 
-const current = (await getCollection('experience')).map((e) => e.data).find((j) => j.current);
-
-const services = ['UI/UX Design', 'QA testing', 'Editorial', 'Branding', 'Digital Design', 'Social Media'];
-const tools = ['Figma', 'Claude', 'Photoshop', 'Linear', 'ChatGPT', 'Illustrator', 'Rive', 'Miro'];
+const services = ['Graphic Design', 'UI/UX', 'QA Testing', 'Branding', 'Social Media'];
 const strengths = ['Empatía', 'Compromiso', 'Responsabilidad', 'Autoaprendizaje'];
 const languages = ['Español (nativo)', 'Inglés (intermedio-avanzado)'];
 
@@ -60,44 +57,50 @@ const ring = 'DISEÑADOR UI/UX • QA TESTER • GRAPHIC DESIGNER • ';
       </div>
 
       <div class="info">
-        <section>
-          <h3>Experiencia:</h3>
-          {
-            current && (
-              <ul>
-                <li>
-                  <strong>{current.company}</strong>
-                </li>
-                <li>{current.location}</li>
-                <li>{current.period}</li>
-              </ul>
-            )
-          }
-        </section>
-        <section>
-          <h3>Idiomas:</h3>
-          <ul>
-            {languages.map((s) => <li>{s}</li>)}
-          </ul>
-        </section>
-        <section>
-          <h3>Servicios:</h3>
-          <ul>
-            {services.map((s) => <li>{s}</li>)}
-          </ul>
-        </section>
-        <section>
-          <h3>Herramientas:</h3>
-          <ul>
-            {tools.map((s) => <li>{s}</li>)}
-          </ul>
-        </section>
-        <section>
-          <h3>Fortalezas:</h3>
-          <ul>
-            {strengths.map((s) => <li>{s}</li>)}
-          </ul>
-        </section>
+        <div class="col">
+          <section>
+            <h3>Servicios:</h3>
+            <ul>
+              {services.map((s) => <li>{s}</li>)}
+            </ul>
+          </section>
+          <section>
+            <h3>Fortalezas:</h3>
+            <ul>
+              {strengths.map((s) => <li>{s}</li>)}
+            </ul>
+          </section>
+        </div>
+        <div class="col">
+          <section>
+            <h3>Herramientas:</h3>
+            <ul class="tools">
+              {
+                tools.map((t) => (
+                  <li>
+                    <span class="ico" style={`background:${t.bg}`}>
+                      {t.img && <Image src={t.img} alt="" width={26} height={26} densities={[1, 2]} format="webp" />}
+                      {
+                        t.path && (
+                          <svg viewBox="0 0 24 24" fill={t.fill} aria-hidden="true">
+                            <path d={t.path} />
+                          </svg>
+                        )
+                      }
+                    </span>
+                    {t.name}
+                  </li>
+                ))
+              }
+            </ul>
+          </section>
+          <section>
+            <h3>Idiomas:</h3>
+            <ul>
+              {languages.map((s) => <li>{s}</li>)}
+            </ul>
+          </section>
+        </div>
       </div>
     </div>
 
@@ -231,11 +234,49 @@ const ring = 'DISEÑADOR UI/UX • QA TESTER • GRAPHIC DESIGNER • ';
     color: var(--lime);
   }
 
+  .col {
+    display: grid;
+    align-content: start;
+    gap: 28px;
+  }
+
   .info ul {
     display: grid;
     gap: 2px;
     font-size: 15px;
     line-height: 1.5;
+  }
+
+  .tools {
+    gap: 8px !important;
+  }
+
+  .tools li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ico {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    overflow: hidden;
+    border-radius: 7px;
+    box-shadow: 0 0 0 1px rgba(243, 245, 238, 0.12);
+  }
+
+  .ico :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  .ico svg {
+    width: 62%;
+    height: 62%;
   }
 
   .info strong {

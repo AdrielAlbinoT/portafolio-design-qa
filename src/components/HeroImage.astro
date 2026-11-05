@@ -1,26 +1,21 @@
 ---
 import { Image } from 'astro:assets';
 import avatar from '../assets/hero/avatar-adriel.png';
-import figma from '../assets/tools/figma.png';
-import illustrator from '../assets/tools/illustrator.png';
-import photoshop from '../assets/tools/photoshop.png';
-import chatgpt from '../assets/tools/chatgpt.png';
-import linear from '../assets/tools/linear.png';
-import { siClaude, siRive, siMiro } from 'simple-icons';
+import { tools as base } from '../data/tools';
 
 // s = tamaño del cuadro; l / t = posición. Todo en % del ancho del avatar.
 // depth = desplazamiento con el cursor. extra = se oculta en móvil.
-// img = ícono oficial en imagen (se sirve en WebP); icon = glifo SVG sobre un cuadro de color.
-const tools = [
-  { id: 'figma', s: 15, l: -3, t: 6, depth: 14, dur: 7, delay: -1, dx: 5, dy: -14, bg: '#1E1E1E', img: figma },
-  { id: 'claude', s: 17, l: 78, t: 0, depth: 20, dur: 8, delay: -4, dx: -6, dy: -12, bg: '#D97757', icon: siClaude, fill: '#FFF4EC' },
-  { id: 'photoshop', s: 12, l: -9, t: 41, depth: 9, dur: 6, delay: -2, dx: 4, dy: 12, bg: '#001E36', img: photoshop },
-  { id: 'linear', s: 11, l: 4, t: 76, depth: 12, dur: 9, delay: -6, dx: -4, dy: -10, bg: '#17181B', img: linear },
-  { id: 'chatgpt', s: 12.5, l: 85, t: 27, depth: 16, dur: 7.5, delay: -3, dx: 5, dy: 12, bg: '#74AA9C', img: chatgpt },
-  { id: 'illustrator', s: 10.5, l: 86, t: 90, depth: 8, dur: 6.5, delay: -5, dx: -5, dy: -12, bg: '#330000', img: illustrator, extra: true },
-  { id: 'rive', s: 9.5, l: 52, t: 95, depth: 6, dur: 8.5, delay: -7, dx: 4, dy: -10, bg: '#1D1D1D', icon: siRive, fill: '#FFFFFF', extra: true },
-  { id: 'miro', s: 10, l: 24, t: 93, depth: 10, dur: 7, delay: -2.5, dx: -4, dy: 10, bg: '#FFD02F', icon: siMiro, fill: '#050038', extra: true },
-];
+const layout: Record<string, { s: number; l: number; t: number; depth: number; dur: number; delay: number; dx: number; dy: number; extra?: boolean }> = {
+  figma: { s: 15, l: -3, t: 6, depth: 14, dur: 7, delay: -1, dx: 5, dy: -14 },
+  claude: { s: 17, l: 78, t: 0, depth: 20, dur: 8, delay: -4, dx: -6, dy: -12 },
+  photoshop: { s: 12, l: -9, t: 41, depth: 9, dur: 6, delay: -2, dx: 4, dy: 12 },
+  linear: { s: 11, l: 4, t: 76, depth: 12, dur: 9, delay: -6, dx: -4, dy: -10 },
+  chatgpt: { s: 12.5, l: 85, t: 27, depth: 16, dur: 7.5, delay: -3, dx: 5, dy: 12 },
+  illustrator: { s: 10.5, l: 86, t: 90, depth: 8, dur: 6.5, delay: -5, dx: -5, dy: -12, extra: true },
+  rive: { s: 9.5, l: 52, t: 95, depth: 6, dur: 8.5, delay: -7, dx: 4, dy: -10, extra: true },
+  miro: { s: 10, l: 24, t: 93, depth: 10, dur: 7, delay: -2.5, dx: -4, dy: 10, extra: true },
+};
+const tools = base.filter((t) => layout[t.id]).map((t) => ({ ...t, ...layout[t.id] }));
 ---
 
 <div class="hero-image" data-hero-image>
@@ -54,9 +49,9 @@ const tools = [
               )
             }
             {
-              t.icon && (
+              t.path && (
                 <svg viewBox="0 0 24 24" fill={t.fill}>
-                  <path d={t.icon.path} />
+                  <path d={t.path} />
                 </svg>
               )
             }
