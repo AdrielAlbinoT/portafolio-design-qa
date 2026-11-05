@@ -28,7 +28,7 @@ import avatar from '../assets/hero/avatar-adriel.png';
   }
 
   .float {
-    animation: float 6s ease-in-out infinite;
+    animation: float 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
     will-change: transform;
   }
 
@@ -49,16 +49,16 @@ import avatar from '../assets/hero/avatar-adriel.png';
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.45);
     filter: blur(14px);
-    animation: shadow 6s ease-in-out infinite;
+    animation: shadow 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
   @keyframes float {
     0%,
     100% {
-      transform: translateY(0) rotate(-1deg);
+      transform: translateY(0);
     }
     50% {
-      transform: translateY(-16px) rotate(1.5deg);
+      transform: translateY(-20px);
     }
   }
 
@@ -84,7 +84,9 @@ import avatar from '../assets/hero/avatar-adriel.png';
   @media (min-width: 1024px) {
     .hero-image {
       width: 100%;
-      max-width: 540px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: -6%;
     }
   }
 
