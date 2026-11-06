@@ -261,7 +261,9 @@ Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: text
 
 ---
 
-## 10. Sobre mí (`About.astro`)
+## 10. Sobre mí (`About.astro`) y Experiencia (`Experience.astro`)
+
+**Experiencia** es una sección propia (`#experiencia`) con línea de tiempo vertical (todas las viñetas) y, a la derecha en MD y mayores, un camino tipo mapa que va del empleo más antiguo (abajo) al actual (arriba), con paradas por año de término.
 
 **Diseño actual (reemplaza el de dos columnas):** estética tipo ficha. Título "ACERCA DE MÍ:" con subrayado lima; filas NOMBRE / PAÍS / ROL con valores en tipografía manuscrita (Caveat); biografía de dos párrafos; columna 1: SERVICIOS (mismos nombres que los chips del hero) y FORTALEZAS e IDIOMAS; columna 2: HERRAMIENTAS (cada una con su ícono en un cuadro redondeado; orden: Figma, Photoshop, Illustrator, Linear, Claude, ChatGPT, Rive, CapCut, Notion y Miro). A la derecha, una tarjeta con la foto en blanco y negro, una pegatina lima con texto circular y los íconos de redes. [PENDIENTE: enlaces finales de redes]
 
