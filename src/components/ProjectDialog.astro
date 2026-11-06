@@ -27,7 +27,7 @@
     </div>
 
     <section class="sec" data-f="gallery-wrap" hidden>
-      <h4 class="label-sm muted">Pantallas</h4>
+      <h4 class="label-sm muted">Pantallas <span class="hint">· arrastra para explorar</span></h4>
       <ul class="gallery" data-f="gallery" tabindex="0" aria-label="Pantallas del proyecto, desliza para ver más"></ul>
     </section>
 
@@ -131,16 +131,26 @@
     margin-inline: calc(clamp(20px, 4vw, 40px) * -1);
     padding: 4px clamp(20px, 4vw, 40px) 14px;
     overflow-x: auto;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline: clamp(20px, 4vw, 40px);
     overscroll-behavior-x: contain;
-    scrollbar-width: thin;
-    scrollbar-color: var(--line) transparent;
+    scrollbar-width: none;
+    cursor: grab;
+    touch-action: pan-x pan-y;
+  }
+
+  .gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery.dragging {
+    cursor: grabbing;
+  }
+
+  .gallery:focus-visible {
+    outline-offset: -2px;
   }
 
   .gallery :global(li) {
     flex: none;
-    scroll-snap-align: start;
   }
 
   .gallery :global(img) {
@@ -149,6 +159,8 @@
     height: clamp(300px, 52vh, 460px);
     border-radius: 6px;
     user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
   }
 
   .inner {
@@ -226,6 +238,19 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     line-height: 1.2;
+  }
+
+  .hint {
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    opacity: 0.8;
+  }
+
+  @media (pointer: coarse) {
+    .hint {
+      display: none;
+    }
   }
 
   .sec {
