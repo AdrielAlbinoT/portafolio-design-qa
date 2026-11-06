@@ -64,5 +64,6 @@
       "src": "../../assets/projects/invensys/pantalla-12.png",
       "alt": "Pantalla de InvenSys: Aviso de sincronización"
     }
-  ]
+  ],
+  "icon": "../../assets/projects/invensys/isotipo.png"
 }

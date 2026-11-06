@@ -11,7 +11,7 @@ const filters = ['Todos', 'UI/UX', 'Editorial', 'Brand Identity', 'Digital Desig
 const dialogData = Object.fromEntries(
   await Promise.all(
     projects.map(async (p) => {
-      const { cover, banner, gallery, ...rest } = p.data;
+      const { cover, banner, icon, gallery, ...rest } = p.data;
       const bannerImg = banner ? await getImage({ src: banner, width: 1400, format: 'webp', quality: 85 }) : undefined;
       const shots = await Promise.all(
         gallery.map(async (g) => {
