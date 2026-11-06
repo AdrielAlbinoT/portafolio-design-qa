@@ -1,17 +1,35 @@
 ---
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import ProjectCard from './ProjectCard.astro';
 import ProjectDialog from './ProjectDialog.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const filters = ['Todos', 'UI/UX', 'Editorial', 'Brand Identity', 'Digital Design', 'Social Media'];
 
-// Datos para el diálogo (sin imágenes), se leen desde el script de este componente.
+// Datos para el diálogo: las imágenes se optimizan aquí (WebP) y se pasan como URL al script.
 const dialogData = Object.fromEntries(
-  projects.map((p) => {
-    const { cover, ...rest } = p.data;
-    return [p.id, { ...rest, hasMockups: Boolean(p.data.mockups) }];
-  }),
+  await Promise.all(
+    projects.map(async (p) => {
+      const { cover, banner, gallery, ...rest } = p.data;
+      const bannerImg = banner ? await getImage({ src: banner, width: 1400, format: 'webp', quality: 85 }) : undefined;
+      const shots = await Promise.all(
+        gallery.map(async (g) => {
+          const img = await getImage({ src: g.src, width: 420, format: 'webp', quality: 85 });
+          return { src: img.src, w: img.attributes.width, h: img.attributes.height, alt: g.alt };
+        }),
+      );
+      return [
+        p.id,
+        {
+          ...rest,
+          hasMockups: Boolean(p.data.mockups) && shots.length === 0,
+          banner: bannerImg && { src: bannerImg.src, w: bannerImg.attributes.width, h: bannerImg.attributes.height },
+          gallery: shots,
+        },
+      ];
+    }),
+  ),
 );
 ---
 
@@ -110,6 +128,8 @@ const dialogData = Object.fromEntries(
     highlight?: string;
     accent: string;
     hasMockups: boolean;
+    banner?: { src: string; w: number; h: number };
+    gallery: { src: string; w: number; h: number; alt: string }[];
     mockupCount?: number;
     mockupNote?: string;
     pending?: string;
@@ -169,6 +189,35 @@ const dialogData = Object.fromEntries(
         }),
       );
       f('tools-wrap').hidden = p.tools.length === 0;
+
+      const bn = f('banner') as HTMLElement;
+      bn.replaceChildren();
+      bn.hidden = !p.banner;
+      if (p.banner) {
+        const im = new Image();
+        im.src = p.banner.src;
+        im.width = p.banner.w;
+        im.height = p.banner.h;
+        im.alt = 'Composición de pantallas de ' + p.title;
+        im.decoding = 'async';
+        bn.append(im);
+      }
+
+      const gl = f('gallery');
+      gl.replaceChildren();
+      f('gallery-wrap').hidden = p.gallery.length === 0;
+      p.gallery.forEach((g) => {
+        const li = document.createElement('li');
+        const im = new Image();
+        im.src = g.src;
+        im.width = g.w;
+        im.height = g.h;
+        im.alt = g.alt;
+        im.loading = 'lazy';
+        im.decoding = 'async';
+        li.append(im);
+        gl.append(li);
+      });
 
       const mock = f('mock');
       mock.replaceChildren();

@@ -17,6 +17,8 @@ const projects = defineCollection({
       highlight: z.string().optional(),
       accent: z.string().regex(/^#[0-9a-fA-F]{6}$/),
       cover: image().optional(),
+      banner: image().optional(),
+      gallery: z.array(z.object({ src: image(), alt: z.string() })).default([]),
       mockups: z.string().optional(),
       mockupCount: z.number().optional(),
       mockupNote: z.string().optional(),

@@ -12,8 +12,57 @@
   ],
   "highlight": "100% sincronizado",
   "accent": "#3FA34D",
-  "mockups": "invensys",
-  "mockupCount": 4,
-  "mockupNote": "3 a 4 pantallas: escaneo, ubicaciones, modo sin conexión.",
-  "order": 1
+  "order": 1,
+  "cover": "../../assets/projects/invensys/portada.png",
+  "banner": "../../assets/projects/invensys/composicion.png",
+  "gallery": [
+    {
+      "src": "../../assets/projects/invensys/pantalla-01.png",
+      "alt": "Pantalla de InvenSys: Inicio de sesión"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-02.png",
+      "alt": "Pantalla de InvenSys: Menú lateral con avance de inventario y sincronización"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-03.png",
+      "alt": "Pantalla de InvenSys: Selección de empresa y estado del inventario"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-04.png",
+      "alt": "Pantalla de InvenSys: Escaneo por ubicaciones"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-05.png",
+      "alt": "Pantalla de InvenSys: Sala de conferencias con lista de elementos"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-06.png",
+      "alt": "Pantalla de InvenSys: Actualización de inventario con datos del activo"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-07.png",
+      "alt": "Pantalla de InvenSys: Confirmación de guardado exitoso"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-08.png",
+      "alt": "Pantalla de InvenSys: Lista de elementos escaneados"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-09.png",
+      "alt": "Pantalla de InvenSys: Inventario sin imagen"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-10.png",
+      "alt": "Pantalla de InvenSys: Preferencias de campos"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-11.png",
+      "alt": "Pantalla de InvenSys: Maestros con estado de activos"
+    },
+    {
+      "src": "../../assets/projects/invensys/pantalla-12.png",
+      "alt": "Pantalla de InvenSys: Aviso de sincronización"
+    }
+  ]
 }
