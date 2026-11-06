@@ -1,4 +1,6 @@
 ---
+import ContactForm from './ContactForm.astro';
+
 const rows = [
   { label: 'Correo', value: 'adriel.designstudio@gmail.com', copy: true },
   { label: 'WhatsApp', value: '+51 955 003 641', copy: true },
@@ -12,30 +14,45 @@ const rows = [
     <div class="intro">
       <p class="label">Contacto</p>
       <h2 class="h-section" id="contact-title">Trabajemos juntos</h2>
-      <p class="lead">Cuéntame sobre tu proyecto y te respondo pronto.</p>
-      <a class="btn btn--lime" href="#escribeme">Escríbeme</a>
-      <p class="pending">[PENDIENTE: tiempo de respuesta, por ejemplo 24 a 48 horas]</p>
+      <p class="lead">Si tienes una idea, una marca o un proyecto en mente, cuéntamelo.</p>
+
+      <ul class="rows">
+        {
+          rows.map((r) => (
+            <li class="row">
+              <span class="k">{r.label}</span>
+              <span class="line">
+                <span class="v break">{r.value}</span>
+                {r.copy ? (
+                  <button type="button" class="icon-btn" data-copy={r.value} aria-label={`Copiar ${r.label.toLowerCase()}`} title="Copiar">
+                    <svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="9" y="9" width="11" height="11" rx="2.5"></rect>
+                      <path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"></path>
+                    </svg>
+                    <svg class="i-ok" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m5 12.5 4.5 4.5L19 7.5"></path>
+                    </svg>
+                    <span class="sr-only" role="status" data-status></span>
+                  </button>
+                ) : (
+                  <a class="icon-btn" href={r.href} target="_blank" rel="noopener" aria-label={`Abrir ${r.label} en una pestaña nueva`} title="Abrir">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M14 5h5v5"></path>
+                      <path d="M19 5 10.5 13.5"></path>
+                      <path d="M18 14v3.5A2.5 2.5 0 0 1 15.5 20h-9A2.5 2.5 0 0 1 4 17.5v-9A2.5 2.5 0 0 1 6.5 6H10"></path>
+                    </svg>
+                  </a>
+                )}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
 
-    <ul class="rows">
-      {
-        rows.map((r) => (
-          <li class="row">
-            <span class="k">{r.label}</span>
-            <span class="v break">{r.value}</span>
-            {r.copy ? (
-              <button type="button" class="btn btn--ghost btn--small act" data-copy={r.value}>
-                Copiar
-              </button>
-            ) : (
-              <a class="btn btn--ghost btn--small act" href={r.href} target="_blank" rel="noopener">
-                Abrir<span class="sr-only"> {r.label} en una pestaña nueva</span>
-              </a>
-            )}
-          </li>
-        ))
-      }
-    </ul>
+    <div class="form-card card">
+      <ContactForm />
+    </div>
   </div>
 </section>
 
@@ -45,6 +62,7 @@ const rows = [
     justify-items: start;
     align-content: start;
     gap: 20px;
+    min-width: 0;
   }
 
   .intro .h-section {
@@ -53,25 +71,23 @@ const rows = [
 
   .lead {
     color: var(--muted);
-    max-width: 36ch;
+    max-width: 38ch;
   }
 
   .rows {
-    min-width: 0;
+    width: 100%;
+    margin-top: 8px;
     border-top: 1px solid var(--line);
   }
 
   .row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 2px 16px;
-    padding: 16px 0;
+    gap: 2px;
+    padding: 14px 0;
     border-bottom: 1px solid var(--line);
   }
 
   .k {
-    grid-column: 1;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -79,35 +95,86 @@ const rows = [
     color: var(--muted);
   }
 
-  .v {
-    grid-column: 1;
-    font-weight: 600;
+  .line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     min-width: 0;
   }
 
-  .act {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    min-width: 96px;
+  .v {
+    min-width: 0;
+    font-weight: 600;
+  }
+
+  .icon-btn {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--fg);
+    transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+  }
+
+  .icon-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .icon-btn .i-ok {
+    display: none;
+  }
+
+  .icon-btn[data-done] {
+    border-color: var(--lime);
+    color: var(--lime);
+  }
+
+  .icon-btn[data-done] .i-copy {
+    display: none;
+  }
+
+  .icon-btn[data-done] .i-ok {
+    display: block;
+  }
+
+  @media (hover: hover) {
+    .icon-btn:hover {
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+  }
+
+  .form-card {
+    min-width: 0;
+    padding: clamp(20px, 3vw, 32px);
   }
 
   @media (min-width: 1024px) {
     .intro {
       grid-column: 1 / 7;
     }
-    .rows {
+    .form-card {
       grid-column: 7 / 13;
-      align-self: end;
-    }
-    .row {
-      padding-block: 20px;
     }
   }
 </style>
 
 <script>
   document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
-    const label = btn.textContent;
+    const status = btn.querySelector<HTMLElement>('[data-status]');
+    const base = btn.getAttribute('aria-label') ?? 'Copiar';
     btn.addEventListener('click', async () => {
       const value = btn.dataset.copy ?? '';
       try {
@@ -123,8 +190,14 @@ const rows = [
         }
         return;
       }
-      btn.textContent = 'Copiado';
-      setTimeout(() => (btn.textContent = label), 2000);
+      btn.setAttribute('data-done', '');
+      btn.setAttribute('aria-label', 'Copiado');
+      if (status) status.textContent = 'Copiado';
+      setTimeout(() => {
+        btn.removeAttribute('data-done');
+        btn.setAttribute('aria-label', base);
+        if (status) status.textContent = '';
+      }, 2000);
     });
   });
 </script>

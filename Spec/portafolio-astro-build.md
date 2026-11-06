@@ -49,7 +49,6 @@ src/
     About.astro
     Skills.astro
     Experience.astro
-    Services.astro
     Qa.astro
     Projects.astro
     ProjectCard.astro
@@ -160,7 +159,7 @@ Usar `grid-template-columns: repeat(12, minmax(0, 1fr))` donde haga falta. Usar 
 - Meta viewport con `viewport-fit=cover`.
 - Open Graph con título, descripción e imagen de la composición del hero.
 - Favicon en `public/favicon.png` (y `apple-touch-icon.png`): isotipo circular de Adriel en blanco dentro de un círculo negro, legible en modo claro y oscuro.
-- Renderiza `SmokeBg`, `Nav` y el `<main>` con las secciones en este orden: Hero, Sobre mí, Servicios, QA, Proyectos, Contacto. Después `Footer`.
+- Renderiza `SmokeBg`, `Nav` y el `<main>` con las secciones en este orden: Hero, tira lima, Sobre mí, Experiencia, QA, Proyectos, Contacto. Después `Footer`.
 
 ---
 
@@ -177,7 +176,7 @@ Usar `grid-template-columns: repeat(12, minmax(0, 1fr))` donde haga falta. Usar 
 
 **Contenido en MD y más**
 - Izquierda: "ADRIEL" en Anton, enlace a `#inicio`.
-- Centro: Inicio, Sobre mí, Servicios, QA, Proyectos, Contacto.
+- Centro: Inicio, Sobre mí, Experiencia, QA, Proyectos, Contacto.
 - Derecha: botón "Hablemos" en fondo `--lime` con texto `--lime-ink`, enlace a `#contacto`.
 
 **Contenido en XS y SM**
@@ -312,7 +311,7 @@ Dos columnas en LG. Una columna en el resto.
 
 ---
 
-## 11. Servicios (`Services.astro`)
+## 11. Servicios (ELIMINADA: repetía los chips del hero; `Services.astro` ya no existe)
 
 Título: "Qué hago". Seis tarjetas en `--surface`: tres columnas en LG, dos en MD, una en XS. Cada tarjeta tiene un número (01 a 06) en `--lime`, el título y una línea de descripción corta. La tarjeta 01 lleva un borde de 1px en `--lime`; el resto, `--line`.
 
@@ -327,7 +326,7 @@ Título: "Qué hago". Seis tarjetas en `--surface`: tres columnas en LG, dos en 
 
 ## 12. Sección QA (`Qa.astro`)
 
-Sección propia, entre Servicios y Proyectos. Muestra cómo trabaja el autor en calidad, con texto corto y visual.
+Sección propia, entre Experiencia y Proyectos. Muestra cómo trabaja el autor en calidad, con texto corto y visual.
 
 Título: "Diseño y testing, juntos". Etiqueta: "QA testing".
 
@@ -450,6 +449,10 @@ Color de caso (franja de 6px, nunca de fondo de texto): InvenSys verde, Festiva 
 
 ## 14. Contacto (`Contact.astro`) y pie (`Footer.astro`)
 
+**Diseño actual:** "Contacto" y "Escríbeme" se fusionaron en una sola sección. Columna izquierda: título "Trabajemos juntos", subtítulo "Si tienes una idea, una marca o un proyecto en mente, cuéntamelo." y los datos (correo, WhatsApp, Behance, Instagram) con íconos de copiar y abrir junto al valor, sin botón "Escríbeme". Columna derecha: el formulario en una tarjeta. El pie quedó como una barra con copyright, enlaces y "Volver arriba". [PENDIENTE: tiempo de respuesta, que se quitó junto con el botón]
+
+Lo siguiente describe el diseño original.
+
 ### Sección Contacto
 Título: "Trabajemos juntos". Dos columnas en LG.
 
@@ -490,7 +493,7 @@ Campos en `--surface-2`, con borde `--line`. Foco con contorno de 2px en `--lime
 
 **Barra inferior**
 - "© 2026 Adriel Albino Tasayco. Todos los derechos reservados."
-- Enlaces: Sobre mí, Servicios, QA, Proyectos, Contacto.
+- Enlaces: Sobre mí, Experiencia, QA, Proyectos, Contacto.
 - Botón "Volver arriba" a `#inicio`.
 
 ---
@@ -587,7 +590,7 @@ Criterios:
 3. Crear `content/config.ts` y los archivos de proyectos y experiencia con el contenido de este documento.
 4. Construir `SmokeBg` y `Nav` con sus comportamientos.
 5. Construir `Hero` y `HeroImage`, con el avatar flotante.
-6. Construir `About`, `Skills`, `Experience`, `Services`.
+6. Construir `About` y `Experience`.
 7. Construir `Qa`, con los tres pasos y el espacio para el caso de referencia.
 8. Construir `Projects`, `ProjectCard` y `ProjectDialog`, con filtro, diálogo y marcadores de mockup.
 9. Construir `Contact`, `ContactForm` y `Footer`.

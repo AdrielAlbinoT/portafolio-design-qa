@@ -5,7 +5,7 @@ import isotipo from '../assets/brands/isotipo-circular-adriel.png';
 const links = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#sobre-mi', label: 'Sobre mí' },
-  { href: '#servicios', label: 'Servicios' },
+  { href: '#experiencia', label: 'Experiencia' },
   { href: '#qa', label: 'QA' },
   { href: '#proyectos', label: 'Proyectos' },
   { href: '#contacto', label: 'Contacto' },
@@ -318,9 +318,6 @@ const links = [
       const el = id && document.getElementById(id);
       if (id && el) map.set(id, el);
     });
-    const alias: Record<string, string> = { escribeme: 'contacto' };
-    const footer = document.getElementById('escribeme');
-
     const setActive = (id: string) => {
       links.forEach((a) => {
         if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true');
@@ -331,12 +328,11 @@ const links = [
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((en) => {
-          if (en.isIntersecting) setActive(alias[en.target.id] ?? en.target.id);
+          if (en.isIntersecting) setActive(en.target.id);
         });
       },
       { rootMargin: '-45% 0px -50% 0px' },
     );
     map.forEach((el) => io.observe(el));
-    if (footer) io.observe(footer);
   }
 </script>
