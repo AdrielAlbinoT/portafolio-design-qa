@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import streets from '../assets/map/streets.svg';
 
 const all = (await getCollection('experience')).map((e) => e.data);
 const jobs = [...all.filter((j) => j.current), ...all.filter((j) => !j.current).sort((a, b) => a.order - b.order)];
@@ -12,47 +13,6 @@ const alpha = (k: number) => +(0.6 * (1 - k / n)).toFixed(3);
 // Etiqueta de cada parada: año de término, para que el recorrido suba ordenado hacia el presente.
 const label = (j: (typeof jobs)[number]) => (j.current ? 'Actualidad' : (j.period.match(/\d{4}/g) ?? []).pop() ?? j.period);
 
-// Rutas alternas: líneas finas que salen de la ruta principal y se pierden (caminos que no tomé).
-// t = punto de la curva donde se bifurca; side = hacia qué lado; dx / dy = alcance (en unidades del tramo).
-const forks = [
-  [{ t: 0.3, side: -1, dx: 14, dy: 48 }],
-  [{ t: 0.25, side: 1, dx: 13, dy: 42 }, { t: 0.62, side: -1, dx: 15, dy: 45 }],
-  [{ t: 0.28, side: -1, dx: 15, dy: 44 }, { t: 0.65, side: 1, dx: 13, dy: 44 }],
-  [{ t: 0.22, side: 1, dx: 14, dy: 46 }, { t: 0.55, side: -1, dx: 15, dy: 50 }],
-];
-
-const branches = (i: number) => {
-  const x0 = xs[i];
-  const x1 = xs[i + 1];
-  const at = (t: number) => {
-    const u = 1 - t;
-    return {
-      x: u * u * u * x0 + 3 * u * u * t * x0 + 3 * u * t * t * x1 + t * t * t * x1,
-      y: 3 * u * t * t * 45 + t * t * t * 100 + 3 * u * u * t * 55,
-    };
-  };
-  const tangent = (t: number) => {
-    const u = 1 - t;
-    const dx = 3 * u * u * 0 + 6 * u * t * (x1 - x0) + 3 * t * t * 0;
-    const dy = 3 * u * u * 55 + 6 * u * t * (45 - 55) + 3 * t * t * (100 - 45);
-    const len = Math.hypot(dx, dy) || 1;
-    return { x: dx / len, y: dy / len };
-  };
-  return (forks[i % forks.length] ?? []).map((f, k) => {
-    const s = at(f.t);
-    const d = tangent(f.t);
-    const e = { x: s.x + f.side * f.dx, y: Math.min(s.y + f.dy, 112) };
-    const c1 = { x: s.x + d.x * 10, y: s.y + d.y * 10 };
-    const c2 = { x: e.x - f.side * 1, y: e.y - 20 };
-    const r = (v: number) => +v.toFixed(2);
-    return {
-      id: `br-${i}-${k}`,
-      s,
-      e,
-      d: `M${r(s.x)} ${r(s.y)}C${r(c1.x)} ${r(c1.y)} ${r(c2.x)} ${r(c2.y)} ${r(e.x)} ${r(e.y)}`,
-    };
-  });
-};
 ---
 
 <section class="section" id="experiencia" aria-labelledby="exp-title">
@@ -64,6 +24,8 @@ const branches = (i: number) => {
       </svg>
     </h2>
 
+    <div class="tl-wrap">
+      <img class="streets" src={streets.src} alt="" width="800" height="1200" loading="lazy" decoding="async" aria-hidden="true" />
     <ol class="timeline">
       {
         jobs.map((j, i) => (
@@ -92,16 +54,7 @@ const branches = (i: number) => {
                     <stop offset="0.45" stop-color="#ffffff" stop-opacity={(alpha(i) + alpha(i + 1)) / 2} />
                     <stop offset="1" stop-color="#ffffff" stop-opacity={alpha(i + 1)} />
                   </linearGradient>
-                  {branches(i).map((b) => (
-                    <linearGradient id={b.id} gradientUnits="userSpaceOnUse" x1={b.s.x} y1={b.s.y} x2={b.e.x} y2={b.e.y}>
-                      <stop offset="0" stop-color="#ffffff" stop-opacity={Math.max(alpha(i) - 0.1, 0.12)} />
-                      <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
-                    </linearGradient>
-                  ))}
                 </defs>
-                {branches(i).map((b) => (
-                  <path class="branch" d={b.d} stroke={`url(#${b.id})`} />
-                ))}
                 <path class="body" d={`M${xs[i]} 0C${xs[i]} 55 ${xs[i + 1]} 45 ${xs[i + 1]} 100`} stroke={`url(#road-${i})`} />
                 <path class="dash" d={`M${xs[i]} 0C${xs[i]} 55 ${xs[i + 1]} 45 ${xs[i + 1]} 100`} stroke={`url(#road-${i})`} />
               </svg>
@@ -114,6 +67,7 @@ const branches = (i: number) => {
         ))
       }
     </ol>
+    </div>
   </div>
 </section>
 
@@ -135,8 +89,48 @@ const branches = (i: number) => {
     height: 12px;
   }
 
-  .timeline {
+  .tl-wrap {
+    position: relative;
     margin-top: clamp(28px, 4vw, 48px);
+  }
+
+  .timeline {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Plano de calles de fondo: líneas blancas muy suaves que se difuminan en los bordes, sin tapar texto. */
+  .streets {
+    display: none;
+  }
+
+  @media (min-width: 760px) and (max-width: 1023px) {
+    .tl-wrap .streets {
+      width: 44%;
+    }
+  }
+
+  @media (min-width: 760px) {
+    .streets {
+      display: block;
+      position: absolute;
+      z-index: 0;
+      top: -48px;
+      bottom: -48px;
+      right: calc(var(--gutter) * -1);
+      width: 52%;
+      height: calc(100% + 96px);
+      object-fit: cover;
+      opacity: 0.34;
+      pointer-events: none;
+      user-select: none;
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 38%, #000 78%, transparent),
+        linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to right, transparent, #000 38%, #000 78%, transparent),
+        linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent);
+      mask-composite: intersect;
+    }
   }
 
   .job {
@@ -179,7 +173,7 @@ const branches = (i: number) => {
     background: var(--lime);
     border-color: var(--lime);
     box-shadow: 0 0 0 5px var(--lime-soft);
-    animation: twinkle 3.6s ease-in-out infinite;
+    animation: pulse 2.4s ease-out infinite;
   }
 
   .head {
@@ -272,9 +266,6 @@ const branches = (i: number) => {
       stroke-dasharray: 1 9;
     }
 
-    .map .branch {
-      stroke-width: 1.6;
-    }
 
     .pin {
       position: absolute;
@@ -317,7 +308,7 @@ const branches = (i: number) => {
     .pin.current i {
       background: var(--lime);
       box-shadow: 0 0 0 5px var(--lime-soft);
-      animation: twinkle 3.6s ease-in-out infinite;
+      animation: pulse 2.4s ease-out infinite;
     }
 
     .pin.current b {
@@ -327,16 +318,13 @@ const branches = (i: number) => {
     }
   }
 
-  /* Titileo lento y suave: "aquí estoy ahora" */
-  @keyframes twinkle {
-    0%,
-    100% {
-      opacity: 1;
-      box-shadow: 0 0 0 5px rgba(198, 244, 50, 0.16);
+  /* Pulso en expansión: "aquí estoy ahora" */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(198, 244, 50, 0.45);
     }
-    50% {
-      opacity: 0.5;
-      box-shadow: 0 0 0 9px rgba(198, 244, 50, 0.04);
+    100% {
+      box-shadow: 0 0 0 16px rgba(198, 244, 50, 0);
     }
   }
 
