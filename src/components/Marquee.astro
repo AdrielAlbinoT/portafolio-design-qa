@@ -1,5 +1,5 @@
 ---
-const items = Array.from({ length: 12 });
+const items = Array.from({ length: 20 });
 ---
 
 <div class="marquee" aria-hidden="true">
@@ -61,13 +61,13 @@ const items = Array.from({ length: 12 });
     background: var(--lime-ink);
   }
 
-  /* De izquierda a derecha */
+  /* De derecha a izquierda */
   @keyframes slide {
     from {
-      transform: translateX(-50%);
+      transform: translateX(0);
     }
     to {
-      transform: translateX(0);
+      transform: translateX(-50%);
     }
   }
 </style>
