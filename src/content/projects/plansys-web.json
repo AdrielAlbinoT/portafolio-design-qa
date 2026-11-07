@@ -9,9 +9,36 @@
   "tools": [
     "Figma"
   ],
-  "accent": "#1E3A8A",
-  "mockups": "plansys-web",
-  "mockupCount": 2,
-  "mockupNote": "Escritorio y móvil, antes y después.",
-  "order": 4
+  "accent": "#2A4BB0",
+  "order": 4,
+  "brand": "#2A4BB0",
+  "cover": "../../assets/projects/plansys-web/miniatura.png",
+  "banner": "../../assets/projects/plansys-web/composicion.png",
+  "icon": "../../assets/projects/plansys-web/icono-app.png",
+  "gallery": [
+    {
+      "src": "../../assets/projects/plansys-web/pantalla-01.png",
+      "alt": "Pantalla de PlanSys Web: Inicio con notificaciones, vacaciones, noticias, asistencias y e-learning"
+    },
+    {
+      "src": "../../assets/projects/plansys-web/pantalla-02.png",
+      "alt": "Pantalla de PlanSys Web: Ficha personal con datos del trabajador"
+    },
+    {
+      "src": "../../assets/projects/plansys-web/pantalla-03.png",
+      "alt": "Pantalla de PlanSys Web: Direcciones registradas con tabla y paginación"
+    },
+    {
+      "src": "../../assets/projects/plansys-web/pantalla-04.png",
+      "alt": "Pantalla de PlanSys Web: Préstamos y anticipos con totales y detalle"
+    },
+    {
+      "src": "../../assets/projects/plansys-web/pantalla-05.png",
+      "alt": "Pantalla de PlanSys Web: Ventana para subir un documento"
+    },
+    {
+      "src": "../../assets/projects/plansys-web/pantalla-06.png",
+      "alt": "Pantalla de PlanSys Web: Ventana con el archivo adjunto listo para agregar"
+    }
+  ]
 }

@@ -16,7 +16,7 @@ const dialogData = Object.fromEntries(
       const bannerImg = banner ? await getImage({ src: banner, width: 1400, format: 'webp', quality: 85 }) : undefined;
       const shots = await Promise.all(
         gallery.map(async (g) => {
-          const img = await getImage({ src: g.src, width: g.src.width / g.src.height > 0.8 ? 760 : 420, format: 'webp', quality: 85 });
+          const img = await getImage({ src: g.src, width: g.src.width / g.src.height > 0.8 ? 1100 : 420, format: 'webp', quality: 85 });
           return { src: img.src, w: img.attributes.width, h: img.attributes.height, alt: g.alt };
         }),
       );
