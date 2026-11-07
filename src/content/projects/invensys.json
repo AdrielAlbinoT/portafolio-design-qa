@@ -11,7 +11,7 @@
     "Photoshop"
   ],
   "highlight": "100% sincronizado",
-  "accent": "#3FA34D",
+  "accent": "#92FF67",
   "order": 1,
   "cover": "../../assets/projects/invensys/portada.png",
   "banner": "../../assets/projects/invensys/composicion.png",
@@ -65,5 +65,6 @@
       "alt": "Pantalla de InvenSys: Aviso de sincronización"
     }
   ],
-  "icon": "../../assets/projects/invensys/isotipo.png"
+  "icon": "../../assets/projects/invensys/isotipo.png",
+  "brand": "#92FF67"
 }

@@ -12,10 +12,12 @@ const meta = [p.client, p.year].filter(Boolean).join(' · ');
 ---
 
 <li class="pcard card" data-category={p.category} data-project={id}>
-  <div class="cover" style={`--accent:${p.accent}`}>
+  <div class:list={['cover', { branded: Boolean(p.brand && p.cover) }]} style={`--accent:${p.accent};--brand:${p.brand ?? p.accent}`}>
     {
       p.cover ? (
-        <Image src={p.cover} alt={`Portada del proyecto ${p.title}`} widths={[400, 640, 800]} sizes="(min-width:1024px) 380px, (min-width:760px) 45vw, 92vw" loading="lazy" />
+        <div class="art">
+          <Image src={p.cover} alt={`Portada del proyecto ${p.title}`} widths={[400, 640, 800]} sizes="(min-width:1024px) 380px, (min-width:760px) 45vw, 92vw" loading="lazy" />
+        </div>
       ) : (
         <span class="ph">{p.title}</span>
       )
@@ -51,7 +53,25 @@ const meta = [p.client, p.year].filter(Boolean).join(' · ');
   @media (hover: hover) {
     .pcard:hover {
       background: var(--surface-2);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+    }
+    .pcard:has(.branded):hover {
+      box-shadow: 0 22px 40px -24px var(--brand);
+    }
+    .pcard:hover .cover.branded {
+      background-position: 50% 100%;
+    }
+    .pcard:hover .art {
+      transform: scale(1.07);
+    }
+    .pcard:hover .app-icon {
+      transform: translateY(-3px) rotate(-5deg) scale(1.1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .art :global(img) {
+      animation: none;
     }
   }
 
@@ -62,10 +82,57 @@ const meta = [p.client, p.year].filter(Boolean).join(' · ');
     overflow: hidden;
   }
 
+  /* Fondo con el color principal de la app: de un tono más oscuro arriba a uno más claro abajo */
+  .cover.branded {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--brand) 74%, black) 0%,
+      color-mix(in srgb, var(--brand) 92%, black) 38%,
+      var(--brand) 68%,
+      color-mix(in srgb, var(--brand) 78%, white) 100%
+    );
+    background-size: 100% 150%;
+    background-position: 50% 0%;
+    transition: background-position 0.9s var(--ease);
+  }
+
+  .art {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s var(--ease);
+  }
+
+  .art :global(img) {
+    animation: bob 7s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    will-change: transform;
+  }
+
+  .pcard:nth-child(3n + 2) .art :global(img) {
+    animation-duration: 8.5s;
+    animation-delay: -2.5s;
+  }
+  .pcard:nth-child(3n) .art :global(img) {
+    animation-duration: 6.2s;
+    animation-delay: -4.5s;
+  }
+
+  @keyframes bob {
+    from {
+      transform: translateY(5px);
+    }
+    to {
+      transform: translateY(-7px);
+    }
+  }
+
   .cover :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .pcard {
+    transition: background-color 0.2s, transform 0.3s var(--ease), box-shadow 0.4s;
   }
 
   .ph {
@@ -105,6 +172,7 @@ const meta = [p.client, p.year].filter(Boolean).join(' · ');
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.22),
       0 10px 18px -5px rgba(0, 0, 0, 0.58);
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .app-icon :global(img) {

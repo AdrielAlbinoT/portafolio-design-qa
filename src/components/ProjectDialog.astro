@@ -114,8 +114,13 @@
   .banner {
     display: grid;
     place-items: center;
-    padding: clamp(28px, 5vw, 56px) clamp(16px, 4vw, 40px) 0;
-    background: radial-gradient(ellipse 70% 80% at 50% 45%, color-mix(in srgb, var(--accent, var(--lime)) 38%, transparent), transparent 75%);
+    padding: clamp(28px, 5vw, 56px) clamp(16px, 4vw, 40px) clamp(20px, 3vw, 36px);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--brand, var(--accent, var(--lime))) 74%, black) 0%,
+      var(--brand, var(--accent, var(--lime))) 70%,
+      color-mix(in srgb, var(--brand, var(--accent, var(--lime))) 78%, white) 100%
+    );
   }
 
   .banner :global(img) {

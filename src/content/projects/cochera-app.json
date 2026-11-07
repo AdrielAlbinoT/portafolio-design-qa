@@ -10,7 +10,7 @@
     "Figma",
     "Photoshop"
   ],
-  "accent": "#8B5CF6",
+  "accent": "#5654D2",
   "order": 3,
   "cover": "../../assets/projects/cochera-app/portada.png",
   "banner": "../../assets/projects/cochera-app/composicion.png",
@@ -60,5 +60,6 @@
       "src": "../../assets/projects/cochera-app/pantalla-11.png",
       "alt": "Pantalla de Cochera App: tarifas"
     }
-  ]
+  ],
+  "brand": "#5654D2"
 }

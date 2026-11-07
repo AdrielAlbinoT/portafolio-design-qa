@@ -10,7 +10,7 @@
     "Figma",
     "Photoshop"
   ],
-  "accent": "#FF6F61",
+  "accent": "#FF4081",
   "order": 2,
   "cover": "../../assets/projects/festiva/portada.png",
   "banner": "../../assets/projects/festiva/composicion.png",
@@ -56,5 +56,6 @@
       "src": "../../assets/projects/festiva/pantalla-10.png",
       "alt": "Tarjeta de evento de Festiva: Circadian"
     }
-  ]
+  ],
+  "brand": "#FF4081"
 }

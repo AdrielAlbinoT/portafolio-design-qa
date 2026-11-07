@@ -127,6 +127,7 @@ const dialogData = Object.fromEntries(
     tools: string[];
     highlight?: string;
     accent: string;
+    brand?: string;
     hasMockups: boolean;
     banner?: { src: string; w: number; h: number };
     gallery: { src: string; w: number; h: number; alt: string }[];
@@ -169,6 +170,7 @@ const dialogData = Object.fromEntries(
     const fill = (p: Project) => {
       f('strip').style.setProperty('--accent', p.accent);
       dlg.style.setProperty('--accent', p.accent);
+      dlg.style.setProperty('--brand', p.brand ?? p.accent);
       text('category', p.category);
       text('year', p.year);
       text('title', p.title);
