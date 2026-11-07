@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { brandShades } from '../lib/color';
 
 interface Props {
   id: string;
@@ -8,11 +9,12 @@ interface Props {
 }
 
 const { id, project: p } = Astro.props;
+const shades = p.brand ? brandShades(p.brand) : undefined;
 const meta = [p.client, p.year].filter(Boolean).join(' · ');
 ---
 
 <li class="pcard card" data-category={p.category} data-project={id}>
-  <div class:list={['cover', { branded: Boolean(p.brand && p.cover) }]} style={`--accent:${p.accent};--brand:${p.brand ?? p.accent}`}>
+  <div class:list={['cover', { branded: Boolean(p.brand && p.cover) }]} style={`--accent:${p.accent};--brand:${p.brand ?? p.accent};--brand-deep:${shades?.deep ?? p.accent};--brand-soft:${shades?.soft ?? p.accent}`}>
     {
       p.cover ? (
         <div class="art">
@@ -84,13 +86,7 @@ const meta = [p.client, p.year].filter(Boolean).join(' · ');
 
   /* Fondo con el color principal de la app: de un tono más oscuro arriba a uno más claro abajo */
   .cover.branded {
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--brand) 74%, black) 0%,
-      color-mix(in srgb, var(--brand) 92%, black) 38%,
-      var(--brand) 68%,
-      color-mix(in srgb, var(--brand) 78%, white) 100%
-    );
+    background: linear-gradient(180deg, var(--brand-deep) 0%, var(--brand) 62%, var(--brand-soft) 100%);
     background-size: 100% 150%;
     background-position: 50% 0%;
     transition: background-position 0.9s var(--ease);

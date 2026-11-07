@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
+import { brandShades } from '../lib/color';
 import ProjectCard from './ProjectCard.astro';
 import ProjectDialog from './ProjectDialog.astro';
 
@@ -23,6 +24,7 @@ const dialogData = Object.fromEntries(
         p.id,
         {
           ...rest,
+          shades: brandShades(p.data.brand ?? p.data.accent),
           hasMockups: Boolean(p.data.mockups) && shots.length === 0,
           banner: bannerImg && { src: bannerImg.src, w: bannerImg.attributes.width, h: bannerImg.attributes.height },
           gallery: shots,
@@ -128,6 +130,7 @@ const dialogData = Object.fromEntries(
     highlight?: string;
     accent: string;
     brand?: string;
+    shades: { deep: string; soft: string };
     hasMockups: boolean;
     banner?: { src: string; w: number; h: number };
     gallery: { src: string; w: number; h: number; alt: string }[];
@@ -171,6 +174,8 @@ const dialogData = Object.fromEntries(
       f('strip').style.setProperty('--accent', p.accent);
       dlg.style.setProperty('--accent', p.accent);
       dlg.style.setProperty('--brand', p.brand ?? p.accent);
+      dlg.style.setProperty('--brand-deep', p.shades.deep);
+      dlg.style.setProperty('--brand-soft', p.shades.soft);
       text('category', p.category);
       text('year', p.year);
       text('title', p.title);
