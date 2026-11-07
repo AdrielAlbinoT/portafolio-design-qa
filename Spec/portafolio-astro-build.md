@@ -355,9 +355,9 @@ Título: "Trabajo seleccionado".
 
 **Diálogo**: `<dialog>` nativo, fondo `--surface`. Muestra categoría, año, título, frase, bloque Problema (borde `--line`, texto `--fg`), bloque Solución (fondo `--lime` con texto `--lime-ink`), herramientas y, si existen, los mockups en galería. Se cierra con el botón, Escape o clic en el fondo. Al abrir, el foco va al botón de cerrar.
 
-**Isotipo de app:** los proyectos UI/UX muestran en la esquina inferior izquierda de la miniatura el isotipo de la app dentro de un cuadro redondeado (campo `icon`), para indicar que son productos reales. [PENDIENTE: isotipos de Festiva, Cochera App y PlanSys]
+**Isotipo de app:** los proyectos UI/UX muestran en la esquina inferior izquierda de la miniatura el isotipo de la app dentro de un cuadro redondeado (campo `icon`), para indicar que son productos reales. [PENDIENTE: isotipo de PlanSys Web; los de Festiva ("FE" del wordmark) y Cochera App (círculo con la camioneta) son extractos de las pantallas]
 
-**Mockups en proyectos UI/UX** (InvenSys ya implementado: portada 4:3, banner con composición y galería continua de 12 pantallas que avanza sola de derecha a izquierda, se pausa con el cursor y se arrastra con el mouse (con el dedo se desliza); sin movimiento automático con `prefers-reduced-motion`;  en `src/assets/projects/invensys/`; el resto sigue con marcador)
+**Mockups en proyectos UI/UX** (InvenSys, Festiva y Cochera App ya implementados: portada 4:3, banner con composición y galería continua de 12 pantallas que avanza sola de derecha a izquierda, se pausa con el cursor y se arrastra con el mouse (con el dedo se desliza); sin movimiento automático con `prefers-reduced-motion`;  en `src/assets/projects/invensys/`; el resto sigue con marcador)
 - Cada proyecto UI/UX muestra de 3 a 4 pantallas en marco de teléfono, en una fila, o en escritorio/móvil para web.
 - Flujo corto de 3 a 5 pasos cuando aplique.
 - Antes y después cuando sea un rediseño.

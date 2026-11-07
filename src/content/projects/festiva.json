@@ -11,8 +11,50 @@
     "Photoshop"
   ],
   "accent": "#FF6F61",
-  "mockups": "festiva",
-  "mockupCount": 4,
-  "mockupNote": "3 a 4 pantallas: inicio, mapa, detalle del evento.",
-  "order": 2
+  "order": 2,
+  "cover": "../../assets/projects/festiva/portada.png",
+  "banner": "../../assets/projects/festiva/composicion.png",
+  "icon": "../../assets/projects/festiva/isotipo.png",
+  "gallery": [
+    {
+      "src": "../../assets/projects/festiva/pantalla-01.png",
+      "alt": "Pantalla de Festiva: inicio con lugares y eventos"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-02.png",
+      "alt": "Pantalla de Festiva: eventos con filtros por categoría"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-03.png",
+      "alt": "Pantalla de Festiva: detalle de un evento"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-04.png",
+      "alt": "Pantalla de Festiva: mapa de locales"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-05.png",
+      "alt": "Pantalla de Festiva: lista de negocios"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-06.png",
+      "alt": "Pantalla de Festiva: detalle de un local"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-07.png",
+      "alt": "Pantalla de Festiva: lista de artistas"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-08.png",
+      "alt": "Pantalla de Festiva: categorías"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-09.png",
+      "alt": "Tarjeta de evento de Festiva: Domingo de Matiné"
+    },
+    {
+      "src": "../../assets/projects/festiva/pantalla-10.png",
+      "alt": "Tarjeta de evento de Festiva: Circadian"
+    }
+  ]
 }
