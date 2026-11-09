@@ -6,6 +6,39 @@
   "hook": "Postres, jugos y sándwich con identidad propia.",
   "problem": "Una marca nueva que debía verse cálida y reconocible en todos sus puntos de contacto.",
   "solution": "Logotipo, vaso, van de reparto y papelería completa.",
-  "accent": "#FF8A1F",
-  "order": 6
+  "accent": "#D8CE44",
+  "order": 6,
+  "brand": "#D8CE44",
+  "cover": "../../assets/projects/gianca/portada-gianca.webp",
+  "banner": "../../assets/projects/gianca/banner-gianca.webp",
+  "gallery": [
+    {
+      "src": "../../assets/projects/gianca/furgoneta.webp",
+      "alt": "Furgoneta de reparto con el logotipo de Gianca"
+    },
+    {
+      "src": "../../assets/projects/gianca/vaso.webp",
+      "alt": "Vaso de bebida amarillo con la marca Gianca"
+    },
+    {
+      "src": "../../assets/projects/gianca/papeleria.webp",
+      "alt": "Papelería de Gianca: hojas, carpeta, libreta y tarjetas"
+    },
+    {
+      "src": "../../assets/projects/gianca/bolsa-kraft.webp",
+      "alt": "Ejemplo de aplicación: bolsa de papel kraft con el logotipo"
+    },
+    {
+      "src": "../../assets/projects/gianca/caja-postres.webp",
+      "alt": "Ejemplo de aplicación: caja de postres con el logotipo"
+    },
+    {
+      "src": "../../assets/projects/gianca/letrero.webp",
+      "alt": "Ejemplo de aplicación: letrero circular de pared con el logotipo"
+    },
+    {
+      "src": "../../assets/projects/gianca/stickers.webp",
+      "alt": "Ejemplo de aplicación: stickers con el logotipo"
+    }
+  ]
 }
