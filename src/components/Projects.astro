@@ -213,6 +213,7 @@ const dialogData = Object.fromEntries(
       const gl = f('gallery');
       gl.replaceChildren();
       f('gallery-wrap').hidden = p.gallery.length === 0;
+      f('gallery-title').textContent = p.category === 'UI/UX' ? 'Pantallas' : 'Piezas';
       p.gallery.forEach((g) => {
         const li = document.createElement('li');
         const im = new Image();

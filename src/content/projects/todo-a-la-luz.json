@@ -9,9 +9,23 @@
   "tools": [
     "Diseño editorial"
   ],
-  "accent": "#FF6F61",
-  "mockups": "todo-a-la-luz",
-  "mockupNote": "Páginas de revista y folleto.",
-  "pending": "Confirmar si puede mostrarse públicamente.",
-  "order": 5
+  "accent": "#D9381E",
+  "order": 5,
+  "brand": "#D9381E",
+  "cover": "../../assets/projects/todo-a-la-luz/miniatura-tal.png",
+  "banner": "../../assets/projects/todo-a-la-luz/banner-tal.png",
+  "gallery": [
+    {
+      "src": "../../assets/projects/todo-a-la-luz/pantalla-01.png",
+      "alt": "Revista Todo a la luz: vista general con portada y páginas interiores"
+    },
+    {
+      "src": "../../assets/projects/todo-a-la-luz/pantalla-02.png",
+      "alt": "Revista Todo a la luz: portada \"La cruda realidad\" y página de estadísticas"
+    },
+    {
+      "src": "../../assets/projects/todo-a-la-luz/pantalla-03.png",
+      "alt": "Revista Todo a la luz: páginas \"A temprana edad\" y \"Prevención\""
+    }
+  ]
 }
