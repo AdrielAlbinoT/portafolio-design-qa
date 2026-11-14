@@ -324,22 +324,22 @@ Título: "Qué hago". Seis tarjetas en `--surface`: tres columnas en LG, dos en 
 
 ---
 
-## 12. Sección QA + IA ()
+## 12. Sección QA + IA (`Qa.astro`)
 
-Sección propia, entre Experiencia y Proyectos. Corta (máximo una pantalla de alto en escritorio, ~790 px de contenido): posiciona el perfil mixto diseño + QA + IA como diferencial. Brief de origen: .
+Sección propia, entre Experiencia y Proyectos. Corta (máximo una pantalla de alto en escritorio, ~790 px de contenido): posiciona el perfil mixto diseño + QA + IA como diferencial. Brief de origen: `seccion-qa-ia.md`.
 
-**Cabecera**: etiqueta "QA + IA" (), título "Diseño que llega probado" () y subtítulo en : "Comparo lo diseñado con lo implementado, detecto lo que se rompe y uso IA para trabajar más rápido, revisando cada resultado." En ≥1024 px el subtítulo va a la derecha del título.
+**Cabecera**: etiqueta "QA + IA" (`.label`), título "Diseño que llega probado" (`.h-section`) y subtítulo en `--muted`: "Comparo lo diseñado con lo implementado, detecto lo que se rompe y uso IA para trabajar más rápido, revisando cada resultado." En ≥1024 px el subtítulo va a la derecha del título.
 
-**Comparación Figma vs. implementado** (bloque principal): dos tarjetas lado a lado desde 640 px (apiladas en móvil). Izquierda "Diseño en Figma" (con logo de Figma), derecha "Implementado". Cada una contiene un  (16:9, 2:1 en ≥1024 px) con un mockup esquemático en HTML/CSS (barras, dos campos y un botón, sin texto legible). En el implementado, dos anotaciones con contorno punteado  y pin numerado: 1 sobre los campos, 2 sobre el botón. Leyenda: "1 Espaciado distinto al diseño" y "2 Botón con forma y color distintos". El  puede recibir una  real con la misma proporción sin tocar el layout.
+**Comparación Figma vs. implementado** (bloque principal): dos tarjetas lado a lado desde 640 px (apiladas en móvil). Izquierda "Diseño en Figma" (con logo de Figma), derecha "Implementado". Cada una contiene un `.screen` (16:9; 2:1 en ≥1024 px) con un mockup esquemático en HTML/CSS (barras, dos campos y un botón, sin texto legible). En el implementado, dos anotaciones con contorno punteado `--lime` y pin numerado: 1 sobre los campos, 2 sobre el botón. Leyenda: "1 Espaciado distinto al diseño" y "2 Botón con forma y color distintos". El `.screen` puede recibir una `<Image>` real con la misma proporción sin tocar el layout.
 
-**Flujo de 3 pasos** con flechas (3 columnas desde 640 px, apiladas y sin flechas en móvil):
+**Flujo de 3 pasos** con flechas (3 columnas desde 640 px; apiladas y sin flechas en móvil):
 - **01 Detectar**: Casos, pruebas manuales y API. Logos: Figma, Postman.
-- **02 Documentar**: La IA ordena, yo reviso. Logos: Linear, Trello, Claude, ChatGPT, Gemini. Borde  y chip "IA".
+- **02 Documentar**: La IA ordena, yo reviso. Logos: Linear, Trello, Claude, ChatGPT, Gemini. Borde `--lime` y chip "IA".
 - **03 Verificar**: Regresión tras cada fix. Logo: Linear.
 
 **Línea final**: "Uso IA también para explorar ideas, hacer mockups y prototipos con Lovable, y siempre reviso el resultado."
 
-**Logos**: SVG de  (Figma, Postman, Linear, Trello, Claude, Gemini); ChatGPT no está en simple-icons, así que se usa el nudo extraído del ícono oficial (, servido en WebP con ) como máscara CSS. Cuadro de 30 px con glifo de 18 px, monocromo  (los de IA en ) y color de marca al pasar el cursor. Cada logo con  y . Lovable no tiene logo en el proyecto: solo aparece en texto.
+**Logos**: SVG de `simple-icons` (Figma, Postman, Linear, Trello, Claude, Gemini). ChatGPT no está en simple-icons: se usa el nudo extraído del ícono oficial (`src/assets/qa/chatgpt-glyph.png`, servido en WebP con `getImage`) como máscara CSS. Cuadro de 30 px con glifo de 18 px, monocromo `--muted` (los de IA en `--lime`) y color de marca al pasar el cursor. Cada logo con `role="img"` y `aria-label`. Lovable no tiene logo en el proyecto: solo aparece en texto.
 
 Fuera de alcance: automatización de pruebas, cifras, certificaciones, clientes, caso de estudio extenso y ticket de ejemplo.
 
