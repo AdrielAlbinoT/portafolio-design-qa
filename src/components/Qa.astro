@@ -1,66 +1,330 @@
 ---
-const steps = [
-  { t: 'Detecto', d: 'Pruebas funcionales, de regresión y de usabilidad por módulo.' },
-  { t: 'Documento', d: 'Cada hallazgo va en un ticket con pasos, resultado esperado y resultado obtenido.' },
-  { t: 'Verifico', d: 'Reviso que la corrección quede funcional y propongo mejoras de experiencia y de UI.' },
+import { getImage } from 'astro:assets';
+import { siFigma, siPostman, siLinear, siTrello, siClaude, siGooglegemini } from 'simple-icons';
+import chatgptGlyph from '../assets/qa/chatgpt-glyph.png';
+
+// ChatGPT no está en simple-icons: se usa el nudo del ícono oficial como máscara (servida en WebP sin pérdida).
+const chatgptMask = await getImage({ src: chatgptGlyph, format: 'webp', width: 80, quality: 100 });
+
+interface Logo {
+  name: string;
+  hex: string;
+  path?: string;
+  mask?: string;
+  ai?: boolean;
+}
+
+const L = {
+  figma: { name: 'Figma', hex: `#${siFigma.hex}`, path: siFigma.path },
+  postman: { name: 'Postman', hex: `#${siPostman.hex}`, path: siPostman.path },
+  linear: { name: 'Linear', hex: `#${siLinear.hex}`, path: siLinear.path },
+  trello: { name: 'Trello', hex: `#${siTrello.hex}`, path: siTrello.path },
+  claude: { name: 'Claude', hex: `#${siClaude.hex}`, path: siClaude.path, ai: true },
+  chatgpt: { name: 'ChatGPT', hex: '#74AA9C', mask: chatgptMask.src, ai: true },
+  gemini: { name: 'Gemini', hex: `#${siGooglegemini.hex}`, path: siGooglegemini.path, ai: true },
+} satisfies Record<string, Logo>;
+
+const steps: { n: string; t: string; d: string; logos: Logo[]; ai?: boolean }[] = [
+  { n: '01', t: 'Detectar', d: 'Casos, pruebas manuales y API', logos: [L.figma, L.postman] },
+  { n: '02', t: 'Documentar', d: 'La IA ordena, yo reviso', logos: [L.linear, L.trello, L.claude, L.chatgpt, L.gemini], ai: true },
+  { n: '03', t: 'Verificar', d: 'Regresión tras cada fix', logos: [L.linear] },
 ];
-const platforms = ['Android', 'Web', 'iOS'];
 ---
 
 <section class="section" id="qa" aria-labelledby="qa-title">
   <div class="container">
-    <div class="section-head">
-      <p class="label">QA testing</p>
-      <h2 class="h-section" id="qa-title">Diseño y testing, juntos</h2>
+    <div class="section-head head">
+      <p class="label">QA + IA</p>
+      <h2 class="h-section" id="qa-title">Diseño que llega probado</h2>
+      <p class="sub">
+        Comparo lo diseñado con lo implementado, detecto lo que se rompe y uso IA para trabajar más rápido, revisando cada
+        resultado.
+      </p>
     </div>
 
-    <ol class="steps">
+    <figure class="compare">
+      <div class="panels">
+        <div class="panel card">
+          <p class="panel-label">
+            <span class="logo" role="img" aria-label={L.figma.name} title={L.figma.name} style={`--brand:${L.figma.hex}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={L.figma.path}></path></svg>
+            </span>
+            Diseño en Figma
+          </p>
+          <!-- .screen mantiene la proporción: se puede reemplazar el mockup por un <Image> real sin tocar el layout. -->
+          <div class="screen" role="img" aria-label="Ilustración esquemática de un formulario tal como se diseñó en Figma">
+            <div class="ui">
+              <span class="bar title-bar"></span>
+              <span class="bar sub-bar"></span>
+              <div class="fields">
+                <span class="field"></span>
+                <span class="field"></span>
+              </div>
+              <span class="btn btn-design"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel card">
+          <p class="panel-label">Implementado</p>
+          <div
+            class="screen"
+            role="img"
+            aria-label="Ilustración esquemática del mismo formulario implementado, con dos diferencias marcadas: 1, el espaciado de los campos; 2, la forma y el color del botón"
+          >
+            <div class="ui">
+              <span class="bar title-bar"></span>
+              <span class="bar sub-bar"></span>
+              <div class="fields fields-impl ann">
+                <span class="field"></span>
+                <span class="field"></span>
+                <span class="pin" aria-hidden="true">1</span>
+              </div>
+              <span class="btn btn-impl ann"><span class="pin" aria-hidden="true">2</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <figcaption>
+        <ol class="legend">
+          <li><span class="pin" aria-hidden="true">1</span>Espaciado distinto al diseño</li>
+          <li><span class="pin" aria-hidden="true">2</span>Botón con forma y color distintos</li>
+        </ol>
+      </figcaption>
+    </figure>
+
+    <ol class="flow">
       {
         steps.map((s, i) => (
-          <li class="card step">
-            <span class="num">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{s.t}</h3>
-            <p>{s.d}</p>
-          </li>
+          <>
+            {i > 0 && (
+              <li class="arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </li>
+            )}
+            <li class:list={['card', 'step', { ai: s.ai }]}>
+              <div class="step-top">
+                <span class="num">{s.n}</span>
+                {s.ai && <span class="chip-ia">IA</span>}
+              </div>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+              <ul class="logos" aria-label={`Herramientas para ${s.t.toLowerCase()}`}>
+                {s.logos.map((l) => (
+                  <li>
+                    <span
+                      class:list={['logo', { 'logo-ai': l.ai }]}
+                      role="img"
+                      aria-label={l.name}
+                      title={l.name}
+                      style={l.mask ? `--brand:${l.hex};--mask:url(${l.mask})` : `--brand:${l.hex}`}
+                    >
+                      {l.path ? (
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d={l.path} />
+                        </svg>
+                      ) : (
+                        <span class="glyph" aria-hidden="true" />
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </>
         ))
       }
     </ol>
 
-    <div class="platforms">
-      <h3 class="label">Plataformas</h3>
-      <ul class="pill-list">
-        {platforms.map((p) => <li class="pill">{p}</li>)}
-      </ul>
-    </div>
-
-    <div class="case card">
-      <p class="label">Caso de referencia</p>
-      <p>
-        Plataforma de gestión hotelera de housekeeping: aperturas de habitaciones, limpieza, progreso de tareas y
-        órdenes de mantenimiento.
-      </p>
-      <p class="pending">[PENDIENTE: imágenes del caso, en src/assets/mockups/clean-room/, cuando el autor las tenga]</p>
-    </div>
-
-    <div class="ticket">
-      <p class="label">Ejemplo de ticket</p>
-      <p class="pending">[PENDIENTE: ejemplo real anonimizado de un ticket de bug: título, severidad, pasos, esperado y obtenido]</p>
-    </div>
+    <p class="ai-line">Uso IA también para explorar ideas, hacer mockups y prototipos con Lovable, y siempre reviso el resultado.</p>
   </div>
 </section>
 
 <style>
-  .steps {
+  .head {
+    display: grid;
+    gap: 0;
+    margin-bottom: clamp(28px, 4vw, 44px);
+  }
+
+  .sub {
+    max-width: 62ch;
+    margin-top: 14px;
+    color: var(--muted);
+  }
+
+  /* ---------- Comparación Figma vs. implementado ---------- */
+  .panels {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--gap);
   }
 
+  .panel {
+    display: grid;
+    gap: 12px;
+    padding: clamp(14px, 1.8vw, 20px);
+  }
+
+  .panel-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .screen {
+    container-type: inline-size;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--base);
+  }
+
+  .screen :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ui {
+    display: flex;
+    flex-direction: column;
+    width: 52%;
+  }
+
+  .bar {
+    display: block;
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--fg) 34%, transparent);
+  }
+
+  .title-bar {
+    width: 48%;
+    height: 2.6cqi;
+  }
+
+  .sub-bar {
+    width: 74%;
+    height: 1.4cqi;
+    margin-top: 1.8cqi;
+    background: color-mix(in srgb, var(--fg) 16%, transparent);
+  }
+
+  .fields {
+    display: grid;
+    gap: 2.2cqi;
+    margin-top: 4.4cqi;
+  }
+
+  .fields-impl {
+    gap: 5.6cqi;
+  }
+
+  .field {
+    display: block;
+    height: 6cqi;
+    border: 1px solid var(--line);
+    border-radius: 1.4cqi;
+    background: color-mix(in srgb, var(--fg) 5%, transparent);
+  }
+
+  .btn {
+    display: block;
+    height: 6cqi;
+    margin-top: 4cqi;
+  }
+
+  .btn-design {
+    border-radius: 99px;
+    background: var(--lime);
+  }
+
+  .btn-impl {
+    width: 46%;
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--fg) 30%, transparent);
+  }
+
+  .ann {
+    position: relative;
+    outline: 1.5px dashed var(--lime);
+    outline-offset: 1.4cqi;
+  }
+
+  .ann > .pin {
+    position: absolute;
+    top: calc(-1.4cqi - 11px);
+    right: calc(-1.4cqi - 11px);
+  }
+
+  .pin {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--lime);
+    color: var(--lime-ink);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .legend li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ---------- Flujo ---------- */
+  .flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: clamp(28px, 4vw, 44px);
+  }
+
+  .arrow {
+    display: none;
+    place-items: center;
+    color: var(--muted);
+  }
+
   .step {
     display: grid;
     align-content: start;
+    gap: 6px;
+    padding: clamp(18px, 2vw, 24px);
+  }
+
+  .step.ai {
+    border-color: var(--lime);
+  }
+
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 10px;
-    padding: clamp(20px, 2.5vw, 32px);
   }
 
   .num {
@@ -70,7 +334,19 @@ const platforms = ['Android', 'Web', 'iOS'];
     color: var(--lime);
   }
 
+  .chip-ia {
+    padding: 3px 10px;
+    border: 1px solid var(--lime);
+    border-radius: var(--radius-pill);
+    background: var(--lime-soft);
+    color: var(--lime);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
   h3 {
+    margin-top: 6px;
     font-size: var(--fs-project);
     text-transform: uppercase;
   }
@@ -80,48 +356,112 @@ const platforms = ['Android', 'Web', 'iOS'];
     font-size: 14px;
   }
 
-  .platforms {
+  .logos {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 12px 20px;
-    margin-top: clamp(24px, 4vw, 40px);
+    gap: 8px;
+    margin-top: 10px;
   }
 
-  .platforms .label {
-    font-family: var(--font-text);
-    font-size: 12px;
-    text-transform: uppercase;
-    line-height: 1.2;
-  }
-
-  .case {
-    display: grid;
-    gap: 10px;
-    justify-items: start;
-    margin-top: clamp(24px, 4vw, 40px);
-    padding: clamp(20px, 2.5vw, 32px);
-  }
-
-  .ticket {
-    display: grid;
-    gap: 10px;
-    justify-items: start;
-    margin-top: var(--gap);
-    padding: clamp(16px, 2vw, 24px);
+  /* Logos: monocromo por defecto, color de marca al pasar el cursor. */
+  .logo {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 30px;
+    height: 30px;
     border: 1px solid var(--line);
-    border-radius: var(--radius-card);
+    border-radius: 8px;
+    background: var(--surface-2);
+    color: var(--muted);
+    transition:
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
   }
 
-  @media (min-width: 480px) and (max-width: 759px) {
-    .steps {
+  .logo-ai {
+    color: var(--lime);
+  }
+
+  .logo:hover {
+    color: var(--brand);
+    border-color: color-mix(in srgb, var(--brand) 55%, transparent);
+  }
+
+  .logo svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .glyph {
+    width: 18px;
+    height: 18px;
+    background: currentColor;
+    -webkit-mask: var(--mask) center / contain no-repeat;
+    mask: var(--mask) center / contain no-repeat;
+  }
+
+  .ai-line {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (min-width: 640px) {
+    .panels {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .flow {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .arrow {
+      display: grid;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .ui {
+      width: 64%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .head {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      grid-template-areas: 'label label' 'title sub';
+      align-items: end;
+      column-gap: clamp(32px, 5vw, 72px);
+    }
+
+    .head .label {
+      grid-area: label;
+    }
+
+    .head .h-section {
+      grid-area: title;
+    }
+
+    .head .sub {
+      grid-area: sub;
+      margin-top: 0;
+    }
+
+    .screen {
+      aspect-ratio: 2 / 1;
+    }
+
+    .flow {
       gap: 14px;
     }
   }
 
-  @media (min-width: 760px) {
-    .steps {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+  @media (prefers-reduced-motion: reduce) {
+    .logo {
+      transition: none;
     }
   }
 </style>

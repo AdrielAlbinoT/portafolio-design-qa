@@ -324,24 +324,24 @@ Título: "Qué hago". Seis tarjetas en `--surface`: tres columnas en LG, dos en 
 
 ---
 
-## 12. Sección QA (`Qa.astro`)
+## 12. Sección QA + IA ()
 
-Sección propia, entre Experiencia y Proyectos. Muestra cómo trabaja el autor en calidad, con texto corto y visual.
+Sección propia, entre Experiencia y Proyectos. Corta (máximo una pantalla de alto en escritorio, ~790 px de contenido): posiciona el perfil mixto diseño + QA + IA como diferencial. Brief de origen: .
 
-Título: "Diseño y testing, juntos". Etiqueta: "QA testing".
+**Cabecera**: etiqueta "QA + IA" (), título "Diseño que llega probado" () y subtítulo en : "Comparo lo diseñado con lo implementado, detecto lo que se rompe y uso IA para trabajar más rápido, revisando cada resultado." En ≥1024 px el subtítulo va a la derecha del título.
 
-**Tres pasos** en fila (una columna en XS), cada uno con número, título y una línea:
-- **01 Detecto:** pruebas funcionales, de regresión y de usabilidad por módulo.
-- **02 Documento:** cada hallazgo va en un ticket con pasos, resultado esperado y resultado obtenido.
-- **03 Verifico:** reviso que la corrección quede funcional y propongo mejoras de experiencia y de UI.
+**Comparación Figma vs. implementado** (bloque principal): dos tarjetas lado a lado desde 640 px (apiladas en móvil). Izquierda "Diseño en Figma" (con logo de Figma), derecha "Implementado". Cada una contiene un  (16:9, 2:1 en ≥1024 px) con un mockup esquemático en HTML/CSS (barras, dos campos y un botón, sin texto legible). En el implementado, dos anotaciones con contorno punteado  y pin numerado: 1 sobre los campos, 2 sobre el botón. Leyenda: "1 Espaciado distinto al diseño" y "2 Botón con forma y color distintos". El  puede recibir una  real con la misma proporción sin tocar el layout.
 
-**Plataformas**: Android · Web · iOS, en pastillas.
+**Flujo de 3 pasos** con flechas (3 columnas desde 640 px, apiladas y sin flechas en móvil):
+- **01 Detectar**: Casos, pruebas manuales y API. Logos: Figma, Postman.
+- **02 Documentar**: La IA ordena, yo reviso. Logos: Linear, Trello, Claude, ChatGPT, Gemini. Borde  y chip "IA".
+- **03 Verificar**: Regresión tras cada fix. Logo: Linear.
 
-**Caso de referencia (texto)**: "Plataforma de gestión hotelera de housekeeping: aperturas de habitaciones, limpieza, progreso de tareas y órdenes de mantenimiento." Se puede mencionar en texto. Sin imágenes por ahora. [PENDIENTE: imágenes del caso, en `src/assets/mockups/clean-room/`, cuando el autor las tenga]
+**Línea final**: "Uso IA también para explorar ideas, hacer mockups y prototipos con Lovable, y siempre reviso el resultado."
 
-**Galería de ejemplo (opcional)**: un ticket de bug anonimizado en un bloque con borde `--line`: título, severidad, pasos, esperado y obtenido. [PENDIENTE: ejemplo real anonimizado]
+**Logos**: SVG de  (Figma, Postman, Linear, Trello, Claude, Gemini); ChatGPT no está en simple-icons, así que se usa el nudo extraído del ícono oficial (, servido en WebP con ) como máscara CSS. Cuadro de 30 px con glifo de 18 px, monocromo  (los de IA en ) y color de marca al pasar el cursor. Cada logo con  y . Lovable no tiene logo en el proyecto: solo aparece en texto.
 
-Estilo: sin métricas inventadas. Si el autor aporta cifras, se agregan con su fuente.
+Fuera de alcance: automatización de pruebas, cifras, certificaciones, clientes, caso de estudio extenso y ticket de ejemplo.
 
 ---
 
@@ -595,7 +595,7 @@ Criterios:
 4. Construir `SmokeBg` y `Nav` con sus comportamientos.
 5. Construir `Hero` y `HeroImage`, con el avatar flotante.
 6. Construir `About` y `Experience`.
-7. Construir `Qa`, con los tres pasos y el espacio para el caso de referencia.
+7. Construir `Qa` (QA + IA): comparación Figma vs. implementado y flujo de 3 pasos con logos.
 8. Construir `Projects`, `ProjectCard` y `ProjectDialog`, con filtro, diálogo y marcadores de mockup.
 9. Construir `Contact`, `ContactForm` y `Footer`.
 10. Revisar responsive en todos los anchos de la sección 17.
@@ -624,8 +624,7 @@ Al terminar, entrega en este orden:
 - Confirmar si el proyecto "Todo a la luz" puede mostrarse públicamente.
 - Confirmar si el logotipo de Gianca se escribe con C.
 - Entregar las imágenes de mockups y de portadas en las carpetas de `src/assets/`.
-- Entregar la imagen y el ejemplo anonimizado para la sección QA, si se decide mostrarlos.
-- Confirmar las herramientas de QA que se mostrarán.
+- Opcional: capturas reales anonimizadas (diseño e implementación) para reemplazar el mockup esquemático de la sección QA + IA.
 - Confirmar el tiempo de respuesta para el contacto.
 - Confirmar si los periodos de experiencia llevarán meses o solo años.
 - Elegir el servicio de formularios y dar el endpoint.
