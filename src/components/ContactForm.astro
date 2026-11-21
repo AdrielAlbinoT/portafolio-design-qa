@@ -24,19 +24,17 @@ const services = ['UI/UX', 'Branding', 'QA Testing', 'Graphic Design', 'Social M
     </div>
   </div>
 
-  <fieldset class="field services">
-    <legend>¿En qué te ayudo? <span class="opt">Opcional</span></legend>
-    <div class="chips">
-      {
-        services.map((s, i) => (
-          <label class="chip">
-            <input type="radio" name="service" value={s} id={`cf-s-${i}`} />
-            <span>{s}</span>
-          </label>
-        ))
-      }
+  <div class="field">
+    <label for="cf-service">¿En qué te ayudo?</label>
+    <div class="select">
+      <select id="cf-service" name="service">
+        {services.map((s, i) => <option value={s} selected={i === 0}>{s}</option>)}
+      </select>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
     </div>
-  </fieldset>
+  </div>
 
   <div class="field">
     <label for="cf-msg">Mensaje</label>
@@ -105,31 +103,14 @@ const services = ['UI/UX', 'Branding', 'QA Testing', 'Graphic Design', 'Social M
     min-width: 0;
   }
 
-  label,
-  legend {
+  label {
     font-size: 13px;
     font-weight: 700;
   }
 
-  fieldset {
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-
-  legend {
-    padding: 0;
-    margin-bottom: 8px;
-  }
-
-  .opt {
-    margin-left: 6px;
-    font-weight: 500;
-    color: var(--muted);
-  }
-
   input[type='text'],
   input[type='email'],
+  select,
   textarea {
     width: 100%;
     min-height: 50px;
@@ -150,12 +131,14 @@ const services = ['UI/UX', 'Branding', 'QA Testing', 'Graphic Design', 'Social M
 
   input[type='text']:hover,
   input[type='email']:hover,
+  select:hover,
   textarea:hover {
     border-color: color-mix(in srgb, var(--fg) 28%, transparent);
   }
 
   input[type='text']:focus-visible,
   input[type='email']:focus-visible,
+  select:focus-visible,
   textarea:focus-visible {
     outline: none;
     border-color: var(--lime);
@@ -187,51 +170,35 @@ const services = ['UI/UX', 'Branding', 'QA Testing', 'Graphic Design', 'Social M
     pointer-events: none;
   }
 
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  .select {
+    position: relative;
   }
 
-  .chip {
-    position: relative;
+  select {
+    appearance: none;
+    padding-right: 46px;
+    color-scheme: dark;
     cursor: pointer;
   }
 
-  .chip input {
+  select option {
+    background: var(--surface-2);
+    color: var(--fg);
+  }
+
+  .select svg {
     position: absolute;
-    opacity: 0;
+    top: 50%;
+    right: 16px;
+    translate: 0 -50%;
+    color: var(--muted);
     pointer-events: none;
+    transition: color 0.2s var(--ease);
   }
 
-  .chip span {
-    display: inline-flex;
-    align-items: center;
-    min-height: 38px;
-    padding: 0 16px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-pill);
-    font-size: 14px;
-    font-weight: 500;
-    transition:
-      border-color 0.2s var(--ease),
-      background-color 0.2s var(--ease),
-      color 0.2s var(--ease);
-  }
-
-  .chip:hover span {
-    border-color: var(--lime);
-  }
-
-  .chip input:checked + span {
-    background: var(--lime);
-    border-color: var(--lime);
-    color: var(--lime-ink);
-  }
-
-  .chip input:focus-visible + span {
-    outline: 2px solid var(--lime);
-    outline-offset: 2px;
+  .select:hover svg,
+  select:focus-visible + svg {
+    color: var(--lime);
   }
 
   .err {
@@ -328,8 +295,9 @@ const services = ['UI/UX', 'Branding', 'QA Testing', 'Graphic Design', 'Social M
   @media (prefers-reduced-motion: reduce) {
     .submit svg,
     input,
+    select,
     textarea,
-    .chip span {
+    .select svg {
       transition: none;
     }
   }
@@ -441,7 +409,7 @@ const services = ['UI/UX', 'Branding', 'QA Testing', 'Graphic Design', 'Social M
         return;
       }
 
-      const service = (form.elements.namedItem('service') as RadioNodeList).value;
+      const service = (form.elements.namedItem('service') as HTMLSelectElement).value;
 
       // Sin servicio de formularios configurado: abre el correo del visitante con el mensaje listo.
       if (!endpoint) {

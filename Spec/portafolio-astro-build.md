@@ -477,15 +477,15 @@ Dentro de una tarjeta `--surface`. Encabezado "Envíame un mensaje" (Anton, tama
 |---|---|---|---|
 | Nombre | text | Sí | 2 a 80 caracteres |
 | Correo | email | Sí | Formato válido |
-| ¿En qué te ayudo? | chips de opción única (UI/UX, Branding, QA Testing, Graphic Design, Social Media) | No | — |
+| ¿En qué te ayudo? | desplegable (`select`) de una sola línea con UI/UX, Branding, QA Testing, Graphic Design, Social Media; UI/UX seleccionado por defecto | Sí (siempre tiene valor) | — |
 | Mensaje | textarea | Sí | 10 a 500 caracteres, con contador dentro del campo |
 | `website` | text, oculto | No | Si tiene valor, descartar el envío sin mostrar error |
 
 - No se muestra ningún aviso al cargar la página.
 - Con `PUBLIC_FORM_ENDPOINT`: envío por `fetch` (`POST`, `Accept: application/json`). Estados: enviando (botón deshabilitado, "Enviando…"); éxito (aviso con check en `--lime`: "Gracias, recibí tu mensaje. Te respondo pronto a tu correo.", el formulario se limpia); error ("No se pudo enviar. Inténtalo de nuevo o escríbeme a adriel.designstudio@gmail.com.").
-- Sin `PUBLIC_FORM_ENDPOINT` (estado actual): al enviar, abre la app de correo del visitante con un `mailto:` a adriel.designstudio@gmail.com, con asunto "Proyecto de {servicio} · {nombre}" (o "Contacto desde el portafolio") y el mensaje listo, y muestra un aviso con el correo por si no se abrió.
+- Sin `PUBLIC_FORM_ENDPOINT` (estado actual): al enviar, abre la app de correo del visitante con un `mailto:` a adriel.designstudio@gmail.com, con asunto "Proyecto de {servicio} · {nombre}" y el mensaje listo, y muestra un aviso con el correo por si no se abrió.
 - Validación en el cliente antes de enviar; errores cortos debajo de cada campo ("Escribe tu nombre.", "Escribe un correo válido.", "Cuéntame en qué te puedo ayudar.").
-- Accesibilidad: `label` visible en cada campo, `fieldset` y `legend` para los chips, `role="status"` con `aria-live="polite"` para los avisos y foco en el primer campo con error.
+- Accesibilidad: `label` visible en cada campo, `select` nativo con su `label` y flecha decorativa, `role="status"` con `aria-live="polite"` para los avisos y foco en el primer campo con error.
 
 **Barra inferior**
 - "© 2026 Adriel Albino Tasayco. Todos los derechos reservados."
