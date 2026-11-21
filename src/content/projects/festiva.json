@@ -4,8 +4,8 @@
   "client": "Entretenimiento",
   "year": "2024",
   "hook": "Descubre dónde está la fiesta.",
-  "problem": "Eventos dispersos entre redes sociales y chats.",
-  "solution": "Eventos, locales y artistas en una sola plataforma, con mapa y categorías.",
+  "problem": "La información de fiestas y eventos estaba dispersa entre redes sociales y chats. Saber qué había, dónde y con quién obligaba a buscar en varios lugares.",
+  "solution": "Diseñé una plataforma que reúne eventos, locales y artistas en un solo lugar. Con mapa y categorías, cada persona encuentra rápido el plan que busca cerca de donde está.",
   "tools": [
     "Figma",
     "Photoshop"

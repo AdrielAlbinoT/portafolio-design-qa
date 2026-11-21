@@ -11,8 +11,11 @@ const projects = defineCollection({
       client: z.string(),
       year: z.string().optional(),
       hook: z.string(),
-      problem: z.string(),
-      solution: z.string(),
+      // UI/UX: caso Problema → Solución. Resto: De qué se trata → Qué hice.
+      problem: z.string().optional(),
+      solution: z.string().optional(),
+      about: z.string().optional(),
+      done: z.string().optional(),
       tools: z.array(z.string()).default([]),
       highlight: z.string().optional(),
       accent: z.string().regex(/^#[0-9a-fA-F]{6}$/),
@@ -26,6 +29,9 @@ const projects = defineCollection({
       mockupNote: z.string().optional(),
       pending: z.string().optional(),
       order: z.number(),
+    }).superRefine((p, ctx) => {
+      const need = p.category === 'UI/UX' ? (['problem', 'solution'] as const) : (['about', 'done'] as const);
+      for (const k of need) if (!p[k]) ctx.addIssue({ code: 'custom', path: [k], message: `Falta "${k}" para la categoría ${p.category}` });
     }),
 });
 

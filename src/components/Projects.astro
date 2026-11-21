@@ -124,8 +124,10 @@ const dialogData = Object.fromEntries(
     client: string;
     year?: string;
     hook: string;
-    problem: string;
-    solution: string;
+    problem?: string;
+    solution?: string;
+    about?: string;
+    done?: string;
     tools: string[];
     highlight?: string;
     accent: string;
@@ -182,8 +184,12 @@ const dialogData = Object.fromEntries(
       text('client', p.client);
       text('hook', p.hook);
       text('highlight', p.highlight);
-      text('problem', p.problem);
-      text('solution', p.solution);
+      // UI/UX: Problema → Solución. Resto: De qué se trata → Qué hice.
+      const isCase = p.category === 'UI/UX';
+      f('ps-1').textContent = isCase ? 'Problema' : 'De qué se trata';
+      f('ps-2').textContent = isCase ? 'Solución' : 'Qué hice';
+      text('ps-1-text', isCase ? p.problem : p.about);
+      text('ps-2-text', isCase ? p.solution : p.done);
       text('pending', p.pending ? `[PENDIENTE: ${p.pending}]` : undefined);
 
       const tools = f('tools');

@@ -4,8 +4,8 @@
   "client": "Gestión de inventarios · Producto de SYS",
   "year": "2024",
   "hook": "Inventario al día, incluso sin conexión.",
-  "problem": "El stock en hojas de cálculo y mensajes genera errores y pérdidas.",
-  "solution": "Escaneo, ubicaciones y sincronización en una sola app, también sin conexión.",
+  "problem": "El stock se llevaba en hojas de cálculo y mensajes sueltos. Los conteos no cuadraban, los productos eran difíciles de ubicar y los errores terminaban en pérdidas.",
+  "solution": "Diseñé una app que reúne escaneo, ubicaciones y sincronización en un solo flujo. Funciona también sin conexión y actualiza el inventario al recuperar la señal, para que el equipo siempre trabaje con datos al día.",
   "tools": [
     "Figma",
     "Photoshop"

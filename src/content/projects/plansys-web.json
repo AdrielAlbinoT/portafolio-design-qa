@@ -4,8 +4,8 @@
   "client": "Recursos Humanos · Producto de SYS",
   "year": "2025",
   "hook": "Tu información laboral en un solo lugar.",
-  "problem": "Préstamos, vacaciones y novedades repartidos en distintos sistemas.",
-  "solution": "Panel centralizado para trabajadores y administradores.",
+  "problem": "Préstamos, vacaciones y novedades del personal estaban repartidos en distintos sistemas. Los trabajadores no sabían dónde consultar su información y los administradores perdían tiempo cruzando datos.",
+  "solution": "Diseñé un panel web centralizado con vistas para trabajadores y administradores. Cada persona consulta lo suyo en un solo lugar y el equipo de Recursos Humanos gestiona todo sin cambiar de sistema.",
   "tools": [
     "Figma"
   ],

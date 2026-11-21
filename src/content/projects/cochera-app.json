@@ -4,8 +4,8 @@
   "client": "Estacionamientos",
   "year": "2024",
   "hook": "Encuentra espacio antes de llegar.",
-  "problem": "Poca información de disponibilidad, con congestión y tiempo perdido.",
-  "solution": "Espacios disponibles, tickets con QR y tarifas claras para conductores y administradores.",
+  "problem": "Los conductores no sabían si había espacio antes de llegar. Eso generaba congestión en la entrada, vueltas innecesarias y tiempo perdido, y los administradores no tenían una vista clara de la ocupación.",
+  "solution": "Diseñé una app con dos perfiles: los conductores ven los espacios disponibles y las tarifas, y reciben su ticket con QR; los administradores gestionan los espacios y los tickets desde el mismo sistema.",
   "tools": [
     "Figma",
     "Photoshop"

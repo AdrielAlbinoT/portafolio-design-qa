@@ -353,7 +353,7 @@ Título: "Trabajo seleccionado".
 
 **Cuadrícula**: tres columnas en LG, dos en MD, una en XS. Cada tarjeta sobre `--surface` tiene imagen 4:3, categoría en `--lime`, cliente y año en `--muted`, título y frase corta.
 
-**Diálogo**: `<dialog>` nativo, fondo `--surface`. Muestra categoría, año, título, frase, bloque Problema (borde `--line`, texto `--fg`), bloque Solución (fondo `--lime` con texto `--lime-ink`), herramientas y, si existen, los mockups en galería. Se cierra con el botón, Escape o clic en el fondo. Al abrir, el foco va al botón de cerrar.
+**Diálogo**: `<dialog>` nativo, fondo `--surface`. Muestra categoría, año, título, frase y dos bloques: el primero con borde `--line` y texto `--fg`, el segundo con fondo `--lime` y texto `--lime-ink`. En proyectos **UI/UX** son **Problema** y **Solución** (caso de estudio, 2 frases cada uno; campos `problem` y `solution`). En el resto (Editorial, Brand Identity, Digital Design, Social Media) son **De qué se trata** y **Qué hice** (campos `about` y `done`); el esquema exige el par que corresponde a cada categoría. Después van las herramientas y, si existen, los mockups en galería. Se cierra con el botón, Escape o clic en el fondo. Al abrir, el foco va al botón de cerrar.
 
 **Color de app y vida en las tarjetas:** cada proyecto UI/UX con portada usa el campo `brand` (color principal de la app: InvenSys #92FF67, Festiva #FF4081, Cochera App #5654D2, PlanSys Web #2A4BB0, Todo a la luz #D9381E, Gianca #D8CE44) para un fondo en degradado vertical de un tono más intenso del mismo color arriba (sin pasar por negro, calculado en `src/lib/color.ts`) a uno más claro abajo; la composición de teléfonos flota suavemente y, al pasar el cursor, crece, el degradado se desplaza, la tarjeta brilla con el color de la app y el isotipo rebota (sin movimiento con `prefers-reduced-motion`). El mismo degradado se usa en el banner del diálogo.
 
@@ -379,63 +379,63 @@ Título: "Trabajo seleccionado".
 **UI/UX**
 1. **InvenSys** · Gestión de inventarios · 2024 · Producto de SYS
    - Frase: Inventario al día, incluso sin conexión.
-   - Problema: el stock en hojas de cálculo y mensajes genera errores y pérdidas.
-   - Solución: escaneo, ubicaciones y sincronización en una sola app, también sin conexión.
+   - Problema: El stock se llevaba en hojas de cálculo y mensajes sueltos. Los conteos no cuadraban, los productos eran difíciles de ubicar y los errores terminaban en pérdidas.
+   - Solución: Diseñé una app que reúne escaneo, ubicaciones y sincronización en un solo flujo. Funciona también sin conexión y actualiza el inventario al recuperar la señal, para que el equipo siempre trabaje con datos al día.
    - Herramientas: Figma, Photoshop.
    - Dato destacado: 100% sincronizado.
    - Mockups: 3 a 4 pantallas (escaneo, ubicaciones, modo sin conexión).
 2. **Festiva** · Entretenimiento · 2024
    - Frase: Descubre dónde está la fiesta.
-   - Problema: eventos dispersos entre redes sociales y chats.
-   - Solución: eventos, locales y artistas en una sola plataforma, con mapa y categorías.
+   - Problema: La información de fiestas y eventos estaba dispersa entre redes sociales y chats. Saber qué había, dónde y con quién obligaba a buscar en varios lugares.
+   - Solución: Diseñé una plataforma que reúne eventos, locales y artistas en un solo lugar. Con mapa y categorías, cada persona encuentra rápido el plan que busca cerca de donde está.
    - Herramientas: Figma, Photoshop.
    - Mockups: 3 a 4 pantallas (inicio, mapa, detalle del evento).
 3. **Cochera App** · Estacionamientos · 2024
    - Frase: Encuentra espacio antes de llegar.
-   - Problema: poca información de disponibilidad, con congestión y tiempo perdido.
-   - Solución: espacios disponibles, tickets con QR y tarifas claras para conductores y administradores.
+   - Problema: Los conductores no sabían si había espacio antes de llegar. Eso generaba congestión en la entrada, vueltas innecesarias y tiempo perdido, y los administradores no tenían una vista clara de la ocupación.
+   - Solución: Diseñé una app con dos perfiles: los conductores ven los espacios disponibles y las tarifas, y reciben su ticket con QR; los administradores gestionan los espacios y los tickets desde el mismo sistema.
    - Herramientas: Figma, Photoshop.
    - Mockups: 3 a 4 pantallas (búsqueda, disponibilidad, ticket QR).
 4. **PlanSys Web** · Recursos Humanos · 2025 · Producto de SYS
    - Frase: Tu información laboral en un solo lugar.
-   - Problema: préstamos, vacaciones y novedades repartidos en distintos sistemas.
-   - Solución: panel centralizado para trabajadores y administradores.
+   - Problema: Préstamos, vacaciones y novedades del personal estaban repartidos en distintos sistemas. Los trabajadores no sabían dónde consultar su información y los administradores perdían tiempo cruzando datos.
+   - Solución: Diseñé un panel web centralizado con vistas para trabajadores y administradores. Cada persona consulta lo suyo en un solo lugar y el equipo de Recursos Humanos gestiona todo sin cambiar de sistema.
    - Herramientas: Figma.
    - Mockups: escritorio y móvil, antes y después.
 
 **Editorial**
 5. **Todo a la luz** · Movimiento Tabú · 2020 – 2026
    - Frase: Hablar de lo que incomoda.
-   - Problema: temas incómodos que se evitan en casa y en la iglesia.
-   - Solución: revistas, artículos y folletos con estadísticas e infografías claras para padres.
+   - De qué se trata: Línea editorial de Movimiento Tabú que habla, para padres, de los temas incómodos que suelen evitarse en casa y en la iglesia.
+   - Qué hice: Diseñé revistas, artículos y folletos, con estadísticas e infografías claras que hacen cada tema fácil de leer.
    - Herramientas: diseño editorial.
    - Mockups: páginas de revista y folleto. [PENDIENTE: confirmar si puede mostrarse públicamente]
 
 **Brand Identity**
 6. **Gianca** · Restaurante · 2021
    - Frase: Postres, jugos y sándwich con identidad propia.
-   - Problema: una marca nueva que debía verse cálida y reconocible en todos sus puntos de contacto.
-   - Solución: logotipo, vaso, van de reparto y papelería completa.
+   - De qué se trata: Restaurante de postres, jugos y sándwich que necesitaba una marca cálida y reconocible desde su apertura.
+   - Qué hice: Creé el logotipo y lo apliqué en el vaso, la van de reparto y la papelería completa, además de ejemplos en el local y en el uniforme del personal.
 
 **Digital Design**
 7. **Vida en Cristo** · Centro de Desarrollo Familiar
    - Frase: Banners para cada reunión de la semana.
-   - Problema: cada actividad necesitaba una pieza clara y repetible.
-   - Solución: serie de banners con horario visible y estilo unificado para proyección.
+   - De qué se trata: Centro de Desarrollo Familiar con reuniones durante toda la semana, cada una con su propia actividad.
+   - Qué hice: Diseñé una serie de banners para proyección, con estilo unificado y el horario siempre visible.
 8. **Flyers y afiches** · Varios clientes
     - Frase: Piezas para eventos, aniversarios y graduaciones.
-    - Problema: eventos de distinto tipo que necesitaban piezas propias.
-    - Solución: flyers y afiches adaptados a cada tono, del cómic a la agenda semanal.
+    - De qué se trata: Encargos de distintos clientes para eventos, aniversarios y graduaciones, cada uno con un tono propio.
+    - Qué hice: Diseñé flyers y afiches adaptados a cada ocasión, desde piezas tipo cómic hasta agendas semanales.
 
 **Social Media**
 9. **Keropi Plus · Miniaturas** · Podcast y noticias
     - Frase: Miniaturas de YouTube que invitan a dar clic.
-    - Problema: videos que necesitaban destacar en un feed saturado.
-    - Solución: miniaturas con tipografía fuerte, recortes y colores de contraste.
+    - De qué se trata: Keropi Plus es un canal de podcast y noticias en YouTube cuyos videos debían destacar en un feed saturado.
+    - Qué hice: Diseñé miniaturas con tipografía fuerte, recortes y colores de contraste que invitan a dar clic.
 10. **Keropi Plus · Piezas para redes** · Noticias
     - Frase: Noticias y reacciones listas para publicar.
-    - Problema: contenido que debía viralizarse en Instagram y Facebook.
-    - Solución: flyers con formato de noticia y títulos de alto impacto.
+    - De qué se trata: Keropi Plus publica noticias y reacciones en Instagram y Facebook, donde cada pieza compite por ser compartida.
+    - Qué hice: Diseñé flyers con formato de noticia y títulos de alto impacto, listos para publicar.
 
 **Imágenes de proyectos**: relación 4:3, en `src/assets/projects/`. Si no existen, usa un bloque `--surface` con el título en texto y una franja de 6px del color del caso.
 
