@@ -34,7 +34,7 @@ npm run build
 ```
 
 Variables de entorno:
-- `PUBLIC_FORM_ENDPOINT`: URL del servicio de formularios (por ejemplo Formspree). Se define en `.env` y en Vercel. Si está vacía, el formulario muestra el mensaje de error de red y los datos de contacto.
+- `PUBLIC_FORM_ENDPOINT`: URL del servicio de formularios (por ejemplo Formspree). Se define en `.env` y en Vercel. Si está vacía, el formulario abre la app de correo del visitante con el mensaje listo (mailto).
 
 ---
 
@@ -355,11 +355,11 @@ Título: "Trabajo seleccionado".
 
 **Diálogo**: `<dialog>` nativo, fondo `--surface`. Muestra categoría, año, título, frase y dos bloques: el primero con borde `--line` y texto `--fg`, el segundo con fondo `--lime` y texto `--lime-ink`. En proyectos **UI/UX** son **Problema** y **Solución** (caso de estudio, 2 frases cada uno; campos `problem` y `solution`). En el resto (Editorial, Brand Identity, Digital Design, Social Media) son **De qué se trata** y **Qué hice** (campos `about` y `done`); el esquema exige el par que corresponde a cada categoría. Después van las herramientas y, si existen, los mockups en galería. Se cierra con el botón, Escape o clic en el fondo. Al abrir, el foco va al botón de cerrar.
 
-**Color de app y vida en las tarjetas:** cada proyecto UI/UX con portada usa el campo `brand` (color principal de la app: InvenSys #92FF67, Festiva #FF4081, Cochera App #5654D2, PlanSys Web #2A4BB0, Todo a la luz #D9381E, Gianca #D8CE44, Vida en Cristo #14C2A6) para un fondo en degradado vertical de un tono más intenso del mismo color arriba (sin pasar por negro, calculado en `src/lib/color.ts`) a uno más claro abajo; la composición de teléfonos flota suavemente y, al pasar el cursor, crece, el degradado se desplaza, la tarjeta brilla con el color de la app y el isotipo rebota (sin movimiento con `prefers-reduced-motion`). El mismo degradado se usa en el banner del diálogo.
+**Color de app y vida en las tarjetas:** cada proyecto UI/UX con portada usa el campo `brand` (color principal de la app: InvenSys #92FF67, Festiva #FF4081, Cochera App #5654D2, PlanSys Web #2A4BB0, Todo a la luz #D9381E, Gianca #D8CE44, Vida en Cristo #14C2A6, Flyers y afiches #FF8A1F, Keropi Miniaturas #F8B800, Keropi piezas para redes #30A8E0) para un fondo en degradado vertical de un tono más intenso del mismo color arriba (sin pasar por negro, calculado en `src/lib/color.ts`) a uno más claro abajo; la composición de teléfonos flota suavemente y, al pasar el cursor, crece, el degradado se desplaza, la tarjeta brilla con el color de la app y el isotipo rebota (sin movimiento con `prefers-reduced-motion`). El mismo degradado se usa en el banner del diálogo.
 
 **Isotipo de app:** los proyectos UI/UX muestran en la esquina inferior izquierda de la miniatura el isotipo de la app dentro de un cuadro redondeado (campo `icon`), para indicar que son productos reales. [Festiva usa solo las barras horizontales fucsia de la "E" y Cochera App la camioneta recortada sobre un fondo violeta; InvenSys es un extracto de su pantalla]
 
-**Mockups en proyectos UI/UX** (InvenSys, Festiva, Cochera App, PlanSys Web , el editorial Todo a la luz, la identidad Gianca y los banners de Vida en Cristo (6 piezas 16:9 para proyección) ya implementados (Gianca incluye mockups de ejemplo con el logotipo aplicado sobre plantillas fotográficas reales (base en portafolio-imagenes/Gianca/base/): panel interior del restaurante, panel circular en la fachada y polo blanco del personal, más stickers) (los editoriales no llevan isotipo; su galería se titula "Piezas"): portada 4:3, banner con composición y galería continua de 12 pantallas que avanza sola de derecha a izquierda, se pausa con el cursor y se arrastra con el mouse (con el dedo se desliza); sin movimiento automático con `prefers-reduced-motion`;  en `src/assets/projects/invensys/`; el resto sigue con marcador)
+**Mockups en proyectos UI/UX** (InvenSys, Festiva, Cochera App, PlanSys Web , el editorial Todo a la luz, la identidad Gianca los banners de Vida en Cristo (6 piezas 16:9 para proyección), Flyers y afiches (6), Keropi Miniaturas (8) y Keropi piezas para redes (6) ya implementados; todos los proyectos tienen portada, banner y galería (Gianca incluye mockups de ejemplo con el logotipo aplicado sobre plantillas fotográficas reales (base en portafolio-imagenes/Gianca/base/): panel interior del restaurante, panel circular en la fachada y polo blanco del personal, más stickers) (los editoriales no llevan isotipo; su galería se titula "Piezas"): portada 4:3, banner con composición y galería continua de 12 pantallas que avanza sola de derecha a izquierda, se pausa con el cursor y se arrastra con el mouse (con el dedo se desliza); sin movimiento automático con `prefers-reduced-motion`;  en `src/assets/projects/invensys/`; el resto sigue con marcador)
 - Cada proyecto UI/UX muestra de 3 a 4 pantallas en marco de teléfono, en una fila, o en escritorio/móvil para web.
 - Flujo corto de 3 a 5 pasos cuando aplique.
 - Antes y después cuando sea un rediseño.
@@ -439,7 +439,7 @@ Título: "Trabajo seleccionado".
 
 **Imágenes de proyectos**: relación 4:3, en `src/assets/projects/`. Si no existen, usa un bloque `--surface` con el título en texto y una franja de 6px del color del caso.
 
-Color de caso (franja de 6px, nunca de fondo de texto): InvenSys verde, Festiva coral, Cochera App violeta, PlanSys azul profundo, Todo a la luz coral, Gianca naranja, Vida en Cristo turquesa (#14C2A6), Flyers naranja, Keropi Miniaturas amarillo, Keropi redes coral.
+Color de caso (franja de 6px, nunca de fondo de texto): InvenSys verde, Festiva coral, Cochera App violeta, PlanSys azul profundo, Todo a la luz coral, Gianca naranja, Vida en Cristo turquesa (#14C2A6), Flyers naranja (#FF8A1F), Keropi Miniaturas amarillo (#F8B800), Keropi redes azul (#30A8E0).
 
 ---
 
@@ -471,21 +471,21 @@ Fondo `--surface`, con borde superior `--line`. Dos columnas en LG: texto a la i
 
 **Formulario (`ContactForm.astro`)**
 
-Campos en `--surface-2`, con borde `--line`. Foco con contorno de 2px en `--lime`. El botón "Enviar" va en `--lime` con texto `--lime-ink`.
+Dentro de una tarjeta `--surface`. Encabezado "Envíame un mensaje" (Anton, tamaño de título de proyecto) y una línea en `--muted`: "Cuéntame qué tienes en mente y te respondo a tu correo." Campos en `--surface-2` con borde `--line` y placeholder; al enfocar, borde `--lime` y halo `--lime-soft`. Nombre y Correo van lado a lado desde 640 px. El botón "Enviar mensaje" va en `--lime` con flecha (ancho completo en móvil).
 
 | Campo | Tipo | Obligatorio | Validación |
 |---|---|---|---|
 | Nombre | text | Sí | 2 a 80 caracteres |
 | Correo | email | Sí | Formato válido |
-| Mensaje | textarea | Sí | 10 a 500 caracteres, con contador |
+| ¿En qué te ayudo? | chips de opción única (UI/UX, Branding, QA Testing, Graphic Design, Social Media) | No | — |
+| Mensaje | textarea | Sí | 10 a 500 caracteres, con contador dentro del campo |
 | `website` | text, oculto | No | Si tiene valor, descartar el envío sin mostrar error |
 
-- `action` apunta a `PUBLIC_FORM_ENDPOINT`. Envío por `fetch` con `method: POST` y `Accept: application/json`.
-- Validación en el cliente antes de enviar. Los errores aparecen debajo de cada campo, con texto claro, por ejemplo "Escribe un correo válido, como nombre@dominio.com".
-- Estados: inicial; enviando (botón deshabilitado, texto "Enviando…"); éxito ("Gracias, recibí tu mensaje. Te respondo pronto.", el formulario se limpia); error de red ("No pudimos enviarlo. Escríbeme por correo o WhatsApp.", con los datos visibles).
-- Si `PUBLIC_FORM_ENDPOINT` está vacío, el formulario muestra el error de red desde el inicio.
-- Accesibilidad: `label` visible en cada campo, `aria-live="polite"` para mensajes, y foco en el primer campo con error.
-- Sin formularios en iframes. Sin `mailto:` como acción principal.
+- No se muestra ningún aviso al cargar la página.
+- Con `PUBLIC_FORM_ENDPOINT`: envío por `fetch` (`POST`, `Accept: application/json`). Estados: enviando (botón deshabilitado, "Enviando…"); éxito (aviso con check en `--lime`: "Gracias, recibí tu mensaje. Te respondo pronto a tu correo.", el formulario se limpia); error ("No se pudo enviar. Inténtalo de nuevo o escríbeme a adriel.designstudio@gmail.com.").
+- Sin `PUBLIC_FORM_ENDPOINT` (estado actual): al enviar, abre la app de correo del visitante con un `mailto:` a adriel.designstudio@gmail.com, con asunto "Proyecto de {servicio} · {nombre}" (o "Contacto desde el portafolio") y el mensaje listo, y muestra un aviso con el correo por si no se abrió.
+- Validación en el cliente antes de enviar; errores cortos debajo de cada campo ("Escribe tu nombre.", "Escribe un correo válido.", "Cuéntame en qué te puedo ayudar.").
+- Accesibilidad: `label` visible en cada campo, `fieldset` y `legend` para los chips, `role="status"` con `aria-live="polite"` para los avisos y foco en el primer campo con error.
 
 **Barra inferior**
 - "© 2026 Adriel Albino Tasayco. Todos los derechos reservados."

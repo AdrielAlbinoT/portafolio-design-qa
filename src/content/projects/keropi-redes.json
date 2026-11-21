@@ -5,6 +5,35 @@
   "hook": "Noticias y reacciones listas para publicar.",
   "about": "Keropi Plus publica noticias y reacciones en Instagram y Facebook, donde cada pieza compite por ser compartida.",
   "done": "Diseñé flyers con formato de noticia y títulos de alto impacto, listos para publicar.",
-  "accent": "#FF6F61",
-  "order": 10
+  "accent": "#30A8E0",
+  "order": 10,
+  "brand": "#30A8E0",
+  "cover": "../../assets/projects/keropi-redes/portada.webp",
+  "banner": "../../assets/projects/keropi-redes/banner.webp",
+  "gallery": [
+    {
+      "src": "../../assets/projects/keropi-redes/noticia-sarai-rivera.webp",
+      "alt": "Noticia: Sarai Rivera gana un Dove Award y su testimonio conmueve"
+    },
+    {
+      "src": "../../assets/projects/keropi-redes/sancocho-adoracion-o-show.webp",
+      "alt": "Pieza de El Sancocho: ¿Adoración o show?"
+    },
+    {
+      "src": "../../assets/projects/keropi-redes/noticia-the-chosen.webp",
+      "alt": "Noticia: nueva temporada de The Chosen llega en noviembre"
+    },
+    {
+      "src": "../../assets/projects/keropi-redes/sancocho-3-anos-esperando.webp",
+      "alt": "Pieza de El Sancocho: 3 años esperando"
+    },
+    {
+      "src": "../../assets/projects/keropi-redes/noticia-nba.webp",
+      "alt": "Noticia: jugadores de la NBA cambian la cancha por la Biblia"
+    },
+    {
+      "src": "../../assets/projects/keropi-redes/sancocho-terror-o-fe.webp",
+      "alt": "Pieza de El Sancocho: ¿Terror o fe?"
+    }
+  ]
 }

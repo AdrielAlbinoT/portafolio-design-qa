@@ -6,5 +6,34 @@
   "about": "Encargos de distintos clientes para eventos, aniversarios y graduaciones, cada uno con un tono propio.",
   "done": "Diseñé flyers y afiches adaptados a cada ocasión, desde piezas tipo cómic hasta agendas semanales.",
   "accent": "#FF8A1F",
-  "order": 8
+  "order": 8,
+  "brand": "#FF8A1F",
+  "cover": "../../assets/projects/flyers-y-afiches/portada.webp",
+  "banner": "../../assets/projects/flyers-y-afiches/banner.webp",
+  "gallery": [
+    {
+      "src": "../../assets/projects/flyers-y-afiches/aniversario-abc.webp",
+      "alt": "Flyer estilo cómic del aniversario ABC, domingo 18 de agosto"
+    },
+    {
+      "src": "../../assets/projects/flyers-y-afiches/travesia-vec.webp",
+      "alt": "Afiche de la Travesía VEC, viernes 30 de agosto desde las 9 a. m."
+    },
+    {
+      "src": "../../assets/projects/flyers-y-afiches/splash-night.webp",
+      "alt": "Flyer de la Splash Night con motivos de piscina y verano"
+    },
+    {
+      "src": "../../assets/projects/flyers-y-afiches/adoracion-al-rey.webp",
+      "alt": "Afiche de Adoración al Rey del ministerio de alabanza ESCOL"
+    },
+    {
+      "src": "../../assets/projects/flyers-y-afiches/graduacion.webp",
+      "alt": "Invitación de graduación La gran aventura"
+    },
+    {
+      "src": "../../assets/projects/flyers-y-afiches/agenda-semanal.webp",
+      "alt": "Agenda semanal de reuniones de Vida en Cristo"
+    }
+  ]
 }

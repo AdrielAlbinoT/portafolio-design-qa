@@ -5,6 +5,43 @@
   "hook": "Miniaturas de YouTube que invitan a dar clic.",
   "about": "Keropi Plus es un canal de podcast y noticias en YouTube cuyos videos debían destacar en un feed saturado.",
   "done": "Diseñé miniaturas con tipografía fuerte, recortes y colores de contraste que invitan a dar clic.",
-  "accent": "#F5C518",
-  "order": 9
+  "accent": "#F8B800",
+  "order": 9,
+  "brand": "#F8B800",
+  "cover": "../../assets/projects/keropi-miniaturas/portada.webp",
+  "banner": "../../assets/projects/keropi-miniaturas/banner.webp",
+  "gallery": [
+    {
+      "src": "../../assets/projects/keropi-miniaturas/podcastazo-arnaldo.webp",
+      "alt": "Miniatura de Podcastazo: Lo perdí todo"
+    },
+    {
+      "src": "../../assets/projects/keropi-miniaturas/sancocho-gta.webp",
+      "alt": "Miniatura de El Sancocho: ¿Jugar GTA es pecado?"
+    },
+    {
+      "src": "../../assets/projects/keropi-miniaturas/podcastazo-alic.webp",
+      "alt": "Miniatura de Podcastazo: Sold out en 4 min"
+    },
+    {
+      "src": "../../assets/projects/keropi-miniaturas/teologia-ep7.webp",
+      "alt": "Miniatura de Teología y su madre: La verdad duele"
+    },
+    {
+      "src": "../../assets/projects/keropi-miniaturas/podcastazo-gladymar.webp",
+      "alt": "Miniatura de Podcastazo: Casi me rindo"
+    },
+    {
+      "src": "../../assets/projects/keropi-miniaturas/sancocho-poder.webp",
+      "alt": "Miniatura de El Sancocho: ¿Poder prohibido?"
+    },
+    {
+      "src": "../../assets/projects/keropi-miniaturas/podcastazo-rafa.webp",
+      "alt": "Miniatura de Podcastazo: Lo dejó todo"
+    },
+    {
+      "src": "../../assets/projects/keropi-miniaturas/teologia-ep9.webp",
+      "alt": "Miniatura de Teología y su madre: ¿Manifestar es pecado?"
+    }
+  ]
 }
