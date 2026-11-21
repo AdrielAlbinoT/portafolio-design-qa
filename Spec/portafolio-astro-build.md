@@ -416,38 +416,30 @@ Título: "Trabajo seleccionado".
    - Frase: Postres, jugos y sándwich con identidad propia.
    - Problema: una marca nueva que debía verse cálida y reconocible en todos sus puntos de contacto.
    - Solución: logotipo, vaso, van de reparto y papelería completa.
-7. **Carlos Ángel** · Agropecuaria
-   - Frase: Identidad y tarjetas para una agropecuaria.
-   - Problema: necesitaban una imagen clara y confiable para el campo.
-   - Solución: identidad visual, tarjetas personales y flyer.
-8. **D'Beto** · Bakery and Pastry
-   - Frase: Bakery and pastry con carácter artesanal.
-   - Problema: una panadería que debía verse artesanal y apetitosa en cada pieza.
-   - Solución: identidad visual, tarjetas personales y flyer.
 
 **Digital Design**
-9. **Vida en Cristo** · Centro de Desarrollo Familiar
+7. **Vida en Cristo** · Centro de Desarrollo Familiar
    - Frase: Banners para cada reunión de la semana.
    - Problema: cada actividad necesitaba una pieza clara y repetible.
    - Solución: serie de banners con horario visible y estilo unificado para proyección.
-10. **Flyers y afiches** · Varios clientes
+8. **Flyers y afiches** · Varios clientes
     - Frase: Piezas para eventos, aniversarios y graduaciones.
     - Problema: eventos de distinto tipo que necesitaban piezas propias.
     - Solución: flyers y afiches adaptados a cada tono, del cómic a la agenda semanal.
 
 **Social Media**
-11. **Keropi Plus · Miniaturas** · Podcast y noticias
+9. **Keropi Plus · Miniaturas** · Podcast y noticias
     - Frase: Miniaturas de YouTube que invitan a dar clic.
     - Problema: videos que necesitaban destacar en un feed saturado.
     - Solución: miniaturas con tipografía fuerte, recortes y colores de contraste.
-12. **Keropi Plus · Piezas para redes** · Noticias
+10. **Keropi Plus · Piezas para redes** · Noticias
     - Frase: Noticias y reacciones listas para publicar.
     - Problema: contenido que debía viralizarse en Instagram y Facebook.
     - Solución: flyers con formato de noticia y títulos de alto impacto.
 
 **Imágenes de proyectos**: relación 4:3, en `src/assets/projects/`. Si no existen, usa un bloque `--surface` con el título en texto y una franja de 6px del color del caso.
 
-Color de caso (franja de 6px, nunca de fondo de texto): InvenSys verde, Festiva coral, Cochera App violeta, PlanSys azul profundo, Todo a la luz coral, Gianca naranja, Carlos Ángel verde oscuro, D'Beto amarillo, Vida en Cristo cian, Flyers naranja, Keropi Miniaturas amarillo, Keropi redes coral.
+Color de caso (franja de 6px, nunca de fondo de texto): InvenSys verde, Festiva coral, Cochera App violeta, PlanSys azul profundo, Todo a la luz coral, Gianca naranja, Vida en Cristo cian, Flyers naranja, Keropi Miniaturas amarillo, Keropi redes coral.
 
 ---
 
