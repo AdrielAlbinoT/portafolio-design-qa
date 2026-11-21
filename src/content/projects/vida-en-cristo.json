@@ -5,6 +5,35 @@
   "hook": "Banners para cada reunión de la semana.",
   "about": "Centro de Desarrollo Familiar con reuniones durante toda la semana, cada una con su propia actividad.",
   "done": "Diseñé una serie de banners para proyección, con estilo unificado y el horario siempre visible.",
-  "accent": "#22D3EE",
-  "order": 7
+  "accent": "#14C2A6",
+  "order": 7,
+  "brand": "#14C2A6",
+  "cover": "../../assets/projects/vida-en-cristo/portada-vec.webp",
+  "banner": "../../assets/projects/vida-en-cristo/banner-vec.webp",
+  "gallery": [
+    {
+      "src": "../../assets/projects/vida-en-cristo/lunes-familiar.webp",
+      "alt": "Banner Lunes familiar con el lema ¡Yo y mi casa serviremos a Jehová!"
+    },
+    {
+      "src": "../../assets/projects/vida-en-cristo/colaboradores-virtual.webp",
+      "alt": "Banner Colaboradores virtual, martes 7:30 p. m."
+    },
+    {
+      "src": "../../assets/projects/vida-en-cristo/grupos-familiares.webp",
+      "alt": "Banner Grupos familiares, miércoles 7:30 p. m."
+    },
+    {
+      "src": "../../assets/projects/vida-en-cristo/discipulado-en-accion.webp",
+      "alt": "Banner Discipulado en acción, todos los viernes"
+    },
+    {
+      "src": "../../assets/projects/vida-en-cristo/reunion-de-jovenes.webp",
+      "alt": "Banner Reunión de jóvenes, sábados 7:30 p. m."
+    },
+    {
+      "src": "../../assets/projects/vida-en-cristo/culto-central.webp",
+      "alt": "Banner Culto central, domingos 6:30 p. m."
+    }
+  ]
 }
