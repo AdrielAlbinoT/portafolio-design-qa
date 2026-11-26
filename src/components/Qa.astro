@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import { siFigma, siPostman, siLinear, siTrello, siClaude, siGooglegemini } from 'simple-icons';
-import chatgptGlyph from '../assets/qa/chatgpt-glyph.png';
+import chatgptGlyph from '../assets/qa/chatgpt-glyph.webp';
 
 // ChatGPT no está en simple-icons: se usa el nudo del ícono oficial como máscara (servida en WebP sin pérdida).
 const chatgptMask = await getImage({ src: chatgptGlyph, format: 'webp', width: 80, quality: 100 });

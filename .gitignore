@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 # imagenes en png
 portafolio-imagenes/
+# archivos comprimidos (builds, respaldos)
+*.zip

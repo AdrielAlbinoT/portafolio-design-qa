@@ -12,19 +12,19 @@
   "accent": "#D9381E",
   "order": 5,
   "brand": "#D9381E",
-  "cover": "../../assets/projects/todo-a-la-luz/miniatura-tal.png",
-  "banner": "../../assets/projects/todo-a-la-luz/banner-tal.png",
+  "cover": "../../assets/projects/todo-a-la-luz/miniatura-tal.webp",
+  "banner": "../../assets/projects/todo-a-la-luz/banner-tal.webp",
   "gallery": [
     {
-      "src": "../../assets/projects/todo-a-la-luz/pantalla-01.png",
+      "src": "../../assets/projects/todo-a-la-luz/pantalla-01.webp",
       "alt": "Revista Todo a la luz: vista general con portada y páginas interiores"
     },
     {
-      "src": "../../assets/projects/todo-a-la-luz/pantalla-02.png",
+      "src": "../../assets/projects/todo-a-la-luz/pantalla-02.webp",
       "alt": "Revista Todo a la luz: portada \"La cruda realidad\" y página de estadísticas"
     },
     {
-      "src": "../../assets/projects/todo-a-la-luz/pantalla-03.png",
+      "src": "../../assets/projects/todo-a-la-luz/pantalla-03.webp",
       "alt": "Revista Todo a la luz: páginas \"A temprana edad\" y \"Prevención\""
     }
   ]

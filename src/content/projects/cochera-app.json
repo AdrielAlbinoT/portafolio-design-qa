@@ -12,52 +12,52 @@
   ],
   "accent": "#5654D2",
   "order": 3,
-  "cover": "../../assets/projects/cochera-app/miniatura.png",
-  "banner": "../../assets/projects/cochera-app/composicion.png",
-  "icon": "../../assets/projects/cochera-app/icono-app.png",
+  "cover": "../../assets/projects/cochera-app/miniatura.webp",
+  "banner": "../../assets/projects/cochera-app/composicion.webp",
+  "icon": "../../assets/projects/cochera-app/icono-app.webp",
   "gallery": [
     {
-      "src": "../../assets/projects/cochera-app/pantalla-01.png",
+      "src": "../../assets/projects/cochera-app/pantalla-01.webp",
       "alt": "Pantalla de Cochera App: bienvenida"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-02.png",
+      "src": "../../assets/projects/cochera-app/pantalla-02.webp",
       "alt": "Pantalla de Cochera App: inicio de sesión"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-03.png",
+      "src": "../../assets/projects/cochera-app/pantalla-03.webp",
       "alt": "Pantalla de Cochera App: panel con espacios, tickets e ingresos"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-04.png",
+      "src": "../../assets/projects/cochera-app/pantalla-04.webp",
       "alt": "Pantalla de Cochera App: confirmación para generar un ticket"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-05.png",
+      "src": "../../assets/projects/cochera-app/pantalla-05.webp",
       "alt": "Pantalla de Cochera App: impresión de ticket con código QR"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-06.png",
+      "src": "../../assets/projects/cochera-app/pantalla-06.webp",
       "alt": "Pantalla de Cochera App: lista de tickets"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-07.png",
+      "src": "../../assets/projects/cochera-app/pantalla-07.webp",
       "alt": "Pantalla de Cochera App: escáner de código QR"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-08.png",
+      "src": "../../assets/projects/cochera-app/pantalla-08.webp",
       "alt": "Pantalla de Cochera App: administración de usuarios"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-09.png",
+      "src": "../../assets/projects/cochera-app/pantalla-09.webp",
       "alt": "Pantalla de Cochera App: administración de vehículos"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-10.png",
+      "src": "../../assets/projects/cochera-app/pantalla-10.webp",
       "alt": "Pantalla de Cochera App: espacios de estacionamiento"
     },
     {
-      "src": "../../assets/projects/cochera-app/pantalla-11.png",
+      "src": "../../assets/projects/cochera-app/pantalla-11.webp",
       "alt": "Pantalla de Cochera App: tarifas"
     }
   ],

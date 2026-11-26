@@ -1,12 +1,12 @@
 import type { ImageMetadata } from 'astro';
 import { siClaude, siRive, siMiro } from 'simple-icons';
-import figma from '../assets/tools/figma.png';
-import illustrator from '../assets/tools/illustrator.png';
-import photoshop from '../assets/tools/photoshop.png';
-import chatgpt from '../assets/tools/chatgpt.png';
-import linear from '../assets/tools/linear.png';
-import capcut from '../assets/tools/capcut.png';
-import notion from '../assets/tools/notion.png';
+import figma from '../assets/tools/figma.webp';
+import illustrator from '../assets/tools/illustrator.webp';
+import photoshop from '../assets/tools/photoshop.webp';
+import chatgpt from '../assets/tools/chatgpt.webp';
+import linear from '../assets/tools/linear.webp';
+import capcut from '../assets/tools/capcut.webp';
+import notion from '../assets/tools/notion.webp';
 
 export interface Tool {
   id: string;

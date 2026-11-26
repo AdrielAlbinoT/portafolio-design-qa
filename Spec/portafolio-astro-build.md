@@ -67,7 +67,7 @@ src/
     tokens.css
     global.css
   assets/
-    hero/            (avatar-adriel.png)
+    hero/            (avatar-adriel.webp)
     projects/        (portada 4:3 por proyecto, pendiente)
     mockups/         (una carpeta por proyecto: src/assets/mockups/<slug>/, pendiente)
     brands/
@@ -254,7 +254,7 @@ Dos columnas en LG y XL (texto 1–6, imagen 7–12). En MD y XS se apilan: text
 - Borde punteado de 2px en `--lime`, fondo `--surface`, y el texto centrado: "Espacio para imagen del hero", con la nota "Reemplazar por la composición final del hero".
 - Animación de flotado suave del avatar (solo translateY), desactivada con `prefers-reduced-motion`.
 - Alrededor del avatar flotan 8 cuadros 3D con logos de herramientas (Figma, Claude, Photoshop, Linear, ChatGPT, Illustrator, Rive, Miro). Cada uno flota a su ritmo, se desplaza con el cursor por profundidad y brilla en lima al acercarse. Figma, Photoshop, Illustrator, ChatGPT y Linear usan las imágenes de `portafolio-imagenes/logos-tools` (recortadas a `src/assets/tools/`, servidas en WebP); Claude, Rive y Miro usan glifos de `simple-icons` (devDependency). Sin brillos blancos y con inclinación leve; el resplandor al acercar el cursor es blanco y ligero. [PENDIENTE: imágenes de Claude, Rive y Miro] En móvil solo se muestran 5.
-- Imagen: `src/assets/hero/avatar-adriel.png`, servida en WebP por `astro:assets` con anchos de 480, 768 y 1024. Carga `eager`.
+- Imagen: `src/assets/hero/avatar-adriel.webp`, servida en WebP por `astro:assets` con anchos de 480, 768 y 1024. Carga `eager`.
 
 ---
 
@@ -337,7 +337,7 @@ Sección propia, entre Experiencia y Proyectos. Corta (máximo una pantalla de a
 
 **Línea final**: "Uso IA también para explorar ideas, hacer mockups y prototipos con Lovable, y siempre reviso el resultado."
 
-**Logos**: SVG de `simple-icons` (Figma, Postman, Linear, Trello, Claude, Gemini). ChatGPT no está en simple-icons: se usa el nudo extraído del ícono oficial (`src/assets/qa/chatgpt-glyph.png`, servido en WebP con `getImage`) como máscara CSS. Cuadro de 30 px con glifo de 18 px, monocromo `--muted` (los de IA en `--lime`) y color de marca al pasar el cursor. Cada logo con `role="img"` y `aria-label`. Lovable no tiene logo en el proyecto: solo aparece en texto.
+**Logos**: SVG de `simple-icons` (Figma, Postman, Linear, Trello, Claude, Gemini). ChatGPT no está en simple-icons: se usa el nudo extraído del ícono oficial (`src/assets/qa/chatgpt-glyph.webp`, servido en WebP con `getImage`) como máscara CSS. Cuadro de 30 px con glifo de 18 px, monocromo `--muted` (los de IA en `--lime`) y color de marca al pasar el cursor. Cada logo con `role="img"` y `aria-label`. Lovable no tiene logo en el proyecto: solo aparece en texto.
 
 Fuera de alcance: automatización de pruebas, cifras, certificaciones, clientes, caso de estudio extenso y ticket de ejemplo.
 

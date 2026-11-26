@@ -12,32 +12,32 @@
   "accent": "#2A4BB0",
   "order": 4,
   "brand": "#2A4BB0",
-  "cover": "../../assets/projects/plansys-web/miniatura-web.png",
-  "banner": "../../assets/projects/plansys-web/composicion.png",
-  "icon": "../../assets/projects/plansys-web/icono-app.png",
+  "cover": "../../assets/projects/plansys-web/miniatura-web.webp",
+  "banner": "../../assets/projects/plansys-web/composicion.webp",
+  "icon": "../../assets/projects/plansys-web/icono-app.webp",
   "gallery": [
     {
-      "src": "../../assets/projects/plansys-web/pantalla-01.png",
+      "src": "../../assets/projects/plansys-web/pantalla-01.webp",
       "alt": "Pantalla de PlanSys Web: Inicio con notificaciones, vacaciones, noticias, asistencias y e-learning"
     },
     {
-      "src": "../../assets/projects/plansys-web/pantalla-02.png",
+      "src": "../../assets/projects/plansys-web/pantalla-02.webp",
       "alt": "Pantalla de PlanSys Web: Ficha personal con datos del trabajador"
     },
     {
-      "src": "../../assets/projects/plansys-web/pantalla-03.png",
+      "src": "../../assets/projects/plansys-web/pantalla-03.webp",
       "alt": "Pantalla de PlanSys Web: Direcciones registradas con tabla y paginación"
     },
     {
-      "src": "../../assets/projects/plansys-web/pantalla-04.png",
+      "src": "../../assets/projects/plansys-web/pantalla-04.webp",
       "alt": "Pantalla de PlanSys Web: Préstamos y anticipos con totales y detalle"
     },
     {
-      "src": "../../assets/projects/plansys-web/pantalla-05.png",
+      "src": "../../assets/projects/plansys-web/pantalla-05.webp",
       "alt": "Pantalla de PlanSys Web: Ventana para subir un documento"
     },
     {
-      "src": "../../assets/projects/plansys-web/pantalla-06.png",
+      "src": "../../assets/projects/plansys-web/pantalla-06.webp",
       "alt": "Pantalla de PlanSys Web: Ventana con el archivo adjunto listo para agregar"
     }
   ]
