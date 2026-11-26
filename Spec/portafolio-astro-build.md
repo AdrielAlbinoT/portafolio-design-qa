@@ -6,13 +6,13 @@ Instrucciones para construir el sitio. Este archivo es la única fuente de verda
 
 ## 1. Objetivo
 
-Sitio personal de una sola página para Adriel Albino Tasayco, diseñador UI/UX, QA tester y gráfico digital. Debe mostrar sus proyectos, su experiencia y sus servicios, y permitir el contacto por formulario, correo o WhatsApp.
+Sitio personal de una sola página para Adriel Albino Tasayco, diseñador UI/UX, QA tester y gráfico digital. Debe mostrar sus proyectos, su experiencia y sus servicios, y permitir el contacto por WhatsApp (botón directo) o correo, sin servidor ni variables de entorno.
 
 Principios:
 - Mostrar el trabajo antes que el texto.
 - Información necesaria, pero jerárquica y fácil de captar en pocos segundos. Frases cortas, un mensaje por bloque.
 - Fondo oscuro y un solo color protagonista: verde lima.
-- Estático por defecto. Solo el menú, los filtros, el diálogo de proyectos, el formulario y el fondo animado llevan JavaScript.
+- Estático por defecto. Solo el menú, los filtros, el diálogo de proyectos, los botones de copiar y el fondo animado llevan JavaScript.
 - Responsive completo, de 360px a 1920px, con imágenes y elementos que escalan con fluidez.
 
 ---
@@ -33,8 +33,7 @@ npm run dev
 npm run build
 ```
 
-Variables de entorno:
-- `PUBLIC_FORM_ENDPOINT`: URL del servicio de formularios (por ejemplo Formspree). Se define en `.env` y en Vercel. Si está vacía, el formulario abre la app de correo del visitante con el mensaje listo (mailto).
+Variables de entorno: ninguna. El contacto es un enlace directo a WhatsApp, sin servidor.
 
 ---
 
@@ -54,7 +53,6 @@ src/
     ProjectCard.astro
     ProjectDialog.astro
     Contact.astro
-    ContactForm.astro
     Footer.astro
     SmokeBg.astro
   content/
@@ -445,7 +443,7 @@ Color de caso (franja de 6px, nunca de fondo de texto): InvenSys verde, Festiva 
 
 ## 14. Contacto (`Contact.astro`) y pie (`Footer.astro`)
 
-**Diseño actual:** "Contacto" y "Escríbeme" se fusionaron en una sola sección. Columna izquierda: título "Trabajemos juntos", subtítulo "Si tienes una idea, una marca o un proyecto en mente, cuéntamelo." y los datos (correo, WhatsApp, Behance, Instagram) con íconos de copiar y abrir junto al valor, sin botón "Escríbeme". Columna derecha: el formulario en una tarjeta. El pie quedó como una barra con copyright, enlaces y "Volver arriba". [PENDIENTE: tiempo de respuesta, que se quitó junto con el botón]
+**Diseño actual:** "Contacto" y "Escríbeme" se fusionaron en una sola sección. Columna izquierda: título "Trabajemos juntos", subtítulo "Si tienes una idea, una marca o un proyecto en mente, cuéntamelo." y los datos (correo, WhatsApp, Behance, Instagram) con íconos de copiar y abrir junto al valor, sin botón "Escríbeme". Columna derecha: una tarjeta "Escríbeme por WhatsApp" con un botón `--lime` "Abrir WhatsApp" que lleva a `https://wa.me/51955003641` con un mensaje inicial ya escrito, en una pestaña nueva. Ya no hay formulario ni `.env`. El pie quedó como una barra con copyright, enlaces y "Volver arriba". [PENDIENTE: tiempo de respuesta, que se quitó junto con el botón]
 
 Lo siguiente describe el diseño original.
 
@@ -462,30 +460,16 @@ Título: "Trabajemos juntos". Dos columnas en LG.
 - Los botones de copiar usan `navigator.clipboard.writeText` dentro del clic. Si falla, se selecciona el texto. El botón muestra "Copiado" durante 2 segundos.
 
 ### Pie de página
-Fondo `--surface`, con borde superior `--line`. Dos columnas en LG: texto a la izquierda y formulario a la derecha. Una columna en el resto.
+Fondo `--surface`, con borde superior `--line`. Dos columnas en LG: texto a la izquierda y tarjeta de WhatsApp a la derecha. Una columna en el resto.
 
 **Columna izquierda**
 - Título: "Escríbeme".
 - Texto: "Si tienes una idea, una marca o un proyecto en mente, cuéntamelo."
 - Correo y WhatsApp como texto seleccionable.
 
-**Formulario (`ContactForm.astro`)**
+**Botón de WhatsApp (reemplaza al formulario)**
 
-Dentro de una tarjeta `--surface`. Encabezado "Envíame un mensaje" (Anton, tamaño de título de proyecto) y una línea en `--muted`: "Cuéntame qué tienes en mente y te respondo a tu correo." Campos en `--surface-2` con borde `--line` y placeholder; al enfocar, borde `--lime` y halo `--lime-soft`. Nombre y Correo van lado a lado desde 640 px. El botón "Enviar mensaje" va en `--lime` con flecha (ancho completo en móvil).
-
-| Campo | Tipo | Obligatorio | Validación |
-|---|---|---|---|
-| Nombre | text | Sí | 2 a 80 caracteres |
-| Correo | email | Sí | Formato válido |
-| ¿En qué te ayudo? | desplegable (`select`) de una sola línea con UI/UX, Branding, QA Testing, Graphic Design, Social Media; UI/UX seleccionado por defecto | Sí (siempre tiene valor) | — |
-| Mensaje | textarea | Sí | 10 a 500 caracteres, con contador dentro del campo |
-| `website` | text, oculto | No | Si tiene valor, descartar el envío sin mostrar error |
-
-- No se muestra ningún aviso al cargar la página.
-- Con `PUBLIC_FORM_ENDPOINT`: envío por `fetch` (`POST`, `Accept: application/json`). Estados: enviando (botón deshabilitado, "Enviando…"); éxito (aviso con check en `--lime`: "Gracias, recibí tu mensaje. Te respondo pronto a tu correo.", el formulario se limpia); error ("No se pudo enviar. Inténtalo de nuevo o escríbeme a adriel.designstudio@gmail.com.").
-- Sin `PUBLIC_FORM_ENDPOINT` (estado actual): al enviar, abre la app de correo del visitante con un `mailto:` a adriel.designstudio@gmail.com, con asunto "Proyecto de {servicio} · {nombre}" y el mensaje listo, y muestra un aviso con el correo por si no se abrió.
-- Validación en el cliente antes de enviar; errores cortos debajo de cada campo ("Escribe tu nombre.", "Escribe un correo válido.", "Cuéntame en qué te puedo ayudar.").
-- Accesibilidad: `label` visible en cada campo, `select` nativo con su `label` y flecha decorativa, `role="status"` con `aria-live="polite"` para los avisos y foco en el primer campo con error.
+Dentro de una tarjeta `--surface`. Encabezado "Escríbeme por WhatsApp" (Anton, tamaño de título de proyecto), una línea en `--muted`: "Cuéntame qué tienes en mente y conversamos directo por chat." y el botón "Abrir WhatsApp" en `--lime` con el ícono de WhatsApp (ancho completo en móvil). Enlace: `https://wa.me/51955003641?text=` con "Hola Adriel, vi tu portafolio y me gustaría conversar sobre un proyecto.", `target="_blank"` y `rel="noopener"`. No usa servidor ni variables de entorno.
 
 **Barra inferior**
 - "© 2026 Adriel Albino Tasayco. Todos los derechos reservados."
@@ -554,7 +538,7 @@ Criterios:
 - Ninguna imagen se deforma.
 - El título "PORTAFOLIO / CREATIVO" no se corta y mantiene sus dos líneas en todos los anchos.
 - Los marcos de mockup no se salen del contenedor en XS.
-- El formulario se completa con teclado y con pantalla táctil.
+- El botón de WhatsApp se alcanza con teclado y abre el chat en móvil y escritorio.
 
 ---
 
@@ -574,7 +558,6 @@ Criterios:
 
 - Repositorio en GitHub.
 - Proyecto en Vercel, detectado como Astro. Salida estática.
-- Variable `PUBLIC_FORM_ENDPOINT` configurada en Vercel, en Production y Preview.
 - Dominio: pendiente de confirmar.
 
 ---
@@ -589,7 +572,7 @@ Criterios:
 6. Construir `About` y `Experience`.
 7. Construir `Qa` (QA + IA): comparación Figma vs. implementado y flujo de 3 pasos con logos.
 8. Construir `Projects`, `ProjectCard` y `ProjectDialog`, con filtro, diálogo y marcadores de mockup.
-9. Construir `Contact`, `ContactForm` y `Footer`.
+9. Construir `Contact` (con el botón de WhatsApp) y `Footer`.
 10. Revisar responsive en todos los anchos de la sección 17.
 11. Revisar accesibilidad y rendimiento de las secciones 16 y 18.
 12. Desplegar en Vercel y configurar la variable de entorno.
@@ -603,7 +586,7 @@ Al terminar, entrega en este orden:
 - Lo que se construyó y dónde está cada parte.
 - Los marcadores `[PENDIENTE]` que quedaron, con su ubicación.
 - Los resultados de `npm run build` y de Lighthouse.
-- Lo que no se pudo verificar, por ejemplo el envío real del formulario sin endpoint configurado.
+- Lo que no se pudo verificar, por ejemplo la apertura del chat de WhatsApp en un dispositivo real.
 
 ---
 
@@ -619,6 +602,5 @@ Al terminar, entrega en este orden:
 - Opcional: capturas reales anonimizadas (diseño e implementación) para reemplazar el mockup esquemático de la sección QA + IA.
 - Confirmar el tiempo de respuesta para el contacto.
 - Confirmar si los periodos de experiencia llevarán meses o solo años.
-- Elegir el servicio de formularios y dar el endpoint.
 - Confirmar el dominio.
 - (Resuelto) La imagen del hero es el avatar; una composición de pantallas queda como opción futura.

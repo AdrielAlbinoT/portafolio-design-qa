@@ -1,5 +1,8 @@
 ---
-import ContactForm from './ContactForm.astro';
+import { siWhatsapp } from 'simple-icons';
+
+const waText = 'Hola Adriel, vi tu portafolio y me gustaría conversar sobre un proyecto.';
+const waHref = `https://wa.me/51955003641?text=${encodeURIComponent(waText)}`;
 
 const rows = [
   { label: 'Correo', value: 'adriel.designstudio@gmail.com', copy: true },
@@ -50,8 +53,18 @@ const rows = [
       </ul>
     </div>
 
-    <div class="form-card card">
-      <ContactForm />
+    <div class="wa-card card">
+      <div class="head">
+        <h3>Escríbeme por WhatsApp</h3>
+        <p class="muted">Cuéntame qué tienes en mente y conversamos directo por chat.</p>
+      </div>
+      <a class="btn btn--lime wa-btn" href={waHref} target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d={siWhatsapp.path} fill="currentColor" />
+        </svg>
+        <span>Abrir WhatsApp</span>
+      </a>
+      <p class="note muted">+51 955 003 641 · Se abre en una pestaña nueva</p>
     </div>
   </div>
 </section>
@@ -156,16 +169,45 @@ const rows = [
     }
   }
 
-  .form-card {
+  .wa-card {
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 24px;
     min-width: 0;
     padding: clamp(20px, 3vw, 32px);
+  }
+
+  .head {
+    display: grid;
+    gap: 6px;
+  }
+
+  h3 {
+    font-size: var(--fs-project);
+    text-transform: uppercase;
+  }
+
+  .head p,
+  .note {
+    font-size: 14px;
+  }
+
+  .wa-btn {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .wa-btn {
+      width: auto;
+    }
   }
 
   @media (min-width: 1024px) {
     .intro {
       grid-column: 1 / 7;
     }
-    .form-card {
+    .wa-card {
       grid-column: 7 / 13;
     }
   }

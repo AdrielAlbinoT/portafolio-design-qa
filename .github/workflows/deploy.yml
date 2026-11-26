@@ -1,0 +1,52 @@
+name: Deploy a producción
+
+on:
+  push:
+    branches: [production]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+env:
+  # Carpeta raíz de nginx para adriel.atmosferast.com (dueño: deploy, grupo: www-data).
+  DEPLOY_PATH: /var/www/adriel.atmosferast.com
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Configurar SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Subir build al VPS
+        run: |
+          rsync -rlvz --delete --chmod=D755,F644 \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            dist/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${DEPLOY_PATH}/"
+
+      - name: Limpiar llave
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
